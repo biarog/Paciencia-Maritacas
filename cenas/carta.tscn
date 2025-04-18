@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://2la507ht2ax8"]
+[gd_scene load_steps=4 format=3 uid="uid://2la507ht2ax8"]
 
 [ext_resource type="Script" uid="uid://bn5026ducjhnf" path="res://scripts/carta.gd" id="1_nqtiw"]
+[ext_resource type="Texture2D" uid="uid://oejhw6ufccit" path="res://Assets/Cartas/CartaBase.png" id="2_7n1sw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b5ehv"]
 size = Vector2(100, 150)
@@ -18,13 +19,18 @@ offset_bottom = 0.479996
 pivot_offset = Vector2(50, 75)
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 script = ExtResource("1_nqtiw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite Carta" type="Sprite2D" parent="."]
+position = Vector2(50, 75)
+texture = ExtResource("2_7n1sw")
+
+[node name="Area Carta" type="Area2D" parent="."]
 position = Vector2(50, 75)
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(50, 75)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Colisão Carta" type="CollisionShape2D" parent="Area Carta"]
 shape = SubResource("RectangleShape2D_b5ehv")
+
+[connection signal="mouse_entered" from="Area Carta" to="." method="_on_area_carta_mouse_entered"]
+[connection signal="mouse_exited" from="Area Carta" to="." method="_on_area_carta_mouse_exited"]
