@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://2la507ht2ax8"]
+
+[ext_resource type="Script" uid="uid://bn5026ducjhnf" path="res://scripts/carta.gd" id="1_nqtiw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5ehv"]
+size = Vector2(100, 150)
+
+[node name="Carta" type="Control"]
+layout_mode = 3
+anchor_left = -0.041
+anchor_top = -0.105
+anchor_right = 0.042
+anchor_bottom = 0.115
+offset_left = -2.768
+offset_top = -6.96
+offset_right = 1.616
+offset_bottom = 0.479996
+pivot_offset = Vector2(50, 75)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_nqtiw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(50, 75)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(50, 75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_b5ehv")
