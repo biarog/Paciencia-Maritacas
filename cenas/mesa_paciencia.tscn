@@ -1,226 +1,373 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl22uxdjcoa7s"]
+[gd_scene load_steps=8 format=3 uid="uid://dl22uxdjcoa7s"]
 
 [ext_resource type="PackedScene" uid="uid://2la507ht2ax8" path="res://cenas/carta.tscn" id="1_itxlh"]
+[ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/controle_cartas_jogo.gd" id="1_xq04u"]
+[ext_resource type="Script" uid="uid://bvtohpegk2uty" path="res://scripts/area_coluna.gd" id="2_ed8c6"]
+[ext_resource type="Script" uid="uid://cn6b4su3n12tu" path="res://scripts/controle_inputs.gd" id="3_ed8c6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xq04u"]
+size = Vector2(100, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ed8c6"]
+size = Vector2(100, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
+size = Vector2(100, 150)
 
 [node name="Mesa Paciencia" type="Control"]
+layout_direction = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 
-[node name="Deck" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 22.0
-offset_right = 129.0
-offset_bottom = 172.0
+[node name="Controle Jogo" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 225.5)
+mouse_filter = 2
+script = ExtResource("1_xq04u")
+
+[node name="Jogo" type="HBoxContainer" parent="Controle Jogo"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 75)
+mouse_filter = 2
+alignment = 1
+
+[node name="Coluna1" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 25
+
+[node name="AreaColuna1" type="Area2D" parent="Controle Jogo/Jogo/Coluna1"]
+position = Vector2(50, 75)
+script = ExtResource("2_ed8c6")
+
+[node name="ColisãoColuna1" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna1/AreaColuna1"]
+shape = SubResource("RectangleShape2D_xq04u")
+
+[node name="Carta" parent="Controle Jogo/Jogo/Coluna1" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 1
+layout_mode = 2
+
+[node name="Coluna2" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 25
+
+[node name="AreaColuna2" type="Area2D" parent="Controle Jogo/Jogo/Coluna2"]
+position = Vector2(50, 75)
+script = ExtResource("2_ed8c6")
+
+[node name="ColisãoColuna2" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna2/AreaColuna2"]
+shape = SubResource("RectangleShape2D_ed8c6")
+
+[node name="Carta" parent="Controle Jogo/Jogo/Coluna2" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 1
+layout_mode = 2
+
+[node name="Carta2" parent="Controle Jogo/Jogo/Coluna2" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 2
+layout_mode = 2
+
+[node name="Coluna3" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 25
+
+[node name="AreaColuna3" type="Area2D" parent="Controle Jogo/Jogo/Coluna3"]
+position = Vector2(50, 75)
+script = ExtResource("2_ed8c6")
+
+[node name="ColisaoColuna3" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna3/AreaColuna3"]
+position = Vector2(0, 3.05176e-05)
+shape = SubResource("RectangleShape2D_udm32")
+
+[node name="Carta" parent="Controle Jogo/Jogo/Coluna3" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 1
+layout_mode = 2
+
+[node name="Carta2" parent="Controle Jogo/Jogo/Coluna3" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 2
+layout_mode = 2
+
+[node name="Carta3" parent="Controle Jogo/Jogo/Coluna3" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 3
+layout_mode = 2
+
+[node name="Coluna4" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 25
+
+[node name="AreaColuna4" type="Area2D" parent="Controle Jogo/Jogo/Coluna4"]
+position = Vector2(50, 75)
+script = ExtResource("2_ed8c6")
+
+[node name="ColisaoColuna4" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna4/AreaColuna4"]
+position = Vector2(0, 3.05176e-05)
+shape = SubResource("RectangleShape2D_udm32")
+
+[node name="Carta" parent="Controle Jogo/Jogo/Coluna4" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 1
+layout_mode = 2
+
+[node name="Carta2" parent="Controle Jogo/Jogo/Coluna4" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 2
+layout_mode = 2
+
+[node name="Carta3" parent="Controle Jogo/Jogo/Coluna4" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 3
+layout_mode = 2
+
+[node name="Carta4" parent="Controle Jogo/Jogo/Coluna4" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 4
+layout_mode = 2
+
+[node name="Coluna5" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 25
+
+[node name="AreaColuna5" type="Area2D" parent="Controle Jogo/Jogo/Coluna5"]
+position = Vector2(50, 75)
+script = ExtResource("2_ed8c6")
+
+[node name="ColisaoColuna5" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna5/AreaColuna5"]
+position = Vector2(0, 3.05176e-05)
+shape = SubResource("RectangleShape2D_udm32")
+
+[node name="Carta" parent="Controle Jogo/Jogo/Coluna5" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 1
+layout_mode = 2
+
+[node name="Carta2" parent="Controle Jogo/Jogo/Coluna5" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 2
+layout_mode = 2
+
+[node name="Carta3" parent="Controle Jogo/Jogo/Coluna5" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 3
+layout_mode = 2
+
+[node name="Carta4" parent="Controle Jogo/Jogo/Coluna5" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 4
+layout_mode = 2
+
+[node name="Carta5" parent="Controle Jogo/Jogo/Coluna5" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 5
+layout_mode = 2
+
+[node name="Coluna6" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 25
+
+[node name="AreaColuna6" type="Area2D" parent="Controle Jogo/Jogo/Coluna6"]
+position = Vector2(50, 75)
+script = ExtResource("2_ed8c6")
+
+[node name="ColisaoColuna6" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna6/AreaColuna6"]
+position = Vector2(0, 3.05176e-05)
+shape = SubResource("RectangleShape2D_udm32")
+
+[node name="Carta" parent="Controle Jogo/Jogo/Coluna6" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 1
+layout_mode = 2
+
+[node name="Carta2" parent="Controle Jogo/Jogo/Coluna6" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 2
+layout_mode = 2
+
+[node name="Carta3" parent="Controle Jogo/Jogo/Coluna6" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 3
+layout_mode = 2
+
+[node name="Carta4" parent="Controle Jogo/Jogo/Coluna6" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 4
+layout_mode = 2
+
+[node name="Carta5" parent="Controle Jogo/Jogo/Coluna6" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 5
+layout_mode = 2
+
+[node name="Carta6" parent="Controle Jogo/Jogo/Coluna6" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 6
+layout_mode = 2
+
+[node name="Coluna7" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 25
+
+[node name="AreaColuna7" type="Area2D" parent="Controle Jogo/Jogo/Coluna7"]
+position = Vector2(50, 75)
+script = ExtResource("2_ed8c6")
+
+[node name="ColisaoColuna7" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna7/AreaColuna7"]
+shape = SubResource("RectangleShape2D_udm32")
+
+[node name="Carta" parent="Controle Jogo/Jogo/Coluna7" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+
+[node name="Carta2" parent="Controle Jogo/Jogo/Coluna7" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 2
+z_as_relative = false
+layout_mode = 2
+
+[node name="Carta3" parent="Controle Jogo/Jogo/Coluna7" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 3
+z_as_relative = false
+layout_mode = 2
+
+[node name="Carta4" parent="Controle Jogo/Jogo/Coluna7" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 4
+z_as_relative = false
+layout_mode = 2
+
+[node name="Carta5" parent="Controle Jogo/Jogo/Coluna7" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 5
+z_as_relative = false
+layout_mode = 2
+
+[node name="Carta6" parent="Controle Jogo/Jogo/Coluna7" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 6
+z_as_relative = false
+layout_mode = 2
+
+[node name="Carta7" parent="Controle Jogo/Jogo/Coluna7" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
+z_index = 7
+z_as_relative = false
+layout_mode = 2
+
+[node name="Controle Deck" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.025
+anchor_top = 0.034
+anchor_right = 0.329
+anchor_bottom = 0.265
+offset_left = 0.199999
+offset_top = -0.0320015
+offset_right = -0.00802612
+offset_bottom = 0.279984
+pivot_offset = Vector2(177, 75)
+
+[node name="Deck" type="HBoxContainer" parent="Controle Deck"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.282
+anchor_bottom = 1.0
+offset_right = 0.171997
 pivot_offset = Vector2(50, 75)
 mouse_filter = 2
 
-[node name="Carta" parent="Deck" instance=ExtResource("1_itxlh")]
+[node name="Carta" parent="Controle Deck/Deck" instance=ExtResource("1_itxlh")]
 layout_mode = 2
 
-[node name="Cartas Viradas" type="HBoxContainer" parent="."]
+[node name="Cartas Viradas" type="HBoxContainer" parent="Controle Deck"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.024
-anchor_top = 0.034
-anchor_right = 0.111
-anchor_bottom = 0.265
-offset_left = 155.352
-offset_top = -0.0320015
-offset_right = 255.128
-offset_bottom = 0.279984
+anchor_left = 0.435
+anchor_right = 0.862
+anchor_bottom = 1.0
+offset_left = 0.00999451
+offset_right = -0.14801
 pivot_offset = Vector2(112.5, 75)
 mouse_filter = 2
 theme_override_constants/separation = -50
 alignment = 1
 
-[node name="Carta" parent="Cartas Viradas" instance=ExtResource("1_itxlh")]
+[node name="Carta" parent="Controle Deck/Cartas Viradas" instance=ExtResource("1_itxlh")]
 layout_mode = 2
 
-[node name="Carta2" parent="Cartas Viradas" instance=ExtResource("1_itxlh")]
+[node name="Carta2" parent="Controle Deck/Cartas Viradas" instance=ExtResource("1_itxlh")]
 layout_mode = 2
 
-[node name="Carta3" parent="Cartas Viradas" instance=ExtResource("1_itxlh")]
+[node name="Carta3" parent="Controle Deck/Cartas Viradas" instance=ExtResource("1_itxlh")]
 layout_mode = 2
 
-[node name="Casas Finais" type="HBoxContainer" parent="."]
+[node name="Controle Casas" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = -1
 anchor_left = 0.56
 anchor_top = 0.034
-anchor_right = 0.977
+anchor_right = 0.972
 anchor_bottom = 0.265
 offset_left = -0.119995
 offset_top = -0.0320015
-offset_right = -0.504028
+offset_right = 0.255981
 offset_bottom = 0.279984
-pivot_offset = Vector2(240, 75)
+pivot_offset = Vector2(237.5, 75)
+
+[node name="Casas Finais" type="HBoxContainer" parent="Controle Casas"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(237.5, 75)
 mouse_filter = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Carta" parent="Casas Finais" instance=ExtResource("1_itxlh")]
+[node name="Carta" parent="Controle Casas/Casas Finais" instance=ExtResource("1_itxlh")]
 layout_mode = 2
 
-[node name="Carta2" parent="Casas Finais" instance=ExtResource("1_itxlh")]
+[node name="Carta2" parent="Controle Casas/Casas Finais" instance=ExtResource("1_itxlh")]
 layout_mode = 2
 
-[node name="Carta3" parent="Casas Finais" instance=ExtResource("1_itxlh")]
+[node name="Carta3" parent="Controle Casas/Casas Finais" instance=ExtResource("1_itxlh")]
 layout_mode = 2
 
-[node name="Carta4" parent="Casas Finais" instance=ExtResource("1_itxlh")]
+[node name="Carta4" parent="Controle Casas/Casas Finais" instance=ExtResource("1_itxlh")]
 layout_mode = 2
 
-[node name="Jogo" type="HBoxContainer" parent="."]
+[node name="Controle Inputs" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_ed8c6")
+
+[node name="Camada de Arrasto" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.072
-anchor_top = 0.304
-anchor_right = 0.94
-anchor_bottom = 0.998
-offset_left = 10.056
-offset_top = 0.00798035
-offset_right = 10.12
-offset_bottom = 0.295959
-pivot_offset = Vector2(500, 150)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-alignment = 1
-
-[node name="Coluna1" type="VBoxContainer" parent="Jogo"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/separation = 25
-
-[node name="Carta" parent="Jogo/Coluna1" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Coluna2" type="VBoxContainer" parent="Jogo"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/separation = 25
-
-[node name="Carta" parent="Jogo/Coluna2" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta2" parent="Jogo/Coluna2" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Coluna3" type="VBoxContainer" parent="Jogo"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/separation = 25
-
-[node name="Carta" parent="Jogo/Coluna3" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta2" parent="Jogo/Coluna3" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta3" parent="Jogo/Coluna3" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Coluna4" type="VBoxContainer" parent="Jogo"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/separation = 25
-
-[node name="Carta" parent="Jogo/Coluna4" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta2" parent="Jogo/Coluna4" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta3" parent="Jogo/Coluna4" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta4" parent="Jogo/Coluna4" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Coluna5" type="VBoxContainer" parent="Jogo"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/separation = 25
-
-[node name="Carta" parent="Jogo/Coluna5" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta2" parent="Jogo/Coluna5" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta3" parent="Jogo/Coluna5" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta4" parent="Jogo/Coluna5" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta5" parent="Jogo/Coluna5" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Coluna6" type="VBoxContainer" parent="Jogo"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/separation = 25
-
-[node name="Carta" parent="Jogo/Coluna6" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta2" parent="Jogo/Coluna6" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta3" parent="Jogo/Coluna6" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta4" parent="Jogo/Coluna6" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta5" parent="Jogo/Coluna6" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta6" parent="Jogo/Coluna6" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Coluna7" type="VBoxContainer" parent="Jogo"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/separation = 25
-
-[node name="Carta" parent="Jogo/Coluna7" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta2" parent="Jogo/Coluna7" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta3" parent="Jogo/Coluna7" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta4" parent="Jogo/Coluna7" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta5" parent="Jogo/Coluna7" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta6" parent="Jogo/Coluna7" instance=ExtResource("1_itxlh")]
-layout_mode = 2
-
-[node name="Carta7" parent="Jogo/Coluna7" instance=ExtResource("1_itxlh")]
-layout_mode = 2
