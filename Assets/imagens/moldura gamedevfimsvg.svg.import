@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ouimnia6ow3u"
-path="res://.godot/imported/moldura gamedevfimsvg.svg-d54f6fa188f809b08c318e3f5a87e6d7.ctex"
+path="res://.godot/imported/moldura gamedevfimsvg.svg-0cc74ddfc8eb556b97c2c0338a5a2dc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imagens/moldura gamedevfimsvg.svg"
-dest_files=["res://.godot/imported/moldura gamedevfimsvg.svg-d54f6fa188f809b08c318e3f5a87e6d7.ctex"]
+source_file="res://Assets/imagens/moldura gamedevfimsvg.svg"
+dest_files=["res://.godot/imported/moldura gamedevfimsvg.svg-0cc74ddfc8eb556b97c2c0338a5a2dc3.ctex"]
 
 [params]
 

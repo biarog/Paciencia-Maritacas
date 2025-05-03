@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cefyayq2bhrrj"
-path="res://.godot/imported/haja_paciencia_titulo_fim.png-c346d71f22156f38c8775efad27bcfb1.ctex"
+path="res://.godot/imported/haja_paciencia_titulo_fim.png-3515c23367231f2e053808b711ebc92e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imagens/haja_paciencia_titulo_fim.png"
-dest_files=["res://.godot/imported/haja_paciencia_titulo_fim.png-c346d71f22156f38c8775efad27bcfb1.ctex"]
+source_file="res://Assets/imagens/haja_paciencia_titulo_fim.png"
+dest_files=["res://.godot/imported/haja_paciencia_titulo_fim.png-3515c23367231f2e053808b711ebc92e.ctex"]
 
 [params]
 
