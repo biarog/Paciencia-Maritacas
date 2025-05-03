@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dl22uxdjcoa7s"]
+[gd_scene load_steps=7 format=3 uid="uid://dl22uxdjcoa7s"]
 
 [ext_resource type="PackedScene" uid="uid://2la507ht2ax8" path="res://cenas/carta.tscn" id="1_itxlh"]
 [ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/controle_cartas_jogo.gd" id="1_xq04u"]
 [ext_resource type="Script" uid="uid://bvtohpegk2uty" path="res://scripts/area_coluna.gd" id="2_ed8c6"]
-[ext_resource type="Script" uid="uid://cn6b4su3n12tu" path="res://scripts/controle_inputs.gd" id="3_ed8c6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xq04u"]
 size = Vector2(100, 150)
@@ -358,18 +357,3 @@ layout_mode = 2
 
 [node name="Carta4" parent="Controle Casas/Casas Finais" instance=ExtResource("1_itxlh")]
 layout_mode = 2
-
-[node name="Controle Inputs" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_ed8c6")
-
-[node name="Camada de Arrasto" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
