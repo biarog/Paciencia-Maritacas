@@ -1,8 +1,13 @@
 extends Control
 
+const soma_zindex : int = 90
+
 var carta_destacada : Node = null
-var carta_carregada: Node = null
+var cartas_carregadas : Array[Node]
 var cartas_hovering := []
+var pos_og_cartas_carregadas : Array[Vector2]
+var carregada : bool = false
+var tweens_carregadas : Array[Tween]
 
 func _ready():
 	update_pos_containes()
@@ -10,17 +15,24 @@ func _ready():
 		carta.connect("mouse_entered", mouse_entrou_carta)
 		carta.connect("mouse_exited", mouse_saiu_carta)
 
-func _process(delta):
-	if carta_carregada:
-		carta_carregada.position = carta_carregada.get_parent().get_local_mouse_position()
+func _process(_delta):
+	if carregada:
+		for i in range(cartas_carregadas.size()):
+			var carta = cartas_carregadas[i]
+			var pos = carta.get_parent().get_local_mouse_position() + Vector2(-50,-50+(i*25))
+			
+			var tween = carta.create_tween()
+			tween.tween_property(carta, "position", pos, 0.05).set_delay((i+1) * 0.03)
+			tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			tweens_carregadas[i] = tween
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
 			if carta_destacada:
-				carta_carregada = carta_destacada
+				carregando_cartas(carta_destacada)
 		else:
-			carta_carregada = null
+			soltando_cartas(cartas_carregadas)
 
 # Fuções para destacar cartas ao passar o mouse em cima delas
 func mouse_entrou_carta(carta):
@@ -28,7 +40,7 @@ func mouse_entrou_carta(carta):
 	if not cartas_hovering.has(carta):
 		cartas_hovering.append(carta)
 	
-	if carta_carregada != null:
+	if cartas_carregadas.size() > 0:
 		return
 
 	# Se nenhuma carta esta destacada, destacar a nova
@@ -49,7 +61,7 @@ func mouse_saiu_carta(carta):
 		carta_destacada = null
 		
 		# Checa se mais alguma carta eh hovered
-		if cartas_hovering.size() > 0 and carta_carregada == null:
+		if cartas_hovering.size() > 0 and cartas_carregadas.size() == 0:
 			# Encontra a primeira carta abaixo do mouse e destaca ela
 			var top_card = get_primeira_carta(cartas_hovering)
 			destacar_carta(top_card)
@@ -66,6 +78,43 @@ func normalizar_carta(carta):
 func get_primeira_carta(card_list):
 	card_list.sort_custom(func(a, b): return a.z_index > b.z_index)
 	return card_list[0]
+
+# Funções para carregar/soltar cartas ao clicar/soltar o click
+
+func carregando_cartas(carta_carregada:Node):
+	pos_og_cartas_carregadas.append(carta_carregada.position)
+	cartas_carregadas.append(carta_carregada)
+	
+	var cartas_irmas : Array = cartas_carregadas[0].get_parent().get_children()
+	for i in range(cartas_carregadas[0].get_index()+1,cartas_irmas.size()):
+		cartas_carregadas.append(cartas_irmas[i])
+		pos_og_cartas_carregadas.append(cartas_irmas[i].position)
+	
+	for i in range(cartas_carregadas.size()):
+		var carta = cartas_carregadas[i]
+		carta.z_index += soma_zindex
+		tweens_carregadas.append(null)
+	
+	carregada = true
+
+func soltando_cartas(cartas:Array):
+	for i in range(cartas.size()):
+		var carta = cartas[i]
+		
+		var tween = carta.create_tween()
+		tween.tween_property(carta, "position", pos_og_cartas_carregadas[i], 0.25).set_delay(i * 0.03)
+		tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		
+		tween.finished.connect(func():
+			carta.z_index -= soma_zindex
+		)
+		
+		tweens_carregadas[i] = tween
+	
+	cartas.clear()
+	pos_og_cartas_carregadas.clear()
+	tweens_carregadas.clear()
+	carregada = false
 
 # Funções para atualizar containers
 func update_pos_containes():
