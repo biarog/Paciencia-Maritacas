@@ -1,19 +1,32 @@
 extends Control
 
 const soma_zindex : int = 90
+@onready var camada_drag = $"../Camada Drag"
 
+# Variáveis para destacar cartas
 var carta_destacada : Node = null
+var cartas_hovering : Array[Node]
+
+# Variaveis para lógica de carregar e soltar cartas
 var cartas_carregadas : Array[Node]
-var cartas_hovering := []
-var pos_og_cartas_carregadas : Array[Vector2]
-var carregada : bool = false
+var pos_alvo_cartas_carregadas : Array[Vector2]
 var tweens_carregadas : Array[Tween]
+var carregada : bool = false
+
+# Variáveis para verificação de soltar cartas em colunas
+var em_coluna : bool = false
+var coluna_og : Node
+var coluna_nova : Node
 
 func _ready():
-	update_pos_containes()
+	update_pos_containers()
 	for carta in get_tree().get_nodes_in_group("Cartas Jogo"):
 		carta.connect("mouse_entered", mouse_entrou_carta)
 		carta.connect("mouse_exited", mouse_saiu_carta)
+	
+	for coluna in get_tree().get_nodes_in_group("Colunas Jogo"):
+		coluna.mouse_entered.connect(Callable(self, "_on_area_coluna_mouse_entered").bind(coluna))
+		coluna.mouse_exited.connect(_on_area_coluna_mouse_exited)
 
 func _process(_delta):
 	if carregada:
@@ -28,13 +41,15 @@ func _process(_delta):
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.is_pressed():
-			if carta_destacada:
-				carregando_cartas(carta_destacada)
-		else:
-			soltando_cartas(cartas_carregadas)
+		if event.is_pressed() and carta_destacada != null:
+			var carta = carta_destacada
+			normalizar_carta(carta)
+			carregando_cartas(carta)
+		elif event.is_released() and carregada:
+			soltando_cartas()
 
 # Fuções para destacar cartas ao passar o mouse em cima delas
+
 func mouse_entrou_carta(carta):
 	# Adiciona a carta a lista de hovering se ela nao esta nela
 	if not cartas_hovering.has(carta):
@@ -74,51 +89,110 @@ func destacar_carta(carta):
 func normalizar_carta(carta):
 	var tween = create_tween()
 	tween.tween_property(carta, "scale", Vector2(1,1), 0.1)
+	carta_destacada = null
 
 func get_primeira_carta(card_list):
 	card_list.sort_custom(func(a, b): return a.z_index > b.z_index)
 	return card_list[0]
 
+
 # Funções para carregar/soltar cartas ao clicar/soltar o click
 
 func carregando_cartas(carta_carregada:Node):
-	pos_og_cartas_carregadas.append(carta_carregada.position)
+	pos_alvo_cartas_carregadas.append(Vector2(carta_carregada.global_position.x + 12.5, carta_carregada.global_position.y + 18.75))
+	print("posição alvo og: (" + str(pos_alvo_cartas_carregadas[0].x) + "," + str(pos_alvo_cartas_carregadas[0].y) + ")")
 	cartas_carregadas.append(carta_carregada)
+	coluna_og = carta_carregada.get_parent()
 	
 	var cartas_irmas : Array = cartas_carregadas[0].get_parent().get_children()
 	for i in range(cartas_carregadas[0].get_index()+1,cartas_irmas.size()):
 		cartas_carregadas.append(cartas_irmas[i])
-		pos_og_cartas_carregadas.append(cartas_irmas[i].position)
+		pos_alvo_cartas_carregadas.append(cartas_irmas[i].global_position)
 	
 	for i in range(cartas_carregadas.size()):
 		var carta = cartas_carregadas[i]
+		coluna_og.remove_child(carta)
+		camada_drag.add_child(carta)
+		
+		carta.global_position = pos_alvo_cartas_carregadas[i]
+		
 		carta.z_index += soma_zindex
 		tweens_carregadas.append(null)
 	
 	carregada = true
 
-func soltando_cartas(cartas:Array):
-	for i in range(cartas.size()):
-		var carta = cartas[i]
-		
+func soltando_cartas():
+	var container_alvo = coluna_og
+	
+	if em_coluna and coluna_nova != null and coluna_nova != coluna_og:
+		container_alvo = coluna_nova
+	pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta(container_alvo)
+	
+	for i in range(cartas_carregadas.size()):
+		var carta = cartas_carregadas[i]
 		var tween = carta.create_tween()
-		tween.tween_property(carta, "position", pos_og_cartas_carregadas[i], 0.25).set_delay(i * 0.03)
+		
+		if i > 0:
+			pos_alvo_cartas_carregadas[i].x = pos_alvo_cartas_carregadas[i-1].x
+			pos_alvo_cartas_carregadas[i].y = pos_alvo_cartas_carregadas[i-1].y + 25
+		
+		# Anima as cartas para a posição correta
+		tween.tween_property(carta, "global_position", pos_alvo_cartas_carregadas[i], 0.25).set_delay(i * 0.03)
 		tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		
 		tween.finished.connect(func():
-			carta.z_index -= soma_zindex
+			if carta.get_parent() == camada_drag:
+				camada_drag.remove_child(carta)
+			container_alvo.add_child(carta)
+			carta.position = Vector2.ZERO # Resetta a pos das cartas pro container alterar
+			update_pos_containers()
 		)
 		
 		tweens_carregadas[i] = tween
 	
-	cartas.clear()
-	pos_og_cartas_carregadas.clear()
+	cartas_carregadas.clear()
+	pos_alvo_cartas_carregadas.clear()
 	tweens_carregadas.clear()
 	carregada = false
+	coluna_og = null
 
-# Funções para atualizar containers
-func update_pos_containes():
-	var colunas = [$Jogo/Coluna1, $Jogo/Coluna2, $Jogo/Coluna3, $Jogo/Coluna4, $Jogo/Coluna5, $Jogo/Coluna6, $Jogo/Coluna7]
+
+# Funções para atualizar containers das colunas
+
+func update_pos_containers():
+	var colunas := [$Jogo/Coluna1, $Jogo/Coluna2, $Jogo/Coluna3, $Jogo/Coluna4, $Jogo/Coluna5, $Jogo/Coluna6, $Jogo/Coluna7]
 	for coluna in colunas:
 		var filhos = coluna.get_child_count()
-		coluna.get_child(0).position.y = 75 + ((filhos-1) * 25)
+		# Filhos - 2, pois um é para a carta (já que a posicção default do y é de 75
+		# e o outro é para a própria AreaColuna que toda coluna possui
+		if (filhos-2 < 0) :
+			filhos += 1;
+		
+		coluna.get_child(0).position.y = 75 + ((filhos-2) * 25)
+		
+		for i in range(coluna.get_child_count()) :
+			var child = coluna.get_child(i)
+			child.z_index = i
+
+
+# Funções para soltar cartas dentro da área de uma coluna
+
+func _on_area_coluna_mouse_entered(coluna):
+	coluna_nova = coluna.get_parent()
+	print("entrou em" + coluna_nova.name)
+	em_coluna = true
+
+func _on_area_coluna_mouse_exited():
+	if coluna_nova != null:
+		print("saiu de " + coluna_nova.name)
+	em_coluna = false
+	coluna_nova = null
+
+
+# Calcula a posição-alvo para uma carta
+
+func calcula_posicao_alvo_de_carta(coluna_alvo: Node) -> Vector2:
+	var pos_x_coluna = 76 + (150 * coluna_alvo.get_parent().get_children().find(coluna_alvo))
+	var pos_y_alvo = 216 + ((coluna_alvo.get_child_count() - 1) * 25)
+	
+	return Vector2(pos_x_coluna, pos_y_alvo)

@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl22uxdjcoa7s"]
+[gd_scene load_steps=6 format=3 uid="uid://dl22uxdjcoa7s"]
 
 [ext_resource type="PackedScene" uid="uid://2la507ht2ax8" path="res://cenas/carta.tscn" id="1_itxlh"]
 [ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/controle_cartas_jogo.gd" id="1_xq04u"]
-[ext_resource type="Script" uid="uid://bvtohpegk2uty" path="res://scripts/area_coluna.gd" id="2_ed8c6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xq04u"]
 size = Vector2(100, 150)
@@ -27,6 +26,16 @@ size_flags_vertical = 3
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Camada Drag" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+
 [node name="Controle Jogo" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -40,31 +49,29 @@ script = ExtResource("1_xq04u")
 
 [node name="Jogo" type="HBoxContainer" parent="Controle Jogo"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = -1
+anchor_top = 0.347
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 31.0
-offset_top = -75.0
-offset_right = 31.0
-offset_bottom = 75.0
+anchor_bottom = 1.003
+offset_left = 32.0
+offset_top = -8.856
+offset_right = -32.0
+offset_bottom = 0.0559692
 grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(576, 75)
 mouse_filter = 2
+theme_override_constants/separation = 50
 alignment = 1
 
 [node name="Coluna1" type="VBoxContainer" parent="Controle Jogo/Jogo"]
 z_index = 1
+custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 25
 
-[node name="AreaColuna1" type="Area2D" parent="Controle Jogo/Jogo/Coluna1"]
+[node name="AreaColuna1" type="Area2D" parent="Controle Jogo/Jogo/Coluna1" groups=["Colunas Jogo"]]
 position = Vector2(50, 75)
-script = ExtResource("2_ed8c6")
 
 [node name="ColisãoColuna1" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna1/AreaColuna1"]
 shape = SubResource("RectangleShape2D_xq04u")
@@ -72,17 +79,18 @@ shape = SubResource("RectangleShape2D_xq04u")
 [node name="Carta" parent="Controle Jogo/Jogo/Coluna1" groups=["Cartas Jogo"] instance=ExtResource("1_itxlh")]
 z_index = 1
 layout_mode = 2
+casa = 2
+valor = 12
 
 [node name="Coluna2" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 25
 
-[node name="AreaColuna2" type="Area2D" parent="Controle Jogo/Jogo/Coluna2"]
+[node name="AreaColuna2" type="Area2D" parent="Controle Jogo/Jogo/Coluna2" groups=["Colunas Jogo"]]
 position = Vector2(50, 75)
-script = ExtResource("2_ed8c6")
 
 [node name="ColisãoColuna2" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna2/AreaColuna2"]
 shape = SubResource("RectangleShape2D_ed8c6")
@@ -96,15 +104,14 @@ z_index = 2
 layout_mode = 2
 
 [node name="Coluna3" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 25
 
-[node name="AreaColuna3" type="Area2D" parent="Controle Jogo/Jogo/Coluna3"]
+[node name="AreaColuna3" type="Area2D" parent="Controle Jogo/Jogo/Coluna3" groups=["Colunas Jogo"]]
 position = Vector2(50, 75)
-script = ExtResource("2_ed8c6")
 
 [node name="ColisaoColuna3" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna3/AreaColuna3"]
 position = Vector2(0, 3.05176e-05)
@@ -123,15 +130,14 @@ z_index = 3
 layout_mode = 2
 
 [node name="Coluna4" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 25
 
-[node name="AreaColuna4" type="Area2D" parent="Controle Jogo/Jogo/Coluna4"]
+[node name="AreaColuna4" type="Area2D" parent="Controle Jogo/Jogo/Coluna4" groups=["Colunas Jogo"]]
 position = Vector2(50, 75)
-script = ExtResource("2_ed8c6")
 
 [node name="ColisaoColuna4" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna4/AreaColuna4"]
 position = Vector2(0, 3.05176e-05)
@@ -154,15 +160,14 @@ z_index = 4
 layout_mode = 2
 
 [node name="Coluna5" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 25
 
-[node name="AreaColuna5" type="Area2D" parent="Controle Jogo/Jogo/Coluna5"]
+[node name="AreaColuna5" type="Area2D" parent="Controle Jogo/Jogo/Coluna5" groups=["Colunas Jogo"]]
 position = Vector2(50, 75)
-script = ExtResource("2_ed8c6")
 
 [node name="ColisaoColuna5" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna5/AreaColuna5"]
 position = Vector2(0, 3.05176e-05)
@@ -189,15 +194,14 @@ z_index = 5
 layout_mode = 2
 
 [node name="Coluna6" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 25
 
-[node name="AreaColuna6" type="Area2D" parent="Controle Jogo/Jogo/Coluna6"]
+[node name="AreaColuna6" type="Area2D" parent="Controle Jogo/Jogo/Coluna6" groups=["Colunas Jogo"]]
 position = Vector2(50, 75)
-script = ExtResource("2_ed8c6")
 
 [node name="ColisaoColuna6" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna6/AreaColuna6"]
 position = Vector2(0, 3.05176e-05)
@@ -228,15 +232,14 @@ z_index = 6
 layout_mode = 2
 
 [node name="Coluna7" type="VBoxContainer" parent="Controle Jogo/Jogo"]
+custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 25
 
-[node name="AreaColuna7" type="Area2D" parent="Controle Jogo/Jogo/Coluna7"]
+[node name="AreaColuna7" type="Area2D" parent="Controle Jogo/Jogo/Coluna7" groups=["Colunas Jogo"]]
 position = Vector2(50, 75)
-script = ExtResource("2_ed8c6")
 
 [node name="ColisaoColuna7" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna7/AreaColuna7"]
 shape = SubResource("RectangleShape2D_udm32")
