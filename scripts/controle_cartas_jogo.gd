@@ -100,7 +100,6 @@ func get_primeira_carta(card_list):
 
 func carregando_cartas(carta_carregada:Node):
 	pos_alvo_cartas_carregadas.append(Vector2(carta_carregada.global_position.x + 12.5, carta_carregada.global_position.y + 18.75))
-	print("posição alvo og: (" + str(pos_alvo_cartas_carregadas[0].x) + "," + str(pos_alvo_cartas_carregadas[0].y) + ")")
 	cartas_carregadas.append(carta_carregada)
 	coluna_og = carta_carregada.get_parent()
 	
@@ -179,12 +178,9 @@ func update_pos_containers():
 
 func _on_area_coluna_mouse_entered(coluna):
 	coluna_nova = coluna.get_parent()
-	print("entrou em" + coluna_nova.name)
 	em_coluna = true
 
 func _on_area_coluna_mouse_exited():
-	if coluna_nova != null:
-		print("saiu de " + coluna_nova.name)
 	em_coluna = false
 	coluna_nova = null
 
