@@ -3,6 +3,9 @@ extends Control
 const soma_zindex : int = 90
 @onready var camada_drag = $"../Camada Drag"
 
+# Variável do Deck
+var deck : Array[Carta]
+
 # Variáveis para destacar cartas
 var carta_destacada : Node = null
 var cartas_hovering : Array[Node]
@@ -19,12 +22,14 @@ var coluna_og : Node
 var coluna_nova : Node
 
 func _ready():
+	deck = Deck.cria_deck_desordenado(true)
+	instancia_deck(deck)
 	update_pos_containers()
+	# Conectando sinais
 	for carta in get_tree().get_nodes_in_group("Cartas Jogo"):
 		carta.connect("mouse_entered", mouse_entrou_carta)
 		carta.connect("mouse_exited", mouse_saiu_carta)
-	
-	for coluna in get_tree().get_nodes_in_group("Colunas Jogo"):
+	for coluna in get_tree().get_nodes_in_group("Areas Colunas Jogo"):
 		coluna.mouse_entered.connect(Callable(self, "_on_area_coluna_mouse_entered").bind(coluna))
 		coluna.mouse_exited.connect(_on_area_coluna_mouse_exited)
 
@@ -47,6 +52,7 @@ func _input(event):
 			carregando_cartas(carta)
 		elif event.is_released() and carregada:
 			soltando_cartas()
+
 
 # Fuções para destacar cartas ao passar o mouse em cima delas
 
@@ -155,27 +161,6 @@ func soltando_cartas():
 	carregada = false
 	coluna_og = null
 
-
-# Funções para atualizar containers das colunas
-
-func update_pos_containers():
-	var colunas := [$Jogo/Coluna1, $Jogo/Coluna2, $Jogo/Coluna3, $Jogo/Coluna4, $Jogo/Coluna5, $Jogo/Coluna6, $Jogo/Coluna7]
-	for coluna in colunas:
-		var filhos = coluna.get_child_count()
-		# Filhos - 2, pois um é para a carta (já que a posicção default do y é de 75
-		# e o outro é para a própria AreaColuna que toda coluna possui
-		if (filhos-2 < 0) :
-			filhos += 1;
-		
-		coluna.get_child(0).position.y = 75 + ((filhos-2) * 25)
-		
-		for i in range(coluna.get_child_count()) :
-			var child = coluna.get_child(i)
-			child.z_index = i
-
-
-# Funções para soltar cartas dentro da área de uma coluna
-
 func _on_area_coluna_mouse_entered(coluna):
 	coluna_nova = coluna.get_parent()
 	em_coluna = true
@@ -184,11 +169,45 @@ func _on_area_coluna_mouse_exited():
 	em_coluna = false
 	coluna_nova = null
 
-
-# Calcula a posição-alvo para uma carta
-
 func calcula_posicao_alvo_de_carta(coluna_alvo: Node) -> Vector2:
 	var pos_x_coluna = 76 + (150 * coluna_alvo.get_parent().get_children().find(coluna_alvo))
 	var pos_y_alvo = 216 + ((coluna_alvo.get_child_count() - 1) * 25)
 	
 	return Vector2(pos_x_coluna, pos_y_alvo)
+
+
+# Função para atualizar containers das colunas
+
+func update_pos_containers():
+	for coluna in get_tree().get_nodes_in_group("Colunas Jogo"):
+		var filhos = coluna.get_child_count()
+		# Filhos - 2, pois um é para a carta (já que a posicção default do y é de 75
+		# e o outro é para a própria AreaColuna que toda coluna possui
+		#if (filhos-2 < 0) :
+		#	filhos += 1;
+		
+		#coluna.get_child(0).position.y = 75 + ((filhos-2) * 25)
+		
+		for i in range(coluna.get_child_count()) :
+			var child = coluna.get_child(i)
+			child.z_index = i
+
+
+# Função para instanciar o deck
+func instancia_deck(deck_def:Array[Carta]):
+	var colunas := get_tree().get_nodes_in_group("Colunas Jogo")
+	var j := 0
+	for i in range(28):
+		var carta = deck_def[i]
+		if ((i == 1) || (i == 3) || (i == 6) || (i == 10) || (i == 15) || (i == 21)):
+			j = j + 1
+			deck[i-1].virar_carta()
+		if (i==27) :
+			carta.virar_carta()
+		carta.add_to_group("Cartas Jogo")
+		colunas[j].add_child(carta)
+	
+	for i in range(28,52):
+		var deck_mesa := $"../Controle Deck/Deck"
+		var carta = deck_def[i]
+		deck_mesa.add_child(carta)
