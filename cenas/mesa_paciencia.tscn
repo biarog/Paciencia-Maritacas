@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/controle_cartas_jogo.gd" id="1_xq04u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
-size = Vector2(100, 414)
+size = Vector2(130, 444)
 
 [node name="Mesa Paciencia" type="Control"]
 layout_direction = 2

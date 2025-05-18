@@ -48,7 +48,6 @@ func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed() and carta_destacada != null:
 			var carta = carta_destacada
-			normalizar_carta(carta)
 			carregando_cartas(carta)
 		elif event.is_released() and carregada:
 			soltando_cartas()
@@ -90,11 +89,11 @@ func mouse_saiu_carta(carta):
 func destacar_carta(carta):
 	carta_destacada = carta
 	var tween = create_tween()
-	tween.tween_property(carta_destacada, "scale", Vector2(1.25,1.25), 0.1)
+	tween.tween_property(carta_destacada, "scale", Vector2(1.25,1.25), 0.2)
 
 func normalizar_carta(carta):
 	var tween = create_tween()
-	tween.tween_property(carta, "scale", Vector2(1,1), 0.1)
+	tween.tween_property(carta, "scale", Vector2(1,1), 0.2)
 	carta_destacada = null
 
 func get_primeira_carta(card_list):
@@ -180,7 +179,7 @@ func calcula_posicao_alvo_de_carta(coluna_alvo: Node) -> Vector2:
 
 func update_pos_containers():
 	for coluna in get_tree().get_nodes_in_group("Colunas Jogo"):
-		var filhos = coluna.get_child_count()
+		#var filhos = coluna.get_child_count()
 		# Filhos - 2, pois um é para a carta (já que a posicção default do y é de 75
 		# e o outro é para a própria AreaColuna que toda coluna possui
 		#if (filhos-2 < 0) :
