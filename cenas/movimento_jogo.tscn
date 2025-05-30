@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbl7m0gis12w1"]
+
+[ext_resource type="Script" uid="uid://c1d42dhiru2rs" path="res://scripts/movimento_jogo.gd" id="1_8275x"]
+
+[node name="Movimento Jogo" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8275x")

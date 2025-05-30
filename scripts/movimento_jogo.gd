@@ -1,60 +1,71 @@
+class_name Movimento_Jogo
 extends Control
 
-const soma_zindex : int = 90
-@onready var camada_drag = $"../Camada Drag"
+const MOVIMENTO_SCENE : PackedScene = preload("res://cenas/movimento_jogo.tscn")
 
-# Variável do Deck
-var deck : Array[Carta]
+const soma_zindex : int = 90
+var camada_drag : Control
 
 # Variáveis para destacar cartas
-var carta_destacada : Node = null
-var cartas_hovering : Array[Node]
+var carta_destacada : Carta = null
+var cartas_hovering : Array[Carta]
 
 # Variaveis para lógica de carregar e soltar cartas
-var cartas_carregadas : Array[Node]
+var cartas_carregadas : Array[Carta]
 var pos_alvo_cartas_carregadas : Array[Vector2]
 var tweens_carregadas : Array[Tween]
 var carregada : bool = false
 
 # Variáveis para verificação de soltar cartas em colunas
 var em_coluna : bool = false
-var coluna_og : Node
-var coluna_nova : Node
+var coluna_og : Control
+var coluna_nova : Control
 
-func _ready():
-	deck = Deck.cria_deck_desordenado(true)
-	instancia_deck(deck)
+# Variáveis de grupo
+var cartas_jogo : Array[Node]
+var colunas_jogo : Array[Node]
+var areas_colunas_jogo : Array[Node]
+
+static func novo_movimento_jogo(camada_drag_def:Control, cartas_jogo_def:Array[Node], colunas_jogo_def:Array[Node], areas_colunas_jogo_def:Array[Node]) -> Movimento_Jogo:
+	var novo_movimento = MOVIMENTO_SCENE.instantiate()
+	novo_movimento.camada_drag = camada_drag_def
+	novo_movimento.cartas_jogo = cartas_jogo_def
+	novo_movimento.colunas_jogo = colunas_jogo_def
+	novo_movimento.areas_colunas_jogo = areas_colunas_jogo_def
+	return novo_movimento
+
+func preparacao_mov():
 	update_pos_containers()
 	# Conectando sinais
-	for carta in get_tree().get_nodes_in_group("Cartas Jogo"):
+	for carta in cartas_jogo:
 		carta.connect("mouse_entered", mouse_entrou_carta)
 		carta.connect("mouse_exited", mouse_saiu_carta)
-	for coluna in get_tree().get_nodes_in_group("Areas Colunas Jogo"):
+	for coluna in areas_colunas_jogo:
 		coluna.mouse_entered.connect(Callable(self, "_on_area_coluna_mouse_entered").bind(coluna))
 		coluna.mouse_exited.connect(_on_area_coluna_mouse_exited)
 
-func _process(_delta):
-	if carregada:
-		for i in range(cartas_carregadas.size()):
-			var carta = cartas_carregadas[i]
-			var pos = carta.get_parent().get_local_mouse_position() + Vector2(-50,-50+(i*25))
-			
-			var tween = carta.create_tween()
-			tween.tween_property(carta, "position", pos, 0.05).set_delay((i+1) * 0.03)
-			tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-			tweens_carregadas[i] = tween
+func processamento_movimento(_delta):
+	if !carregada:
+		return
+	
+	for i in range(cartas_carregadas.size()):
+		var carta = cartas_carregadas[i]
+		var pos = carta.get_parent().get_local_mouse_position() + Vector2(-50,-50+(i*25))
+		
+		var tween = carta.create_tween()
+		tween.tween_property(carta, "position", pos, 0.05).set_delay((i+1) * 0.03)
+		tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tweens_carregadas[i] = tween
 
-func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.is_pressed() and carta_destacada != null:
-			var carta = carta_destacada
-			carregando_cartas(carta)
-		elif event.is_released() and carregada:
-			soltando_cartas()
+func mouse_esq(event):
+	if event.is_pressed() and carta_destacada != null:
+		var carta = carta_destacada
+		carregando_cartas(carta)
+	elif event.is_released() and carregada:
+		soltando_cartas()
 
 
 # Fuções para destacar cartas ao passar o mouse em cima delas
-
 func mouse_entrou_carta(carta):
 	# Adiciona a carta a lista de hovering se ela nao esta nela
 	if not cartas_hovering.has(carta):
@@ -88,20 +99,22 @@ func mouse_saiu_carta(carta):
 
 func destacar_carta(carta):
 	carta_destacada = carta
-	var tween = create_tween()
-	tween.tween_property(carta_destacada, "scale", Vector2(1.25,1.25), 0.2)
+	var tween_destaque = create_tween()
+	tween_destaque.tween_property(carta_destacada, "scale", Vector2(1.25,1.25), 0.2)
+	print("destacou")
 
 func normalizar_carta(carta):
 	var tween = create_tween()
 	tween.tween_property(carta, "scale", Vector2(1,1), 0.2)
 	carta_destacada = null
+	print("normalizou")
 
 func get_primeira_carta(card_list):
 	card_list.sort_custom(func(a, b): return a.z_index > b.z_index)
 	return card_list[0]
 
 
-# Funções para carregar/soltar cartas ao clicar/soltar o click
+# Funções para carregar/soltar cartas ao clicar/soltar o botão esq do mouse
 
 func carregando_cartas(carta_carregada:Node):
 	pos_alvo_cartas_carregadas.append(Vector2(carta_carregada.global_position.x + 12.5, carta_carregada.global_position.y + 18.75))
@@ -130,6 +143,7 @@ func soltando_cartas():
 	
 	if em_coluna and coluna_nova != null and coluna_nova != coluna_og:
 		container_alvo = coluna_nova
+	
 	pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta(container_alvo)
 	
 	for i in range(cartas_carregadas.size()):
@@ -175,10 +189,10 @@ func calcula_posicao_alvo_de_carta(coluna_alvo: Node) -> Vector2:
 	return Vector2(pos_x_coluna, pos_y_alvo)
 
 
-# Função para atualizar containers das colunas
+# Função para atualizar containers das colunas inclusive a visibilidade das cartas
 
 func update_pos_containers():
-	for coluna in get_tree().get_nodes_in_group("Colunas Jogo"):
+	for coluna in colunas_jogo:
 		#var filhos = coluna.get_child_count()
 		# Filhos - 2, pois um é para a carta (já que a posicção default do y é de 75
 		# e o outro é para a própria AreaColuna que toda coluna possui
@@ -190,23 +204,3 @@ func update_pos_containers():
 		for i in range(coluna.get_child_count()) :
 			var child = coluna.get_child(i)
 			child.z_index = i
-
-
-# Função para instanciar o deck
-func instancia_deck(deck_def:Array[Carta]):
-	var colunas := get_tree().get_nodes_in_group("Colunas Jogo")
-	var j := 0
-	for i in range(28):
-		var carta = deck_def[i]
-		if ((i == 1) || (i == 3) || (i == 6) || (i == 10) || (i == 15) || (i == 21)):
-			j = j + 1
-			deck[i-1].virar_carta()
-		if (i==27) :
-			carta.virar_carta()
-		carta.add_to_group("Cartas Jogo")
-		colunas[j].add_child(carta)
-	
-	for i in range(28,52):
-		var deck_mesa := $"../Controle Deck/Deck"
-		var carta = deck_def[i]
-		deck_mesa.add_child(carta)
