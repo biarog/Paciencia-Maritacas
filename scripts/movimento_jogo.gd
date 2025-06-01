@@ -21,28 +21,15 @@ var em_coluna : bool = false
 var coluna_og : Control
 var coluna_nova : Control
 
-# Variáveis de grupo
-var cartas_jogo : Array[Node]
-var colunas_jogo : Array[Node]
-var areas_colunas_jogo : Array[Node]
+# Sinais de cartas
+signal soltandoCartas
+signal soltouCartas
+signal moveuCartas
 
-static func novo_movimento_jogo(camada_drag_def:Control, cartas_jogo_def:Array[Node], colunas_jogo_def:Array[Node], areas_colunas_jogo_def:Array[Node]) -> Movimento_Jogo:
+static func novo_movimento_jogo(camada_drag_def:Control)-> Movimento_Jogo:
 	var novo_movimento = MOVIMENTO_SCENE.instantiate()
 	novo_movimento.camada_drag = camada_drag_def
-	novo_movimento.cartas_jogo = cartas_jogo_def
-	novo_movimento.colunas_jogo = colunas_jogo_def
-	novo_movimento.areas_colunas_jogo = areas_colunas_jogo_def
 	return novo_movimento
-
-func preparacao_mov():
-	update_pos_containers()
-	# Conectando sinais
-	for carta in cartas_jogo:
-		carta.connect("mouse_entered", mouse_entrou_carta)
-		carta.connect("mouse_exited", mouse_saiu_carta)
-	for coluna in areas_colunas_jogo:
-		coluna.mouse_entered.connect(Callable(self, "_on_area_coluna_mouse_entered").bind(coluna))
-		coluna.mouse_exited.connect(_on_area_coluna_mouse_exited)
 
 func processamento_movimento(_delta):
 	if !carregada:
@@ -57,16 +44,18 @@ func processamento_movimento(_delta):
 		tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		tweens_carregadas[i] = tween
 
-func mouse_esq(event):
-	if event.is_pressed() and carta_destacada != null:
+func mouse_esq_press():
+	if carta_destacada != null:
 		var carta = carta_destacada
 		carregando_cartas(carta)
-	elif event.is_released() and carregada:
-		soltando_cartas()
+
+func mouse_esq_solta():
+	if carregada:
+		soltandoCartas.emit(cartas_carregadas[0], em_coluna, coluna_og, coluna_nova)
 
 
 # Fuções para destacar cartas ao passar o mouse em cima delas
-func mouse_entrou_carta(carta):
+func mouse_entrou_carta(carta):	
 	# Adiciona a carta a lista de hovering se ela nao esta nela
 	if not cartas_hovering.has(carta):
 		cartas_hovering.append(carta)
@@ -98,16 +87,16 @@ func mouse_saiu_carta(carta):
 			destacar_carta(top_card)
 
 func destacar_carta(carta):
+	if carta.virada:
+		return
 	carta_destacada = carta
 	var tween_destaque = create_tween()
 	tween_destaque.tween_property(carta_destacada, "scale", Vector2(1.25,1.25), 0.2)
-	print("destacou")
 
 func normalizar_carta(carta):
 	var tween = create_tween()
 	tween.tween_property(carta, "scale", Vector2(1,1), 0.2)
 	carta_destacada = null
-	print("normalizou")
 
 func get_primeira_carta(card_list):
 	card_list.sort_custom(func(a, b): return a.z_index > b.z_index)
@@ -116,7 +105,7 @@ func get_primeira_carta(card_list):
 
 # Funções para carregar/soltar cartas ao clicar/soltar o botão esq do mouse
 
-func carregando_cartas(carta_carregada:Node):
+func carregando_cartas(carta_carregada:Carta):
 	pos_alvo_cartas_carregadas.append(Vector2(carta_carregada.global_position.x + 12.5, carta_carregada.global_position.y + 18.75))
 	cartas_carregadas.append(carta_carregada)
 	coluna_og = carta_carregada.get_parent()
@@ -138,12 +127,7 @@ func carregando_cartas(carta_carregada:Node):
 	
 	carregada = true
 
-func soltando_cartas():
-	var container_alvo = coluna_og
-	
-	if em_coluna and coluna_nova != null and coluna_nova != coluna_og:
-		container_alvo = coluna_nova
-	
+func soltando_cartas(container_alvo:Control):
 	pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta(container_alvo)
 	
 	for i in range(cartas_carregadas.size()):
@@ -163,10 +147,13 @@ func soltando_cartas():
 				camada_drag.remove_child(carta)
 			container_alvo.add_child(carta)
 			carta.position = Vector2.ZERO # Resetta a pos das cartas pro container alterar
-			update_pos_containers()
+			soltouCartas.emit()
 		)
 		
 		tweens_carregadas[i] = tween
+	
+	if container_alvo != coluna_og:
+		moveuCartas.emit()
 	
 	cartas_carregadas.clear()
 	pos_alvo_cartas_carregadas.clear()
@@ -187,20 +174,3 @@ func calcula_posicao_alvo_de_carta(coluna_alvo: Node) -> Vector2:
 	var pos_y_alvo = 216 + ((coluna_alvo.get_child_count() - 1) * 25)
 	
 	return Vector2(pos_x_coluna, pos_y_alvo)
-
-
-# Função para atualizar containers das colunas inclusive a visibilidade das cartas
-
-func update_pos_containers():
-	for coluna in colunas_jogo:
-		#var filhos = coluna.get_child_count()
-		# Filhos - 2, pois um é para a carta (já que a posicção default do y é de 75
-		# e o outro é para a própria AreaColuna que toda coluna possui
-		#if (filhos-2 < 0) :
-		#	filhos += 1;
-		
-		#coluna.get_child(0).position.y = 75 + ((filhos-2) * 25)
-		
-		for i in range(coluna.get_child_count()) :
-			var child = coluna.get_child(i)
-			child.z_index = i

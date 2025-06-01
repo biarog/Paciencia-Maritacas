@@ -3,6 +3,7 @@ class_name Carta extends Control
 @export_enum('Ouros', 'Espadas', 'Copas', 'Paus') var casa
 @export_range(1, 13) var valor : int
 @export var virada : bool = false
+var cor : bool
 
 const CARTA_SCENE: PackedScene = preload("res://cenas/carta.tscn")
 
@@ -23,6 +24,9 @@ func virar_carta():
 	virada = !virada
 	_set_frame(casa, valor)
 
+func _set_cor():
+	cor = casa % 2
+
 static func cria_nova_carta(casa_def:int, valor_def:int, virada_def:bool) -> Carta :
 	casa_def = clamp(casa_def, 0, 3)
 	valor_def = clamp(valor_def, 1, 13)
@@ -31,4 +35,5 @@ static func cria_nova_carta(casa_def:int, valor_def:int, virada_def:bool) -> Car
 	nova_carta.valor = valor_def
 	nova_carta.virada = virada_def
 	nova_carta._set_frame(casa_def, valor_def)
+	nova_carta._set_cor()
 	return nova_carta

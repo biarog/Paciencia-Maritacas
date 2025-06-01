@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dl22uxdjcoa7s"]
 
 [ext_resource type="PackedScene" uid="uid://2la507ht2ax8" path="res://cenas/carta.tscn" id="1_itxlh"]
-[ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/controle_cartas_paciencia.gd" id="1_xq04u"]
+[ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/controle_paciencia.gd" id="1_xq04u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
 size = Vector2(130, 444)
