@@ -69,7 +69,7 @@ func update_vis_cartas() -> void:
 			coluna.get_child(nfilhos-1).virar_carta()
 
 
-# Função para instanciar o deck
+# Função para instanciar o deck de cartas
 func instancia_deck(deck_def:Array[Carta]):
 	var colunas := get_tree().get_nodes_in_group("Colunas Jogo")
 	var j := 0
@@ -112,3 +112,7 @@ func _comparar_cor(carta1: Carta, carta2: Carta) -> bool:
 
 func _comparar_valor(carta_nova: Carta, carta_mae: Carta) -> bool:
 	return ((carta_mae.valor - carta_nova.valor) == 1)
+
+
+# Funções para lógica do deck
+# A ser adicionado
