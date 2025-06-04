@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://2la507ht2ax8" path="res://cenas/carta.tscn" id="1_itxlh"]
 [ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/controle_paciencia.gd" id="1_xq04u"]
-[ext_resource type="Script" uid="uid://bpxsas7sg38vf" path="res://cenas/controle_deck.gd" id="2_xq04u"]
+[ext_resource type="Script" uid="uid://bpxsas7sg38vf" path="res://scripts/controle_deck.gd" id="2_xq04u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
 size = Vector2(130, 444)
