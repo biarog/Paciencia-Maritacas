@@ -128,7 +128,10 @@ func carregando_cartas(carta_carregada:Carta):
 	carregada = true
 
 func soltando_cartas(container_alvo:Control):
-	pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta(container_alvo)
+	var posicao_modificada:String = "position"
+	if container_alvo.is_in_group("Colunas Jogo"):
+		pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta(container_alvo)
+		posicao_modificada = "global_position"
 	
 	for i in range(cartas_carregadas.size()):
 		var carta = cartas_carregadas[i]
@@ -139,7 +142,7 @@ func soltando_cartas(container_alvo:Control):
 			pos_alvo_cartas_carregadas[i].y = pos_alvo_cartas_carregadas[i-1].y + 25
 		
 		# Anima as cartas para a posição correta
-		tween.tween_property(carta, "global_position", pos_alvo_cartas_carregadas[i], 0.25).set_delay(i * 0.03)
+		tween.tween_property(carta, posicao_modificada, pos_alvo_cartas_carregadas[i], 0.25).set_delay(i * 0.03)
 		tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		
 		tween.finished.connect(func():

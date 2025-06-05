@@ -97,8 +97,8 @@ func instancia_deck(deck_def:Array[Carta]):
 
 func soltando_carta_check(carta: Carta, em_coluna:bool, coluna_og:Control, coluna_nova:Control):
 	var container_alvo = coluna_og
-	
-	if em_coluna and coluna_nova != null and coluna_nova != coluna_og:
+	print("coluna og:" + coluna_og.name)
+	if em_coluna and coluna_nova != null and coluna_nova != coluna_og and !coluna_nova.is_in_group("Casas jogo"):
 		var nfilhos = coluna_nova.get_child_count()
 		if nfilhos > 1:
 			var carta_mae = coluna_nova.get_child(nfilhos-1)
