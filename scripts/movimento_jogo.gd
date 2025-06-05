@@ -23,8 +23,12 @@ var coluna_nova : Control
 
 # Sinais de cartas
 signal soltandoCartas
-signal soltouCartas
-signal moveuCartas
+signal soltouCartasColuna
+signal soltouCartaDeck
+signal soltouCartaCasa
+signal moveuCartasColuna
+signal moveuCartaDeck
+signal moveuCartaCasa
 
 static func novo_movimento_jogo(camada_drag_def:Control)-> Movimento_Jogo:
 	var novo_movimento = MOVIMENTO_SCENE.instantiate()
@@ -127,7 +131,7 @@ func carregando_cartas(carta_carregada:Carta):
 	
 	carregada = true
 
-func soltando_cartas(container_alvo:Control):
+func soltando_cartas(container_alvo:Control, container_og:Control):
 	var posicao_modificada:String = "position"
 	if container_alvo.is_in_group("Colunas Jogo"):
 		pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta(container_alvo)
@@ -150,13 +154,13 @@ func soltando_cartas(container_alvo:Control):
 				camada_drag.remove_child(carta)
 			container_alvo.add_child(carta)
 			carta.position = Vector2.ZERO # Resetta a pos das cartas pro container alterar
-			soltouCartas.emit()
+			emitir_sinais_soltou_carta(container_alvo)
 		)
 		
 		tweens_carregadas[i] = tween
 	
 	if container_alvo != coluna_og:
-		moveuCartas.emit()
+		emitir_sinais_moveu_carta(container_og)
 	
 	cartas_carregadas.clear()
 	pos_alvo_cartas_carregadas.clear()
@@ -165,7 +169,7 @@ func soltando_cartas(container_alvo:Control):
 	coluna_og = null
 
 func _on_area_coluna_mouse_entered(coluna):
-	coluna_nova = coluna.get_parent()
+	coluna_nova = coluna
 	em_coluna = true
 
 func _on_area_coluna_mouse_exited():
@@ -177,3 +181,22 @@ func calcula_posicao_alvo_de_carta(coluna_alvo: Node) -> Vector2:
 	var pos_y_alvo = 216 + ((coluna_alvo.get_child_count() - 1) * 25)
 	
 	return Vector2(pos_x_coluna, pos_y_alvo)
+
+
+func emitir_sinais_soltou_carta(container_novo:Control):
+	var container_novo_coluna:bool = container_novo.is_in_group("Colunas Jogo")
+	var container_novo_casa:bool = container_novo.is_in_group("Casas Jogo")
+	var container_novo_deck:bool = !container_novo.is_in_group("Casas Jogo") and !container_novo.is_in_group("Colunas Jogo")
+	
+	if container_novo_casa: soltouCartaCasa.emit()
+	if container_novo_deck: soltouCartaDeck.emit()
+	if container_novo_coluna: soltouCartasColuna.emit()
+
+func emitir_sinais_moveu_carta(container_velho:Control):
+	var container_velho_coluna:bool = container_velho.is_in_group("Colunas Jogo")
+	var container_velho_casa:bool = container_velho.is_in_group("Casas Jogo")
+	var container_velho_deck:bool = !container_velho.is_in_group("Casas Jogo") and !container_velho.is_in_group("Colunas Jogo")
+	
+	if container_velho_casa: moveuCartaCasa.emit()
+	if container_velho_deck: moveuCartaDeck.emit()
+	if container_velho_coluna: moveuCartasColuna.emit()

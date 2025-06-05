@@ -1,6 +1,6 @@
 class_name Carta extends Control
 
-@export_enum('Ouros', 'Espadas', 'Copas', 'Paus') var casa
+@export_enum('Ouros', 'Espadas', 'Copas', 'Paus') var naipe
 @export_range(1, 13) var valor : int
 @export var virada : bool = false
 var cor : bool
@@ -30,16 +30,16 @@ func virar_carta():
 	virada = !virada
 
 func _set_cor():
-	cor = casa % 2
+	cor = naipe % 2
 
-static func cria_nova_carta(casa_def:int, valor_def:int, virada_def:bool) -> Carta :
-	casa_def = clamp(casa_def, 0, 3)
+static func cria_nova_carta(naipe_def:int, valor_def:int, virada_def:bool) -> Carta :
+	naipe_def = clamp(naipe_def, 0, 3)
 	valor_def = clamp(valor_def, 1, 13)
 	var nova_carta = CARTA_SCENE.instantiate()
-	nova_carta.casa = casa_def
+	nova_carta.naipe = naipe_def
 	nova_carta.valor = valor_def
 	nova_carta.virada = virada_def
 	nova_carta._set_sprite_virada()
-	nova_carta._set_frame(casa_def, valor_def)
+	nova_carta._set_frame(naipe_def, valor_def)
 	nova_carta._set_cor()
 	return nova_carta

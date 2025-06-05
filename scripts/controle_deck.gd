@@ -4,12 +4,15 @@ var movimento : Movimento_Jogo
 
 @onready var deck := $Deck
 @onready var cartas_viradas := $"Cartas Viradas"
+@onready var controle_jogo := $"../Controle Jogo"
+@onready var controle_casas := $"../Controle Casas"
+
 var cartas_guardadas : Array[Carta]
 
 
 func _ready() -> void:
-	movimento.soltouCartas.connect(_normalizar_zindex)
-	movimento.moveuCartas.connect(_carta_removida_deck)
+	movimento.soltouCartaDeck.connect(_normalizar_zindex)
+	movimento.moveuCartaDeck.connect(_carta_removida_deck)
 
 func _on_deck_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -26,7 +29,6 @@ func virar_carta_do_deck() -> void:
 	else: 
 		remover_cartas_viradas()
 		var ncartas_guardadas:int = cartas_guardadas.size()
-		print("numero de cartas guardadas:" + str(ncartas_guardadas))
 		for i in range(ncartas_guardadas):
 			deck.add_child(cartas_guardadas.back())
 			cartas_guardadas.pop_back()
@@ -54,20 +56,9 @@ func remover_cartas_viradas() -> void:
 func atualizar_conexoes(carta:Carta) -> void:
 	for i in range(cartas_viradas.get_child_count()):
 		var carta_atual = cartas_viradas.get_child(i)
-		if carta_atual.is_connected("mouse_entered", _on_carta_mouse_entered):
-			carta_atual.disconnect("mouse_entered", _on_carta_mouse_entered)
-		if carta_atual.is_connected("mouse_exited", _on_carta_mouse_exited):
-			carta_atual.disconnect("mouse_exited", _on_carta_mouse_exited)
+		controle_jogo.desconectar_carta(carta_atual)
 	
-	carta.connect("mouse_entered", _on_carta_mouse_entered)
-	carta.connect("mouse_exited", _on_carta_mouse_exited)
-
-func _on_carta_mouse_entered(carta:Carta):
-	if carta.get_parent() != $"../Camada Drag":
-		movimento.mouse_entrou_carta(carta)
-
-func _on_carta_mouse_exited(carta:Carta):
-	movimento.mouse_saiu_carta(carta)
+	controle_jogo.conectar_carta(carta)
 
 func _normalizar_zindex() -> void:
 	for carta in cartas_viradas.get_children():

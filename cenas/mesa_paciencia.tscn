@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl22uxdjcoa7s"]
+[gd_scene load_steps=6 format=3 uid="uid://dl22uxdjcoa7s"]
 
 [ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/controle_paciencia.gd" id="1_xq04u"]
 [ext_resource type="Script" uid="uid://bpxsas7sg38vf" path="res://scripts/controle_deck.gd" id="2_xq04u"]
+[ext_resource type="Script" uid="uid://40xnrpcgjcol" path="res://cenas/controle_casas.gd" id="3_ed8c6"]
 [ext_resource type="Texture2D" uid="uid://c880ytnwlbphr" path="res://Assets/Cartas/CasaBase.png" id="3_xq04u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
@@ -205,48 +206,59 @@ offset_top = -0.0320015
 offset_right = 0.255981
 offset_bottom = 0.279984
 pivot_offset = Vector2(237.5, 75)
+mouse_filter = 2
+script = ExtResource("3_ed8c6")
 
 [node name="Casas Finais" type="HBoxContainer" parent="Controle Casas"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(237.5, 75)
 mouse_filter = 2
-theme_override_constants/separation = 120
+alignment = 1
 
-[node name="VBoxPriCasa" type="VBoxContainer" parent="Controle Casas/Casas Finais"]
+[node name="VBoxPriCasa" type="VBoxContainer" parent="Controle Casas/Casas Finais" groups=["Casas Jogo"]]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = -150
+alignment = 1
 
 [node name="SpriteCasas" type="Sprite2D" parent="Controle Casas/Casas Finais/VBoxPriCasa"]
 texture_filter = 1
 position = Vector2(50, 75)
 texture = ExtResource("3_xq04u")
 
-[node name="VBoxSegCasa" type="VBoxContainer" parent="Controle Casas/Casas Finais"]
+[node name="VBoxSegCasa" type="VBoxContainer" parent="Controle Casas/Casas Finais" groups=["Casas Jogo"]]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = -150
+alignment = 1
 
 [node name="SpriteCasas" type="Sprite2D" parent="Controle Casas/Casas Finais/VBoxSegCasa"]
 texture_filter = 1
 position = Vector2(50, 75)
 texture = ExtResource("3_xq04u")
 
-[node name="VBoxTerCasa" type="VBoxContainer" parent="Controle Casas/Casas Finais"]
+[node name="VBoxTerCasa" type="VBoxContainer" parent="Controle Casas/Casas Finais" groups=["Casas Jogo"]]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = -150
+alignment = 1
 
 [node name="SpriteCasas" type="Sprite2D" parent="Controle Casas/Casas Finais/VBoxTerCasa"]
 texture_filter = 1
 position = Vector2(50, 75)
 texture = ExtResource("3_xq04u")
 
-[node name="VBoxQuaCasa" type="VBoxContainer" parent="Controle Casas/Casas Finais"]
+[node name="VBoxQuaCasa" type="VBoxContainer" parent="Controle Casas/Casas Finais" groups=["Casas Jogo"]]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = -150
+alignment = 1
 
 [node name="SpriteCasas" type="Sprite2D" parent="Controle Casas/Casas Finais/VBoxQuaCasa"]
 texture_filter = 1
