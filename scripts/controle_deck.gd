@@ -28,8 +28,8 @@ func virar_carta_do_deck() -> void:
 		var ncartas_guardadas:int = cartas_guardadas.size()
 		print("numero de cartas guardadas:" + str(ncartas_guardadas))
 		for i in range(ncartas_guardadas):
-			deck.add_child(cartas_guardadas.front())
-			cartas_guardadas.pop_front()
+			deck.add_child(cartas_guardadas.back())
+			cartas_guardadas.pop_back()
 
 func adicionar_carta_virada(carta:Carta) -> void:
 	var ncartas:int = cartas_viradas.get_child_count()
