@@ -1,10 +1,13 @@
 extends Control
 
 var movimento : Movimento_Jogo 
+@onready var controle_deck := $"../Controle Deck"
+@onready var controle_casas := $"../Controle Casas"
 
 func _ready():
 	await instancia_deck(Deck.cria_deck_desordenado(true))
 	movimento = Movimento_Jogo.novo_movimento_jogo($"../Camada Drag")
+	controle_deck.movimento = movimento
 	get_parent().add_child.call_deferred(movimento)
 	update_pos_containers()
 	
