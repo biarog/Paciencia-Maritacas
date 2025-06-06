@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dl22uxdjcoa7s"]
+[gd_scene load_steps=12 format=3 uid="uid://dl22uxdjcoa7s"]
 
 [ext_resource type="Script" uid="uid://cebd5maywlrcp" path="res://scripts/mesa_paciencia.gd" id="1_m56lf"]
 [ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/controle_paciencia.gd" id="1_xq04u"]
 [ext_resource type="Script" uid="uid://bpxsas7sg38vf" path="res://scripts/controle_deck.gd" id="2_xq04u"]
 [ext_resource type="Texture2D" uid="uid://c880ytnwlbphr" path="res://Assets/Cartas/CasaBase.png" id="3_xq04u"]
+[ext_resource type="Script" uid="uid://40xnrpcgjcol" path="res://scripts/controle_casas.gd" id="4_c73j8"]
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="5_u67q2"]
 [ext_resource type="Texture2D" uid="uid://b4gtyk62u48np" path="res://Assets/imagens/moldura menu_pausa.png" id="5_umox8"]
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="6_c4sgq"]
@@ -29,6 +30,12 @@ size_flags_vertical = 3
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 script = ExtResource("1_m56lf")
+
+[node name="Fundo" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 649.0
+color = Color(0.118293, 0.262249, 0.10521, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
@@ -214,6 +221,7 @@ offset_top = -0.0320015
 offset_right = 0.255981
 offset_bottom = 0.279984
 pivot_offset = Vector2(237.5, 75)
+script = ExtResource("4_c73j8")
 
 [node name="Casas Finais" type="HBoxContainer" parent="Controle Casas"]
 layout_mode = 1

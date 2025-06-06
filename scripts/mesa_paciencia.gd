@@ -2,7 +2,6 @@ extends Control
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
-		print("ESC apertado!")
 		if get_tree().paused:
 			_unpause_game()
 		else:
@@ -13,12 +12,10 @@ func _pause_game():
 	get_tree().paused = true
 
 func _unpause_game():
-	print("entrou")
 	$MenuPausa.visible = false
 	get_tree().paused = false
 
 func _on_continue_pressed() -> void:
-	print("entrou2")
 	_unpause_game()
 
 func _on_retornar_menu_inicial_pressed() -> void:
