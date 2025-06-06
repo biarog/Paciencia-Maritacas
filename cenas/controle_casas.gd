@@ -15,7 +15,7 @@ func _normalizar_zindex() -> void:
 	for casa in casas:
 		for i in range(casa.get_child_count()):
 			var child = casa.get_child(i)
-			child.z_index = 0
+			child.z_index = i
 
 func _atualizar_conexoes() -> void:
 	for casa in casas:
@@ -23,7 +23,7 @@ func _atualizar_conexoes() -> void:
 			for i in range(1, casa.get_child_count()):
 				var carta = casa.get_child(i)
 				controle_jogo.desconectar_carta(carta)
-				
+			
 			controle_jogo.conectar_carta(casa.get_child(casa.get_child_count()-1))
 	check_vitoria()
 

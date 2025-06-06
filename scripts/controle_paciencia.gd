@@ -86,7 +86,6 @@ func instancia_deck(deck_def:Array[Carta]):
 	for i in range(28,52):
 		var deck_mesa := $"../Controle Deck/Deck"
 		var carta = deck_def[i]
-		carta.add_to_group("Cartas Deck")
 		deck_mesa.add_child(carta)
 	
 	update_vis_cartas()
@@ -137,6 +136,7 @@ func desconectar_carta(carta:Carta) -> void:
 		carta.disconnect("mouse_entered", on_carta_mouse_entered)
 	if carta.is_connected("mouse_exited", on_carta_mouse_exited):
 		carta.disconnect("mouse_exited", on_carta_mouse_exited)
+	
 
 func conectar_carta(carta:Carta) -> void:
 	carta.connect("mouse_entered", on_carta_mouse_entered)

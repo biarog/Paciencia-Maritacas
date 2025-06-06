@@ -59,7 +59,9 @@ func mouse_esq_solta():
 
 
 # Fuções para destacar cartas ao passar o mouse em cima delas
-func mouse_entrou_carta(carta):	
+func mouse_entrou_carta(carta:Carta):
+	if carregada:
+		return
 	# Adiciona a carta a lista de hovering se ela nao esta nela
 	if not cartas_hovering.has(carta):
 		cartas_hovering.append(carta)
