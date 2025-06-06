@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dl22uxdjcoa7s"]
 
-[ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/controle_paciencia.gd" id="1_xq04u"]
-[ext_resource type="Script" uid="uid://bpxsas7sg38vf" path="res://scripts/controle_deck.gd" id="2_xq04u"]
+[ext_resource type="Script" path="res://scripts/controle_paciencia.gd" id="1_xq04u"]
+[ext_resource type="Script" path="res://scripts/controle_deck.gd" id="2_xq04u"]
 [ext_resource type="Texture2D" uid="uid://c880ytnwlbphr" path="res://Assets/Cartas/CasaBase.png" id="3_xq04u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
