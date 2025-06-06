@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://d2qgnk8achqm0"]
 
-[ext_resource type="Script" path="res://scripts/menu_inicial.gd" id="1_fe3ib"]
+[ext_resource type="Script" uid="uid://dme8jcax44aft" path="res://scripts/menu_inicial.gd" id="1_fe3ib"]
 [ext_resource type="Texture2D" uid="uid://ouimnia6ow3u" path="res://Assets/imagens/moldura gamedevfimsvg.svg" id="2_urgwx"]
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="3_dyoa6"]
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="3_mqa1b"]
