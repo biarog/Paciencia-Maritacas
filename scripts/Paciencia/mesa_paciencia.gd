@@ -22,7 +22,8 @@ func _ready() -> void:
 	
 	pilha_movimentos = Pilha.new()
 
-
+func _process(delta):
+	movimento.processamento_movimento(delta)
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -30,6 +31,11 @@ func _input(event):
 			_unpause_game()
 		else:
 			_pause_game()
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.is_pressed():
+			movimento.mouse_esq_press()
+		else:
+			movimento.mouse_esq_solta()
 
 
 # Funções relacionadas a pausar
@@ -65,5 +71,29 @@ func voltar_movimento() -> void:
 		return
 	
 	var movimento:No_Pilha = pilha_movimentos.pop()
+	var carta_m = movimento.get_carta()
+	var container_og = movimento.get_onde_veio()
+	var container_alvo = movimento.get_onde_esta_agora()
 	
 	
+	# Problema: Movimentos independentes do mouse
+		# 1 - Modificar a função soltando_cartas do movimento_jogo
+			# Desvantagens:
+				# - chatinho de modificar, alem de modificar a chamada dela no controle_jogo
+		# 2 - Criar uma função nova de movimento (seja aki, seja no movimento_jogo)
+			# Desvantagens:
+				# - ela vai ficar muito parecida com a soltando_cartas original (ainda precisa de posiçoes alvo, ainda precisa de tweens)
+		
+	if container_og.is_in_group("Colunas Jogo"): # Carta estava nas colunas do jogo
+		# Quando voltar um movimento de coluna jogo, precisa garantir que a carta anterior seja virada novamente
+		pass
+	elif container_og.is_in_group("Casas Jogo"): # Carta estava nas casas do jogo 
+		# So movimentoar a carta de volta
+		pass
+	else: # Carta estava nas cartas viradas do deck
+		# Quando voltar, vai ter q chamar adicionar_carta_virada 
+		pass
+	
+
+func movimento_placeholder():
+	pass

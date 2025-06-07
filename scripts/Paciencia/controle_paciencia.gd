@@ -4,8 +4,7 @@ var movimento : Movimento_Jogo
 
 func inicia_jogo():
 	await instancia_deck(Deck.cria_deck_desordenado(true))
-
-	update_pos_containers()
+	
 	
 	# Connectando sinais
 	movimento.moveuCartasColuna.connect(update_vis_cartas)
@@ -22,17 +21,6 @@ func inicia_jogo():
 	for casa in get_tree().get_nodes_in_group("Casas Jogo"):
 		casa.mouse_entered.connect(Callable(self, "_on_area_coluna_mouse_entered").bind(casa))
 		casa.mouse_exited.connect(_on_area_coluna_mouse_exited)
-
-func _process(delta):
-	movimento.processamento_movimento(delta)
-
-func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.is_pressed():
-			movimento.mouse_esq_press()
-		else:
-			movimento.mouse_esq_solta()
-
 
 # Funções relacionadas ao movimento de cartas
 func on_carta_mouse_entered(carta:Carta):
@@ -83,6 +71,7 @@ func instancia_deck(deck_def:Array[Carta]):
 		var carta = deck_def[i]
 		deck_mesa.add_child(carta)
 	
+	update_pos_containers()
 	update_vis_cartas()
 
 
@@ -95,12 +84,13 @@ func soltando_carta_check(carta: Carta, em_coluna:bool, coluna_og:Control, colun
 		var nfilhos:int = coluna_nova.get_child_count()
 		var valor_para_vazio:int
 		var bool_casas_jogo:bool = coluna_nova.is_in_group("Casas Jogo")
+		
 		if bool_casas_jogo: valor_para_vazio = 1
 		else: valor_para_vazio = 13
 		
 		if nfilhos > 1: # Colunas normais tem areacoluna e as casas de jogo tem um sprite2d 
 			var carta_mae = coluna_nova.get_child(nfilhos-1)
-			if _comparar_cor(carta, carta_mae) and _comparar_valor_coluna(carta, carta_mae) and !bool_casas_jogo:
+			if !bool_casas_jogo and _comparar_cor(carta, carta_mae) and _comparar_valor_coluna(carta, carta_mae):
 				container_alvo = coluna_nova
 			if _comparar_naipe(carta, carta_mae) and _comparar_valor_casa(carta, carta_mae) and bool_casas_jogo:
 				container_alvo = coluna_nova

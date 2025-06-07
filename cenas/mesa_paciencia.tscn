@@ -38,9 +38,6 @@ offset_bottom = 649.0
 mouse_filter = 2
 color = Color(0.118293, 0.262249, 0.10521, 1)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 324)
-
 [node name="Camada Drag" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0

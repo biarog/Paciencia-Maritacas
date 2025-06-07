@@ -23,6 +23,7 @@ var coluna_nova : Control
 
 # Sinais de cartas
 signal soltandoCartas
+
 signal soltouCartasColuna
 signal soltouCartaDeck
 signal soltouCartaCasa
@@ -139,9 +140,6 @@ func soltando_cartas(container_alvo:Control, container_og:Control):
 	var posicao_modificada:String = "position"
 	if container_alvo.is_in_group("Colunas Jogo"):
 		pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta(container_alvo)
-		posicao_modificada = "global_position"
-	elif container_alvo.is_in_group("Casas Jogo"):
-		pos_alvo_cartas_carregadas[0] = container_alvo.get_child(0).global_position
 		posicao_modificada = "global_position"
 	
 	for i in range(cartas_carregadas.size()):

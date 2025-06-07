@@ -13,7 +13,7 @@ func _init(p_codigo_carta, p_onde_veio, p_onde_esta_agora):
 
 # --- Getters ---
 
-func get_codigo_carta():
+func get_carta():
 	return carta
 
 func get_onde_veio():
@@ -24,7 +24,7 @@ func get_onde_esta_agora():
 
 # --- Setters ---
 
-func set_codigo_carta(nova_carta):
+func set_carta(nova_carta):
 	carta = nova_carta
 
 func set_onde_veio(nova_origem):
