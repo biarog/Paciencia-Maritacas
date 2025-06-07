@@ -3,9 +3,8 @@ extends Control
 var movimento : Movimento_Jogo
 @onready var casas:Array[Node]
 @onready var controle_jogo := $"../Controle Jogo"
-@onready var controle_deck := $"../Controle Deck"
 
-func _ready() -> void:
+func inicia_casas() -> void:
 	casas = get_tree().get_nodes_in_group("Casas Jogo")
 	movimento.soltouCartaCasa.connect(_normalizar_zindex)
 	movimento.soltouCartaCasa.connect(_atualizar_conexoes)

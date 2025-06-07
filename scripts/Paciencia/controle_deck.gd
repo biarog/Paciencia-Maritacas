@@ -5,12 +5,11 @@ var movimento : Movimento_Jogo
 @onready var deck := $Deck
 @onready var cartas_viradas := $"Cartas Viradas"
 @onready var controle_jogo := $"../Controle Jogo"
-@onready var controle_casas := $"../Controle Casas"
 
 var cartas_guardadas : Array[Carta]
 
 
-func _ready() -> void:
+func inicia_deck() -> void:
 	movimento.soltouCartaDeck.connect(_normalizar_zindex)
 	movimento.moveuCartaDeck.connect(_carta_removida_deck)
 

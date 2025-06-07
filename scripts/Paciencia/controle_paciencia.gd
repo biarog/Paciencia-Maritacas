@@ -1,15 +1,10 @@
 extends Control
 
 var movimento : Movimento_Jogo 
-@onready var controle_deck := $"../Controle Deck"
-@onready var controle_casas := $"../Controle Casas"
 
-func _ready():
+func inicia_jogo():
 	await instancia_deck(Deck.cria_deck_desordenado(true))
-	movimento = Movimento_Jogo.novo_movimento_jogo($"../Camada Drag")
-	controle_deck.movimento = movimento
-	controle_casas.movimento = movimento
-	get_parent().add_child.call_deferred(movimento)
+
 	update_pos_containers()
 	
 	# Connectando sinais
@@ -41,7 +36,9 @@ func _input(event):
 
 # Funções relacionadas ao movimento de cartas
 func on_carta_mouse_entered(carta:Carta):
+	print("entrou")
 	if carta.get_parent() != $"../Camada Drag":
+		print("chamou")
 		movimento.mouse_entrou_carta(carta)
 
 func on_carta_mouse_exited(carta:Carta):

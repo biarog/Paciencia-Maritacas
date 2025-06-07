@@ -26,9 +26,11 @@ signal soltandoCartas
 signal soltouCartasColuna
 signal soltouCartaDeck
 signal soltouCartaCasa
+
 signal moveuCartasColuna
 signal moveuCartaDeck
 signal moveuCartaCasa
+signal moveuCarta(carta_movida:Carta, container_og:Control, container_novo:Control)
 
 static func novo_movimento_jogo(camada_drag_def:Control)-> Movimento_Jogo:
 	var novo_movimento = MOVIMENTO_SCENE.instantiate()
@@ -68,7 +70,8 @@ func mouse_entrou_carta(carta:Carta):
 	
 	if cartas_carregadas.size() > 0:
 		return
-
+	
+	print("Entrou")
 	# Se nenhuma carta esta destacada, destacar a nova
 	if carta_destacada == null:
 		destacar_carta(carta)
@@ -138,6 +141,9 @@ func soltando_cartas(container_alvo:Control, container_og:Control):
 	if container_alvo.is_in_group("Colunas Jogo"):
 		pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta(container_alvo)
 		posicao_modificada = "global_position"
+	elif container_alvo.is_in_group("Casas Jogo"):
+		pos_alvo_cartas_carregadas[0] = container_alvo.get_child(0).global_position
+		posicao_modificada = "global_position"
 	
 	for i in range(cartas_carregadas.size()):
 		var carta = cartas_carregadas[i]
@@ -161,8 +167,9 @@ func soltando_cartas(container_alvo:Control, container_og:Control):
 		
 		tweens_carregadas[i] = tween
 	
-	if container_alvo != coluna_og:
+	if container_alvo != container_og:
 		emitir_sinais_moveu_carta(container_og)
+		moveuCarta.emit(cartas_carregadas[0], container_og, container_alvo)
 	
 	cartas_carregadas.clear()
 	pos_alvo_cartas_carregadas.clear()
@@ -184,6 +191,8 @@ func calcula_posicao_alvo_de_carta(coluna_alvo: Node) -> Vector2:
 	
 	return Vector2(pos_x_coluna, pos_y_alvo)
 
+
+# Funções de sinais
 
 func emitir_sinais_soltou_carta(container_novo:Control):
 	var container_novo_coluna:bool = container_novo.is_in_group("Colunas Jogo")
