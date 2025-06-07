@@ -36,9 +36,7 @@ func _input(event):
 
 # Funções relacionadas ao movimento de cartas
 func on_carta_mouse_entered(carta:Carta):
-	print("entrou")
 	if carta.get_parent() != $"../Camada Drag":
-		print("chamou")
 		movimento.mouse_entrou_carta(carta)
 
 func on_carta_mouse_exited(carta:Carta):

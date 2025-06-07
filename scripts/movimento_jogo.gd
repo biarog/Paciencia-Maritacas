@@ -71,7 +71,6 @@ func mouse_entrou_carta(carta:Carta):
 	if cartas_carregadas.size() > 0:
 		return
 	
-	print("Entrou")
 	# Se nenhuma carta esta destacada, destacar a nova
 	if carta_destacada == null:
 		destacar_carta(carta)
