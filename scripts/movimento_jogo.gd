@@ -139,7 +139,10 @@ func carregando_cartas(carta_carregada:Carta):
 func soltando_cartas(container_alvo:Control, container_og:Control):
 	var posicao_modificada:String = "position"
 	if container_alvo.is_in_group("Colunas Jogo"):
-		pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta(container_alvo)
+		pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta_coluna(container_alvo)
+		posicao_modificada = "global_position"
+	elif container_alvo.is_in_group("Casas Jogo"):
+		pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta_casa(container_alvo)
 		posicao_modificada = "global_position"
 	
 	for i in range(cartas_carregadas.size()):
@@ -182,12 +185,18 @@ func _on_area_coluna_mouse_exited():
 	em_coluna = false
 	coluna_nova = null
 
-func calcula_posicao_alvo_de_carta(coluna_alvo: Node) -> Vector2:
+func calcula_posicao_alvo_de_carta_coluna(coluna_alvo: Node) -> Vector2:
 	var pos_x_coluna = 76 + (150 * coluna_alvo.get_parent().get_children().find(coluna_alvo))
 	var pos_y_alvo = 216 + ((coluna_alvo.get_child_count() - 1) * 25)
 	
 	return Vector2(pos_x_coluna, pos_y_alvo)
 
+func calcula_posicao_alvo_de_carta_casa(coluna_alvo: Node) -> Vector2:
+	var casa_alvo = coluna_alvo.name.trim_prefix("VBoxCasa ").to_int()
+	var pos_x_alvo = 645 + (119 * (casa_alvo-1))
+	var pos_y_casa = 22
+	
+	return Vector2(pos_x_alvo, pos_y_casa)
 
 # Funções de sinais
 

@@ -70,7 +70,7 @@ func voltar_movimento() -> void:
 	if pilha_movimentos.is_empty():
 		return
 	
-	var movimento:No_Pilha = pilha_movimentos.pop()
+	var movimento_feito:No_Pilha = pilha_movimentos.pop()
 	var carta_m = movimento.get_carta()
 	var container_og = movimento.get_onde_veio()
 	var container_alvo = movimento.get_onde_esta_agora()

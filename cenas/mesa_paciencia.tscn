@@ -232,42 +232,42 @@ grow_vertical = 2
 pivot_offset = Vector2(237.5, 75)
 mouse_filter = 2
 
-[node name="VBoxPriCasa" type="VBoxContainer" parent="Controle Casas/Casas Finais" groups=["Casas Jogo"]]
+[node name="VBoxCasa 1" type="VBoxContainer" parent="Controle Casas/Casas Finais" groups=["Casas Jogo"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -150
 
-[node name="SpriteCasas" type="Sprite2D" parent="Controle Casas/Casas Finais/VBoxPriCasa"]
+[node name="SpriteCasas" type="Sprite2D" parent="Controle Casas/Casas Finais/VBoxCasa 1"]
 texture_filter = 1
 position = Vector2(50, 75)
 texture = ExtResource("3_xq04u")
 
-[node name="VBoxSegCasa" type="VBoxContainer" parent="Controle Casas/Casas Finais" groups=["Casas Jogo"]]
+[node name="VBoxCasa 2" type="VBoxContainer" parent="Controle Casas/Casas Finais" groups=["Casas Jogo"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -150
 
-[node name="SpriteCasas" type="Sprite2D" parent="Controle Casas/Casas Finais/VBoxSegCasa"]
+[node name="SpriteCasas" type="Sprite2D" parent="Controle Casas/Casas Finais/VBoxCasa 2"]
 texture_filter = 1
 position = Vector2(50, 75)
 texture = ExtResource("3_xq04u")
 
-[node name="VBoxTerCasa" type="VBoxContainer" parent="Controle Casas/Casas Finais" groups=["Casas Jogo"]]
+[node name="VBoxCasa 3" type="VBoxContainer" parent="Controle Casas/Casas Finais" groups=["Casas Jogo"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -150
 
-[node name="SpriteCasas" type="Sprite2D" parent="Controle Casas/Casas Finais/VBoxTerCasa"]
+[node name="SpriteCasas" type="Sprite2D" parent="Controle Casas/Casas Finais/VBoxCasa 3"]
 texture_filter = 1
 position = Vector2(50, 75)
 texture = ExtResource("3_xq04u")
 
-[node name="VBoxQuaCasa" type="VBoxContainer" parent="Controle Casas/Casas Finais" groups=["Casas Jogo"]]
+[node name="VBoxCasa 4" type="VBoxContainer" parent="Controle Casas/Casas Finais" groups=["Casas Jogo"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -150
 
-[node name="SpriteCasas" type="Sprite2D" parent="Controle Casas/Casas Finais/VBoxQuaCasa"]
+[node name="SpriteCasas" type="Sprite2D" parent="Controle Casas/Casas Finais/VBoxCasa 4"]
 texture_filter = 1
 position = Vector2(50, 75)
 texture = ExtResource("3_xq04u")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://2la507ht2ax8"]
 
-[ext_resource type="Script" path="res://scripts/carta.gd" id="1_nqtiw"]
+[ext_resource type="Script" uid="uid://bn5026ducjhnf" path="res://scripts/carta.gd" id="1_nqtiw"]
 [ext_resource type="Texture2D" uid="uid://dhrrqi8nytgvq" path="res://Assets/Cartas/Cartas_Base.png" id="2_7n1sw"]
 [ext_resource type="Texture2D" uid="uid://c3yignhsebkkk" path="res://Assets/Cartas/CartaVirada.png" id="3_kpb2g"]
 
@@ -112,8 +112,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bwo45"]
 _data = {
-"RESET": SubResource("Animation_wbn8l"),
-"virar_carta": SubResource("Animation_kpb2g")
+&"RESET": SubResource("Animation_wbn8l"),
+&"virar_carta": SubResource("Animation_kpb2g")
 }
 
 [node name="Carta" type="Control"]
@@ -131,7 +131,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_nqtiw")
-casa = 1
 valor = 3
 
 [node name="Sprite Carta" type="Sprite2D" parent="."]
@@ -155,7 +154,7 @@ shape = SubResource("RectangleShape2D_b5ehv")
 
 [node name="AnimationVirar" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_bwo45")
+&"": SubResource("AnimationLibrary_bwo45")
 }
 
 [connection signal="mouse_entered" from="Area Carta" to="." method="_on_area_carta_mouse_entered"]
