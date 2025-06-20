@@ -156,6 +156,7 @@ shape = SubResource("RectangleShape2D_b5ehv")
 libraries = {
 &"": SubResource("AnimationLibrary_bwo45")
 }
+speed_scale = 1.7
 
 [connection signal="mouse_entered" from="Area Carta" to="." method="_on_area_carta_mouse_entered"]
 [connection signal="mouse_exited" from="Area Carta" to="." method="_on_area_carta_mouse_exited"]

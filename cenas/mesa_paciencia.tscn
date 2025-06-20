@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ccwsqxpiwa7qb" path="res://Assets/imagens/haja_paciencia_titulo_fundo_branco.png" id="6_lyeby"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
-size = Vector2(130, 444)
+size = Vector2(140.5, 444)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ioiy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)

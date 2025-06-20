@@ -34,17 +34,32 @@ func virar_carta_do_deck() -> void:
 
 func adicionar_carta_virada(carta:Carta) -> void:
 	var ncartas:int = cartas_viradas.get_child_count()
+	var tween = carta.create_tween()
+	var pos_alvo_x = 181 + (ncartas * 33)
+	var pos_alvo_y = carta.global_position.y
+	carta.z_index =+ 30
+	
+	
 	if ncartas >= 3:
 		var primeira_carta:Carta= cartas_viradas.get_child(0)
-		primeira_carta.virar_carta()
+		if !primeira_carta.virada:
+			primeira_carta.virar_carta()
 		cartas_guardadas.append(primeira_carta)
 		cartas_viradas.remove_child(primeira_carta)
+		pos_alvo_x = 181 + (ncartas * 33)
 	
-	carta.virar_carta()
-	deck.remove_child(carta)
-	cartas_viradas.add_child(carta)
+	tween.tween_property(carta, "global_position", Vector2(pos_alvo_x, pos_alvo_y), 0.2)
+	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
-	atualizar_conexoes(carta)
+	tween.finished.connect(func():
+		carta.position = Vector2.ZERO
+		if carta.virada:
+			carta.virar_carta()
+		deck.remove_child(carta)
+		cartas_viradas.add_child(carta)
+		atualizar_conexoes(carta)
+		_normalizar_zindex()
+	)
 
 func remover_cartas_viradas() -> void:
 	for carta in cartas_viradas.get_children():
