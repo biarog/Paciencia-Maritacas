@@ -35,4 +35,4 @@ func check_vitoria():
 	
 	if venceu:
 		print("YIPPEEE, voce venceu paciencia!!!!")
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://cenas/TelaVencedor.tscn")
