@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dl22uxdjcoa7s"]
+[gd_scene load_steps=17 format=3 uid="uid://cvkaoi6jdbggb"]
 
 [ext_resource type="Script" uid="uid://cebd5maywlrcp" path="res://scripts/Paciencia/mesa_paciencia.gd" id="1_m56lf"]
 [ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/Paciencia/controle_paciencia.gd" id="1_xq04u"]
@@ -7,8 +7,13 @@
 [ext_resource type="Script" uid="uid://40xnrpcgjcol" path="res://scripts/Paciencia/controle_casas.gd" id="4_c73j8"]
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="5_u67q2"]
 [ext_resource type="Texture2D" uid="uid://b4gtyk62u48np" path="res://Assets/imagens/moldura menu_pausa.png" id="5_umox8"]
+[ext_resource type="Texture2D" uid="uid://cxxnmjiy00n8t" path="res://Assets/GUI/undo_btn.png" id="6_2xdgp"]
+[ext_resource type="StyleBox" uid="uid://c2aj2svr7d1w" path="res://Assets/Styles/style_box_empty.tres" id="6_27pwh"]
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="6_c4sgq"]
 [ext_resource type="Texture2D" uid="uid://ccwsqxpiwa7qb" path="res://Assets/imagens/haja_paciencia_titulo_fundo_branco.png" id="6_lyeby"]
+[ext_resource type="Texture2D" uid="uid://db24u72u6mg6c" path="res://Assets/GUI/pause_btn.png" id="7_gutj4"]
+[ext_resource type="Script" uid="uid://cpfvyrr43jw0i" path="res://scripts/button_animation.gd" id="7_snca4"]
+[ext_resource type="Script" uid="uid://dcqp7oc0r2exi" path="res://scripts/menu_pausa.gd" id="8_wu64m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
 size = Vector2(140.5, 444)
@@ -272,8 +277,40 @@ texture_filter = 1
 position = Vector2(50, 75)
 texture = ExtResource("3_xq04u")
 
+[node name="GUI" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 393.0
+offset_top = 22.0
+offset_right = 621.0
+offset_bottom = 171.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI"]
+layout_mode = 0
+offset_left = -13.0
+offset_top = 14.0
+offset_right = 1031.0
+offset_bottom = 534.0
+scale = Vector2(0.2391, 0.2391)
+
+[node name="Desfazer" type="Button" parent="GUI/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = ExtResource("6_27pwh")
+icon = ExtResource("6_2xdgp")
+flat = true
+script = ExtResource("7_snca4")
+
+[node name="Pausar" type="Button" parent="GUI/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/focus = ExtResource("6_27pwh")
+icon = ExtResource("7_gutj4")
+flat = true
+script = ExtResource("7_snca4")
+
 [node name="MenuPausa" type="CanvasLayer" parent="."]
+process_mode = 2
 visible = false
+script = ExtResource("8_wu64m")
 
 [node name="Panel" type="Panel" parent="MenuPausa"]
 anchors_preset = 8
@@ -368,6 +405,7 @@ theme_override_styles/normal = ExtResource("6_c4sgq")
 text = "Retornar ao menu inicial"
 
 [connection signal="gui_input" from="Controle Deck/Deck" to="Controle Deck" method="_on_deck_gui_input"]
+[connection signal="pressed" from="GUI/HBoxContainer/Pausar" to="." method="_on_pausar_pressed"]
 [connection signal="pressed" from="MenuPausa/Panel/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="MenuPausa/Panel/VBoxContainer/Recomecar" to="." method="_on_recomecar_pressed"]
 [connection signal="pressed" from="MenuPausa/Panel/VBoxContainer/Retornar_Menu_Inicial" to="." method="_on_retornar_menu_inicial_pressed"]

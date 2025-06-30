@@ -26,11 +26,8 @@ func _process(delta):
 	movimento.processamento_movimento(delta)
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
-		if get_tree().paused:
-			_unpause_game()
-		else:
-			_pause_game()
+	if event.is_action_pressed("ui_cancel") and !get_tree().paused:
+		_pause_game()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
 			movimento.mouse_esq_press()
@@ -59,6 +56,8 @@ func _on_recomecar_pressed() -> void:
 	_unpause_game()
 	get_tree().change_scene_to_file("res://cenas/mesa_paciencia.tscn")
 
+func _on_pausar_pressed() -> void:
+	_pause_game()
 
 # Funções relacionadas a pilha de movimentos
 
