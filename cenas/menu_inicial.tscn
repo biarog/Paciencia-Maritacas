@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d2qgnk8achqm0"]
 
 [ext_resource type="Script" uid="uid://dme8jcax44aft" path="res://scripts/menu_inicial.gd" id="1_fe3ib"]
-[ext_resource type="Texture2D" uid="uid://ouimnia6ow3u" path="res://Assets/imagens/moldura gamedevfimsvg.svg" id="2_urgwx"]
+[ext_resource type="Texture2D" uid="uid://dwmuldbd54ma" path="res://Assets/imagens/moldura_tela_inicial.png" id="2_5hmyj"]
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="3_dyoa6"]
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="3_mqa1b"]
 [ext_resource type="Texture2D" uid="uid://ccwsqxpiwa7qb" path="res://Assets/imagens/haja_paciencia_titulo_fundo_branco.png" id="3_qqmr5"]
@@ -18,7 +18,7 @@ offset_top = 24.0
 offset_right = 1019.13
 offset_bottom = 624.0
 mouse_filter = 2
-texture = ExtResource("2_urgwx")
+texture = ExtResource("2_5hmyj")
 expand_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -54,13 +54,13 @@ theme_override_styles/pressed = ExtResource("3_mqa1b")
 theme_override_styles/normal = ExtResource("3_mqa1b")
 text = "Iniciar"
 
-[node name="Loja" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Creditos" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 theme_override_styles/hover = ExtResource("3_dyoa6")
 theme_override_styles/pressed = ExtResource("3_mqa1b")
 theme_override_styles/normal = ExtResource("3_mqa1b")
-text = "Loja"
+text = "Créditos"
 
 [node name="Sair" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
@@ -84,6 +84,7 @@ offset_bottom = 647.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(0.117647, 0.262745, 0.105882, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 5

@@ -411,10 +411,10 @@ script = ExtResource("15_x2ec5")
 [node name="NoTimer" type="Timer" parent="Timer"]
 
 [node name="CenterContainer" type="CenterContainer" parent="Timer"]
-offset_left = 279.0
-offset_top = 37.0
-offset_right = 438.0
-offset_bottom = 143.0
+offset_left = 315.0
+offset_top = 35.0
+offset_right = 474.0
+offset_bottom = 141.0
 
 [node name="Label" type="Label" parent="Timer/CenterContainer"]
 layout_mode = 2
