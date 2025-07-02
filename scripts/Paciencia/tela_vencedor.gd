@@ -6,5 +6,3 @@ func _on_recomecar_pressed() -> void:
 
 func _on_retornar_menu_inicial_pressed() -> void:
 	get_tree().change_scene_to_file("res://cenas/menu_inicial.tscn")
-
-	

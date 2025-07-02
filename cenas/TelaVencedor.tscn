@@ -19,36 +19,31 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -334.5
-offset_top = -240.0
-offset_right = 334.5
-offset_bottom = 240.0
+offset_left = -575.0
+offset_top = -321.0
+offset_right = 579.0
+offset_bottom = 321.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_sd6kp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TelaVencedor/Panel"]
+[node name="CenterContainerBotoes" type="CenterContainer" parent="TelaVencedor/Panel"]
+layout_mode = 2
+offset_top = 448.0
+offset_right = 1149.0
+offset_bottom = 647.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TelaVencedor/Panel/CenterContainerBotoes"]
 z_index = 1
 custom_minimum_size = Vector2(300, 0)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.541
-anchor_right = 0.5
-anchor_bottom = 0.541
-offset_left = -211.5
-offset_top = 94.32
-offset_right = 188.5
-offset_bottom = 307.32
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 alignment = 1
 
-[node name="Recomecar" type="Button" parent="TelaVencedor/Panel/VBoxContainer"]
+[node name="Recomecar" type="Button" parent="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 theme_override_styles/hover = ExtResource("1_vm3ar")
@@ -56,7 +51,7 @@ theme_override_styles/pressed = ExtResource("2_w13tv")
 theme_override_styles/normal = ExtResource("2_w13tv")
 text = "Recomeçar"
 
-[node name="Retornar_Menu_Inicial" type="Button" parent="TelaVencedor/Panel/VBoxContainer"]
+[node name="Retornar_Menu_Inicial" type="Button" parent="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 theme_override_styles/hover = ExtResource("1_vm3ar")
@@ -64,25 +59,42 @@ theme_override_styles/pressed = ExtResource("2_w13tv")
 theme_override_styles/normal = ExtResource("2_w13tv")
 text = "Retornar ao menu inicial"
 
-[node name="TextureRect3" type="TextureRect" parent="TelaVencedor/Panel"]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 94.0
-offset_top = -40.0
-offset_right = 2491.0
-offset_bottom = 1725.0
-scale = Vector2(0.2, 0.2)
+[node name="CenterContainerTrofeu" type="CenterContainer" parent="TelaVencedor/Panel"]
+layout_mode = 0
+offset_right = 4584.0
+offset_bottom = 1585.0
+scale = Vector2(0.25, 0.25)
+
+[node name="TextureRect3" type="TextureRect" parent="TelaVencedor/Panel/CenterContainerTrofeu"]
+layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("3_0vfom")
 
 [node name="ColorRect" type="ColorRect" parent="TelaVencedor/Panel"]
 z_index = -9
 layout_mode = 0
-offset_left = -242.5
-offset_top = -84.0
-offset_right = 907.5
-offset_bottom = 567.0
+offset_left = -2.0
+offset_top = -3.0
+offset_right = 1148.0
+offset_bottom = 648.0
 mouse_filter = 2
 
-[connection signal="pressed" from="TelaVencedor/Panel/VBoxContainer/Recomecar" to="." method="_on_recomecar_pressed"]
-[connection signal="pressed" from="TelaVencedor/Panel/VBoxContainer/Retornar_Menu_Inicial" to="." method="_on_retornar_menu_inicial_pressed"]
+[node name="CenterContainerTempo" type="CenterContainer" parent="TelaVencedor/Panel"]
+offset_left = 6.0
+offset_top = 364.0
+offset_right = 575.0
+offset_bottom = 435.0
+scale = Vector2(2, 2)
+
+[node name="Label" type="Label" parent="TelaVencedor/Panel/CenterContainerTempo"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.366595, 0.366595, 0.366595, 1)
+text = "timer aqui
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer/Recomecar" to="." method="_on_recomecar_pressed"]
+[connection signal="pressed" from="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer/Retornar_Menu_Inicial" to="." method="_on_retornar_menu_inicial_pressed"]
