@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://dcqp7oc0r2exi" path="res://scripts/menu_pausa.gd" id="8_wu64m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
-size = Vector2(132, 444)
+size = Vector2(140.5, 444)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ioiy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -130,7 +130,7 @@ theme_override_constants/separation = 25
 position = Vector2(50, 75)
 
 [node name="ColisaoColuna4" type="CollisionShape2D" parent="Controle Jogo/Jogo/Coluna4/AreaColuna4"]
-position = Vector2(1, 135)
+position = Vector2(0, 135)
 shape = SubResource("RectangleShape2D_udm32")
 
 [node name="Coluna5" type="VBoxContainer" parent="Controle Jogo/Jogo" groups=["Colunas Jogo"]]
@@ -405,7 +405,6 @@ theme_override_styles/normal = ExtResource("6_c4sgq")
 text = "Retornar ao menu inicial"
 
 [connection signal="gui_input" from="Controle Deck/Deck" to="Controle Deck" method="_on_deck_gui_input"]
-[connection signal="pressed" from="GUI/HBoxContainer/Desfazer" to="." method="voltar_movimento"]
 [connection signal="pressed" from="GUI/HBoxContainer/Pausar" to="." method="_on_pausar_pressed"]
 [connection signal="pressed" from="MenuPausa/Panel/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="MenuPausa/Panel/VBoxContainer/Recomecar" to="." method="_on_recomecar_pressed"]

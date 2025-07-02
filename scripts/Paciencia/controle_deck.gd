@@ -8,10 +8,12 @@ var movimento : Movimento_Jogo
 
 var cartas_guardadas : Array[Carta]
 
+signal virouCartaDeck(carta_movida:Carta, container_og:Control, container_novo:Control, desvirou:bool)
+
 
 func inicia_deck() -> void:
 	movimento.soltouCartaDeck.connect(_normalizar_zindex)
-	movimento.moveuCartaDeck.connect(_carta_removida_deck)
+	movimento.moveuCartaDeck1.connect(carta_removida_deck)
 
 func _on_deck_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -24,7 +26,8 @@ func virar_carta_do_deck() -> void:
 	if ncartas_deck > 0:
 		var cartas_deck:Array[Node] = deck.get_children()
 		var carta:Carta = cartas_deck[ncartas_deck-1]
-		adicionar_carta_virada(carta)
+		adicionar_carta_virada(carta, false)
+		virouCartaDeck.emit(carta, $Deck, $"Cartas Viradas", false)
 	else: 
 		remover_cartas_viradas()
 		var ncartas_guardadas:int = cartas_guardadas.size()
@@ -32,13 +35,10 @@ func virar_carta_do_deck() -> void:
 			deck.add_child(cartas_guardadas.back())
 			cartas_guardadas.pop_back()
 
-func adicionar_carta_virada(carta:Carta) -> void:
+func adicionar_carta_virada(carta:Carta, desfazer:bool) -> void:
 	var ncartas:int = cartas_viradas.get_child_count()
-	var tween = carta.create_tween()
-	var pos_alvo_x = 181 + (ncartas * 33)
-	var pos_alvo_y = carta.global_position.y
-	carta.z_index =+ 30
 	
+	carta.z_index =+ 30
 	
 	if ncartas >= 3:
 		var primeira_carta:Carta= cartas_viradas.get_child(0)
@@ -46,20 +46,26 @@ func adicionar_carta_virada(carta:Carta) -> void:
 			primeira_carta.virar_carta()
 		cartas_guardadas.append(primeira_carta)
 		cartas_viradas.remove_child(primeira_carta)
-		pos_alvo_x = 181 + (ncartas * 33)
-	
-	tween.tween_property(carta, "global_position", Vector2(pos_alvo_x, pos_alvo_y), 0.2)
-	tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	
-	tween.finished.connect(func():
-		carta.position = Vector2.ZERO
+	if !desfazer:
+		var tween = carta.create_tween()
+		tween.tween_property(carta, "global_position", calcula_pos_deck_viradas(), 0.2)
+		tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		
+		tween.finished.connect(func():
+			carta.position = Vector2.ZERO
+			if carta.virada:
+				carta.virar_carta()
+			var pai = carta.get_parent()
+			pai.remove_child(carta)
+			cartas_viradas.add_child(carta)
+			atualizar_conexoes(carta)
+			_normalizar_zindex()
+		)
+	else:
 		if carta.virada:
 			carta.virar_carta()
-		deck.remove_child(carta)
-		cartas_viradas.add_child(carta)
 		atualizar_conexoes(carta)
 		_normalizar_zindex()
-	)
 
 func remover_cartas_viradas() -> void:
 	for carta in cartas_viradas.get_children():
@@ -78,7 +84,7 @@ func _normalizar_zindex() -> void:
 	for carta in cartas_viradas.get_children():
 		carta.z_index = 0
 
-func _carta_removida_deck() -> void:
+func carta_removida_deck() -> void:
 	var ncartas:int = cartas_viradas.get_child_count()
 	if cartas_guardadas.size() > 0 and ncartas <= 2:
 		var temp_cartas:Array[Carta]
@@ -98,3 +104,12 @@ func _carta_removida_deck() -> void:
 	if ncartas > 0:
 		var nova_ultima_carta = cartas_viradas.get_child(ncartas-1)
 		atualizar_conexoes(nova_ultima_carta)
+
+func calcula_pos_deck_viradas() -> Vector2:
+	var ncartas:int = cartas_viradas.get_child_count()
+	var pos_alvo_x = 181 + (ncartas * 33)
+	var pos_alvo_y = deck.global_position.y
+	if ncartas >= 3:
+		pos_alvo_x = 181 + (2*33)
+	
+	return Vector2(pos_alvo_x, pos_alvo_y)

@@ -8,7 +8,8 @@ func inicia_casas() -> void:
 	casas = get_tree().get_nodes_in_group("Casas Jogo")
 	movimento.soltouCartaCasa.connect(_normalizar_zindex)
 	movimento.soltouCartaCasa.connect(_atualizar_conexoes)
-	movimento.moveuCartaCasa.connect(_atualizar_conexoes)
+	movimento.moveuCartaCasa1.connect(_atualizar_conexoes)
+	
 
 func _normalizar_zindex() -> void:
 	for casa in casas:
@@ -25,7 +26,6 @@ func _atualizar_conexoes() -> void:
 			
 			controle_jogo.conectar_carta(casa.get_child(casa.get_child_count()-1))
 	check_vitoria()
-
 
 func check_vitoria():
 	var venceu:bool = true

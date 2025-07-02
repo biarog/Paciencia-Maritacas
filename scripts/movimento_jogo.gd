@@ -17,9 +17,7 @@ var tweens_carregadas : Array[Tween]
 var carregada : bool = false
 
 # Variáveis para verificação de soltar cartas em colunas
-var em_coluna : bool = false
 var coluna_og : Control
-var coluna_nova : Control
 
 # Sinais de cartas
 signal soltandoCartas
@@ -28,10 +26,11 @@ signal soltouCartasColuna
 signal soltouCartaDeck
 signal soltouCartaCasa
 
-signal moveuCartasColuna
-signal moveuCartaDeck
-signal moveuCartaCasa
-signal moveuCarta(carta_movida:Carta, container_og:Control, container_novo:Control)
+signal moveuCartasColuna(carta_movida:Carta, container_og:Control, container_novo:Control)
+signal moveuCartaDeck1
+signal moveuCartaDeck2(carta_movida:Carta, container_og:Control, container_novo:Control, desvirou:bool)
+signal moveuCartaCasa1
+signal moveuCartaCasa2(carta_movida:Carta, container_og:Control, container_novo:Control, desvirou:bool)
 
 static func novo_movimento_jogo(camada_drag_def:Control)-> Movimento_Jogo:
 	var novo_movimento = MOVIMENTO_SCENE.instantiate()
@@ -58,7 +57,7 @@ func mouse_esq_press():
 
 func mouse_esq_solta():
 	if carregada:
-		soltandoCartas.emit(cartas_carregadas[0], em_coluna, coluna_og, coluna_nova)
+		soltandoCartas.emit(cartas_carregadas[0], coluna_og)
 
 
 # Fuções para destacar cartas ao passar o mouse em cima delas
@@ -136,14 +135,11 @@ func carregando_cartas(carta_carregada:Carta):
 	
 	carregada = true
 
-func soltando_cartas(container_alvo:Control, container_og:Control):
+func soltando_cartas(container_alvo:Control, container_og:Control, pos_final_carta:Vector2, movida:bool, desfez:bool):
 	var posicao_modificada:String = "position"
-	if container_alvo.is_in_group("Colunas Jogo"):
-		pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta_coluna(container_alvo)
+	if movida:
 		posicao_modificada = "global_position"
-	elif container_alvo.is_in_group("Casas Jogo"):
-		pos_alvo_cartas_carregadas[0] = calcula_posicao_alvo_de_carta_casa(container_alvo)
-		posicao_modificada = "global_position"
+		pos_alvo_cartas_carregadas[0] = pos_final_carta
 	
 	for i in range(cartas_carregadas.size()):
 		var carta = cartas_carregadas[i]
@@ -167,9 +163,8 @@ func soltando_cartas(container_alvo:Control, container_og:Control):
 		
 		tweens_carregadas[i] = tween
 	
-	if container_alvo != container_og:
-		emitir_sinais_moveu_carta(container_og)
-		moveuCarta.emit(cartas_carregadas[0], container_og, container_alvo)
+	if movida and !desfez:
+		emitir_sinais_moveu_carta(cartas_carregadas[0], container_og, container_alvo)
 	
 	cartas_carregadas.clear()
 	pos_alvo_cartas_carregadas.clear()
@@ -177,26 +172,6 @@ func soltando_cartas(container_alvo:Control, container_og:Control):
 	carregada = false
 	coluna_og = null
 
-func _on_area_coluna_mouse_entered(coluna):
-	coluna_nova = coluna
-	em_coluna = true
-
-func _on_area_coluna_mouse_exited():
-	em_coluna = false
-	coluna_nova = null
-
-func calcula_posicao_alvo_de_carta_coluna(coluna_alvo: Node) -> Vector2:
-	var pos_x_coluna = 76 + (150 * coluna_alvo.get_parent().get_children().find(coluna_alvo))
-	var pos_y_alvo = 216 + ((coluna_alvo.get_child_count() - 1) * 25)
-	
-	return Vector2(pos_x_coluna, pos_y_alvo)
-
-func calcula_posicao_alvo_de_carta_casa(coluna_alvo: Node) -> Vector2:
-	var casa_alvo = coluna_alvo.name.trim_prefix("VBoxCasa ").to_int()
-	var pos_x_alvo = 645 + (119 * (casa_alvo-1))
-	var pos_y_casa = 22
-	
-	return Vector2(pos_x_alvo, pos_y_casa)
 
 # Funções de sinais
 
@@ -209,11 +184,15 @@ func emitir_sinais_soltou_carta(container_novo:Control):
 	if container_novo_deck: soltouCartaDeck.emit()
 	if container_novo_coluna: soltouCartasColuna.emit()
 
-func emitir_sinais_moveu_carta(container_velho:Control):
+func emitir_sinais_moveu_carta(carta_movida:Carta, container_velho:Control, container_novo:Control):
 	var container_velho_coluna:bool = container_velho.is_in_group("Colunas Jogo")
 	var container_velho_casa:bool = container_velho.is_in_group("Casas Jogo")
 	var container_velho_deck:bool = !container_velho.is_in_group("Casas Jogo") and !container_velho.is_in_group("Colunas Jogo")
 	
-	if container_velho_casa: moveuCartaCasa.emit()
-	if container_velho_deck: moveuCartaDeck.emit()
-	if container_velho_coluna: moveuCartasColuna.emit()
+	if container_velho_casa: 
+		moveuCartaCasa2.emit(carta_movida, container_velho, container_novo, false)
+		moveuCartaCasa1.emit()
+	if container_velho_deck: 
+		moveuCartaDeck2.emit(carta_movida, container_velho, container_novo, false)
+		moveuCartaDeck1.emit()
+	if container_velho_coluna: moveuCartasColuna.emit(carta_movida, container_velho, container_novo)
