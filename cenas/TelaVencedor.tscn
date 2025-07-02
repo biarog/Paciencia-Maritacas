@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bp7l6c0y86sym"]
+[gd_scene load_steps=7 format=3 uid="uid://bp7l6c0y86sym"]
 
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="1_vm3ar"]
 [ext_resource type="Script" uid="uid://f66esx8nvkh8" path="res://scripts/Paciencia/tela_vencedor.gd" id="1_w13tv"]
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="2_w13tv"]
 [ext_resource type="Texture2D" uid="uid://ck5ukdm0syrsl" path="res://Assets/imagens/trofeu.png" id="3_0vfom"]
+[ext_resource type="SpriteFrames" uid="uid://3hh5sl12s34u" path="res://Assets/imagens/firework_SpriteFrames.tres" id="5_0vfom"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sd6kp"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -61,11 +62,11 @@ text = "Retornar ao menu inicial"
 
 [node name="CenterContainerTrofeu" type="CenterContainer" parent="TelaVencedor/Panel"]
 layout_mode = 0
-offset_right = 4584.0
-offset_bottom = 1585.0
-scale = Vector2(0.25, 0.25)
+offset_right = 5735.0
+offset_bottom = 1860.0
+scale = Vector2(0.2, 0.2)
 
-[node name="TextureRect3" type="TextureRect" parent="TelaVencedor/Panel/CenterContainerTrofeu"]
+[node name="ImagemTrofeu" type="TextureRect" parent="TelaVencedor/Panel/CenterContainerTrofeu"]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("3_0vfom")
@@ -73,26 +74,90 @@ texture = ExtResource("3_0vfom")
 [node name="ColorRect" type="ColorRect" parent="TelaVencedor/Panel"]
 z_index = -9
 layout_mode = 0
-offset_left = -2.0
-offset_top = -3.0
-offset_right = 1148.0
-offset_bottom = 648.0
+offset_left = 3.0
+offset_top = -2.0
+offset_right = 1153.0
+offset_bottom = 649.0
 mouse_filter = 2
 
-[node name="CenterContainerTempo" type="CenterContainer" parent="TelaVencedor/Panel"]
-offset_left = 6.0
-offset_top = 364.0
-offset_right = 575.0
-offset_bottom = 435.0
-scale = Vector2(2, 2)
+[node name="AnimatedSprite2D_firework6" type="AnimatedSprite2D" parent="TelaVencedor"]
+z_index = 10
+texture_filter = 1
+position = Vector2(3.78887e+06, 866514)
+scale = Vector2(9125.16, 3930.91)
+sprite_frames = ExtResource("5_0vfom")
+animation = &"firework"
+frame_progress = 0.126625
 
-[node name="Label" type="Label" parent="TelaVencedor/Panel/CenterContainerTempo"]
-custom_minimum_size = Vector2(2, 0)
-layout_mode = 2
+[node name="AnimatedSprite2D_firework5" type="AnimatedSprite2D" parent="TelaVencedor"]
+z_index = 10
+texture_filter = 1
+position = Vector2(1131, 617)
+scale = Vector2(9.65348, 7.33287)
+sprite_frames = ExtResource("5_0vfom")
+animation = &"firework"
+frame_progress = 0.797996
+
+[node name="AnimatedSprite2D_firework4" type="AnimatedSprite2D" parent="TelaVencedor"]
+z_index = 10
+texture_filter = 1
+position = Vector2(1115.85, 103.212)
+scale = Vector2(7.4954, 5.55587)
+sprite_frames = ExtResource("5_0vfom")
+animation = &"firework"
+frame_progress = 0.184176
+
+[node name="AnimatedSprite2D_firework3" type="AnimatedSprite2D" parent="TelaVencedor"]
+z_index = 10
+texture_filter = 1
+position = Vector2(259, 536)
+scale = Vector2(9.77373, 7.91814)
+sprite_frames = ExtResource("5_0vfom")
+animation = &"firework"
+frame_progress = 0.396178
+
+[node name="AnimatedSprite2D_firework2" type="AnimatedSprite2D" parent="TelaVencedor"]
+z_index = 10
+texture_filter = 1
+position = Vector2(882.959, 399.955)
+scale = Vector2(3.1263, 2.81392)
+sprite_frames = ExtResource("5_0vfom")
+animation = &"firework"
+frame_progress = 0.0832987
+
+[node name="AnimatedSprite2D_firework" type="AnimatedSprite2D" parent="TelaVencedor"]
+z_index = 10
+texture_filter = 1
+position = Vector2(183, 215)
+scale = Vector2(3.32031, 2.99219)
+sprite_frames = ExtResource("5_0vfom")
+animation = &"firework"
+frame_progress = 0.620953
+
+[node name="Label" type="Label" parent="TelaVencedor"]
+offset_left = 380.0
+offset_top = 428.0
+offset_right = 772.0
+offset_bottom = 493.0
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.366595, 0.366595, 0.366595, 1)
-text = "timer aqui
-"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 38
+text = "00:15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Parabens" type="Label" parent="TelaVencedor"]
+offset_left = 375.0
+offset_top = 352.0
+offset_right = 779.0
+offset_bottom = 429.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.873747, 0.70944, 7.70092e-07, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.611765)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 58
+text = "Vencedor!"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -3,7 +3,15 @@ extends Node2D
 func _ready() -> void:
 	var Save = load("res://scripts/save.gd") #para poder carregar a clase "abstrata"
 	print(Save.get_tempo_string_pronta())
-	$TelaVencedor/Panel/CenterContainerTempo/Label.text = Save.get_tempo_string_pronta()
+	$TelaVencedor/Label.text = Save.get_tempo_string_pronta()
+	$TelaVencedor/AnimatedSprite2D_firework.play("firework")
+	$TelaVencedor/AnimatedSprite2D_firework2.play("firework")
+	$TelaVencedor/AnimatedSprite2D_firework3.play("firework")
+	$TelaVencedor/AnimatedSprite2D_firework4.play("firework")
+	$TelaVencedor/AnimatedSprite2D_firework5.play("firework")
+	$TelaVencedor/AnimatedSprite2D_firework6.play("firework")
+	
+	
 	
 
 func _on_recomecar_pressed() -> void:

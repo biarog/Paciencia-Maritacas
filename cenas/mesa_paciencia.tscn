@@ -288,11 +288,11 @@ mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI"]
 layout_mode = 0
-offset_left = -13.0
+offset_left = 36.0
 offset_top = 14.0
-offset_right = 1031.0
+offset_right = 1080.0
 offset_bottom = 534.0
-scale = Vector2(0.2391, 0.2391)
+scale = Vector2(0.2, 0.2)
 
 [node name="Desfazer" type="Button" parent="GUI/HBoxContainer"]
 layout_mode = 2
@@ -411,14 +411,16 @@ script = ExtResource("15_x2ec5")
 [node name="NoTimer" type="Timer" parent="Timer"]
 
 [node name="CenterContainer" type="CenterContainer" parent="Timer"]
-offset_top = 512.0
-offset_right = 196.0
-offset_bottom = 648.0
+offset_left = 279.0
+offset_top = 37.0
+offset_right = 438.0
+offset_bottom = 143.0
 
 [node name="Label" type="Label" parent="Timer/CenterContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
 
 [connection signal="gui_input" from="Controle Deck/Deck" to="Controle Deck" method="_on_deck_gui_input"]
 [connection signal="pressed" from="GUI/HBoxContainer/Pausar" to="." method="_on_pausar_pressed"]
