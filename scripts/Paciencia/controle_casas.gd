@@ -32,7 +32,9 @@ func check_vitoria():
 	for casa in casas:
 		if casa.get_child_count() < 14:
 			venceu = false
-	
+	# APAGAR DEPOIS:
+	venceu = true
 	if venceu:
 		print("YIPPEEE, voce venceu paciencia!!!!")
+		$"../Timer".salvar_tempo()
 		get_tree().change_scene_to_file("res://cenas/TelaVencedor.tscn")

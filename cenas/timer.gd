@@ -10,6 +10,10 @@ func formatar_tempo(segundos: float) -> String:
 	var seg = int(segundos) % 60
 	return "%02d:%02d" % [min, seg]
 
+func salvar_tempo():
+	var Save = load("res://scripts/save.gd")
+	Save.set_tempo(tempo_total)
+	print("salvou")
 
 func _on_no_timer_timeout() -> void:
 	tempo_total = tempo_total+1

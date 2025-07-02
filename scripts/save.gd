@@ -5,19 +5,16 @@ class_name Save
 
 # Classe abstrata — não instanciar diretamente
 # Variáveis privadas (por convenção, com underline)
-var _tempo_segundos: int = 0
-var _tempo_minutos: int = 0
+static var _tempo:= 54
 
 # Getter e setter para tempo_segundos
-func set_tempo_segundos(valor: int) -> void:
-	_tempo_segundos = valor
+static func set_tempo(valor: int) -> void:
+	_tempo = valor
 
-func get_tempo_segundos() -> int:
-	return _tempo_segundos
-
-# Getter e setter para tempo_minutos
-func set_tempo_minutos(valor: int) -> void:
-	_tempo_minutos = valor
-
-func get_tempo_minutos() -> int:
-	return _tempo_minutos
+static func get_tempo() -> int:
+	return _tempo
+	
+static func get_tempo_string_pronta() -> String:
+	var min = int(_tempo) / 60
+	var seg = int(_tempo) % 60
+	return "%02d:%02d" % [min, seg]
