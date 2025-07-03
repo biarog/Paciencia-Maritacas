@@ -33,7 +33,7 @@ func check_vitoria():
 		if casa.get_child_count() < 14:
 			venceu = false
 	# APAGAR DEPOIS:
-	venceu = true
+	#venceu = true
 	if venceu:
 		print("YIPPEEE, voce venceu paciencia!!!!")
 		$"../Timer".salvar_tempo()

@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2qgnk8achqm0"]
+[gd_scene load_steps=11 format=3 uid="uid://d2qgnk8achqm0"]
 
 [ext_resource type="Script" uid="uid://dme8jcax44aft" path="res://scripts/menu_inicial.gd" id="1_fe3ib"]
 [ext_resource type="Texture2D" uid="uid://dwmuldbd54ma" path="res://Assets/imagens/moldura_tela_inicial.png" id="2_5hmyj"]
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="3_dyoa6"]
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="3_mqa1b"]
 [ext_resource type="Texture2D" uid="uid://ccwsqxpiwa7qb" path="res://Assets/imagens/haja_paciencia_titulo_fundo_branco.png" id="3_qqmr5"]
+[ext_resource type="Texture2D" uid="uid://bdr6ay564h0ap" path="res://Assets/imagens/moldura_tela_inicial_sem_simbolos.png" id="6_02fs0"]
+[ext_resource type="Texture2D" uid="uid://dnik77i516txi" path="res://Assets/imagens/simbolo_gamedev2.png" id="7_23omm"]
+[ext_resource type="Texture2D" uid="uid://3ykn2ctskv7d" path="res://Assets/imagens/simbolo_gamedev2_acinzentado.png" id="8_8mewt"]
+[ext_resource type="StyleBox" uid="uid://c2aj2svr7d1w" path="res://Assets/Styles/style_box_empty.tres" id="9_8mewt"]
 
 [sub_resource type="Theme" id="Theme_atqwx"]
 
@@ -98,5 +102,84 @@ grow_horizontal = 2
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_qqmr5")
 
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+
+[node name="TextureRect2" type="TextureRect" parent="Node2D"]
+offset_left = 128.0
+offset_top = 20.0
+offset_right = 1015.9
+offset_bottom = 620.0
+mouse_filter = 2
+texture = ExtResource("6_02fs0")
+expand_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Node2D"]
+z_index = 5
+offset_left = 338.0
+offset_top = 442.0
+offset_right = 741.0
+offset_bottom = 492.0
+
+[node name="Fechar" type="Button" parent="Node2D/HBoxContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme_override_styles/hover = ExtResource("3_dyoa6")
+theme_override_styles/pressed = ExtResource("3_mqa1b")
+theme_override_styles/normal = ExtResource("3_mqa1b")
+text = "Fechar"
+
+[node name="TextureButton" type="TextureButton" parent="Node2D"]
+offset_left = 773.0
+offset_top = 420.0
+offset_right = 1676.0
+offset_bottom = 1326.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("7_23omm")
+texture_pressed = ExtResource("7_23omm")
+texture_hover = ExtResource("8_8mewt")
+
+[node name="PanelContainer" type="PanelContainer" parent="Node2D"]
+custom_minimum_size = Vector2(300, 0)
+offset_left = 300.0
+offset_top = 134.0
+offset_right = 884.0
+offset_bottom = 235.0
+theme_override_styles/panel = ExtResource("9_8mewt")
+
+[node name="texto" type="Label" parent="Node2D/PanelContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Projeto do grupo de estudos em desenvolvimento de jogos    da UFSCar Sorocaba, feito com muito carinho por:"
+autowrap_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Node2D"]
+z_index = 7
+offset_left = 260.0
+offset_top = 272.0
+offset_right = 898.0
+offset_bottom = 407.0
+
+[node name="Bia" type="Label" parent="Node2D/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Beatriz Tripolli Barbosa"
+horizontal_alignment = 1
+
+[node name="Matteo" type="Label" parent="Node2D/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Matteo Cileneo Savan"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Iniciar" to="." method="_on_iniciar_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Creditos" to="." method="_on_creditos_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Sair" to="." method="_on_sair_pressed"]
+[connection signal="pressed" from="Node2D/HBoxContainer/Fechar" to="." method="_on_fechar_pressed"]
+[connection signal="pressed" from="Node2D/TextureButton" to="." method="_on_texture_button_pressed"]
