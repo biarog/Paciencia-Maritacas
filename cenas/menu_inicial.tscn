@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2qgnk8achqm0"]
+[gd_scene load_steps=14 format=3 uid="uid://d2qgnk8achqm0"]
 
 [ext_resource type="Script" uid="uid://dme8jcax44aft" path="res://scripts/menu_inicial.gd" id="1_fe3ib"]
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="3_dyoa6"]
@@ -8,8 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://dnik77i516txi" path="res://Assets/imagens/simbolo_gamedev2.png" id="7_23omm"]
 [ext_resource type="Texture2D" uid="uid://3ykn2ctskv7d" path="res://Assets/imagens/simbolo_gamedev2_acinzentado.png" id="8_8mewt"]
 [ext_resource type="StyleBox" uid="uid://c2aj2svr7d1w" path="res://Assets/Styles/style_box_empty.tres" id="9_8mewt"]
+[ext_resource type="Texture2D" uid="uid://dcqbtglemb7ve" path="res://Assets/imagens/github_elegante.png" id="9_56w0b"]
 [ext_resource type="VideoStream" uid="uid://i4ufurfte8jh" path="res://Assets/imagens/espada_melhor.ogv" id="9_go3jw"]
 [ext_resource type="VideoStream" uid="uid://b4b3lmokdbhgg" path="res://Assets/imagens/coracao_melhor.ogv" id="10_go3jw"]
+[ext_resource type="Texture2D" uid="uid://bpxoqmmvuomva" path="res://Assets/imagens/github_elegante_acinzentado.png" id="10_t3ad3"]
 
 [sub_resource type="Theme" id="Theme_atqwx"]
 
@@ -179,6 +181,26 @@ theme_override_font_sizes/font_size = 25
 text = "Matteo Cileneo Savan"
 horizontal_alignment = 1
 
+[node name="botao_git_bia" type="TextureButton" parent="Node2D"]
+offset_left = 770.0
+offset_top = 270.0
+offset_right = 2793.0
+offset_bottom = 2274.0
+scale = Vector2(0.02, 0.02)
+texture_normal = ExtResource("9_56w0b")
+texture_pressed = ExtResource("9_56w0b")
+texture_hover = ExtResource("10_t3ad3")
+
+[node name="botao_git_matteo" type="TextureButton" parent="Node2D"]
+offset_left = 719.0
+offset_top = 311.0
+offset_right = 2742.0
+offset_bottom = 2315.0
+scale = Vector2(0.02, 0.02)
+texture_normal = ExtResource("9_56w0b")
+texture_pressed = ExtResource("9_56w0b")
+texture_hover = ExtResource("10_t3ad3")
+
 [node name="espada" type="VideoStreamPlayer" parent="."]
 z_index = 4096
 offset_left = 266.0
@@ -206,3 +228,5 @@ loop = true
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Sair" to="." method="_on_sair_pressed"]
 [connection signal="pressed" from="Node2D/HBoxContainer/Fechar" to="." method="_on_fechar_pressed"]
 [connection signal="pressed" from="Node2D/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Node2D/botao_git_bia" to="." method="_on_botao_git_bia_pressed"]
+[connection signal="pressed" from="Node2D/botao_git_matteo" to="." method="_on_botao_git_matteo_pressed"]

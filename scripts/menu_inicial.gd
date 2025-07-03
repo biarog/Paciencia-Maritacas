@@ -29,3 +29,11 @@ func _on_fechar_pressed() -> void:
 	$espada.show()
 	$coracao.show()
 	
+
+
+func _on_botao_git_bia_pressed() -> void:
+	OS.shell_open("https://github.com/biarog")
+
+
+func _on_botao_git_matteo_pressed() -> void:
+	OS.shell_open("https://github.com/matteosavan")

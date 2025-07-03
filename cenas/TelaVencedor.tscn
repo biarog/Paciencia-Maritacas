@@ -87,7 +87,7 @@ position = Vector2(3.78887e+06, 866514)
 scale = Vector2(9125.16, 3930.91)
 sprite_frames = ExtResource("5_0vfom")
 animation = &"firework"
-frame_progress = 0.922361
+frame_progress = 0.418783
 
 [node name="AnimatedSprite2D_firework5" type="AnimatedSprite2D" parent="TelaVencedor"]
 z_index = 10
@@ -96,7 +96,7 @@ position = Vector2(1131, 617)
 scale = Vector2(9.65348, 7.33287)
 sprite_frames = ExtResource("5_0vfom")
 animation = &"firework"
-frame_progress = 0.593732
+frame_progress = 0.0901549
 
 [node name="AnimatedSprite2D_firework4" type="AnimatedSprite2D" parent="TelaVencedor"]
 z_index = 10
@@ -105,7 +105,7 @@ position = Vector2(1115.85, 103.212)
 scale = Vector2(7.4954, 5.55587)
 sprite_frames = ExtResource("5_0vfom")
 animation = &"firework"
-frame_progress = 0.979912
+frame_progress = 0.476333
 
 [node name="AnimatedSprite2D_firework3" type="AnimatedSprite2D" parent="TelaVencedor"]
 z_index = 10
@@ -114,7 +114,7 @@ position = Vector2(259, 536)
 scale = Vector2(9.77373, 7.91814)
 sprite_frames = ExtResource("5_0vfom")
 animation = &"firework"
-frame_progress = 0.191914
+frame_progress = 0.688336
 
 [node name="AnimatedSprite2D_firework2" type="AnimatedSprite2D" parent="TelaVencedor"]
 z_index = 10
@@ -123,7 +123,7 @@ position = Vector2(882.959, 399.955)
 scale = Vector2(3.1263, 2.81392)
 sprite_frames = ExtResource("5_0vfom")
 animation = &"firework"
-frame_progress = 0.879033
+frame_progress = 0.375455
 
 [node name="AnimatedSprite2D_firework" type="AnimatedSprite2D" parent="TelaVencedor"]
 z_index = 10
@@ -132,7 +132,7 @@ position = Vector2(183, 215)
 scale = Vector2(3.32031, 2.99219)
 sprite_frames = ExtResource("5_0vfom")
 animation = &"firework"
-frame_progress = 0.416692
+frame_progress = 0.913116
 
 [node name="Label" type="Label" parent="TelaVencedor"]
 offset_left = 380.0
