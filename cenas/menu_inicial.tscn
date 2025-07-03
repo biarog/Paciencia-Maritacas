@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2qgnk8achqm0"]
+[gd_scene load_steps=12 format=3 uid="uid://d2qgnk8achqm0"]
 
 [ext_resource type="Script" uid="uid://dme8jcax44aft" path="res://scripts/menu_inicial.gd" id="1_fe3ib"]
-[ext_resource type="Texture2D" uid="uid://dwmuldbd54ma" path="res://Assets/imagens/moldura_tela_inicial.png" id="2_5hmyj"]
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="3_dyoa6"]
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="3_mqa1b"]
 [ext_resource type="Texture2D" uid="uid://ccwsqxpiwa7qb" path="res://Assets/imagens/haja_paciencia_titulo_fundo_branco.png" id="3_qqmr5"]
@@ -9,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dnik77i516txi" path="res://Assets/imagens/simbolo_gamedev2.png" id="7_23omm"]
 [ext_resource type="Texture2D" uid="uid://3ykn2ctskv7d" path="res://Assets/imagens/simbolo_gamedev2_acinzentado.png" id="8_8mewt"]
 [ext_resource type="StyleBox" uid="uid://c2aj2svr7d1w" path="res://Assets/Styles/style_box_empty.tres" id="9_8mewt"]
+[ext_resource type="VideoStream" uid="uid://i4ufurfte8jh" path="res://Assets/imagens/espada_melhor.ogv" id="9_go3jw"]
+[ext_resource type="VideoStream" uid="uid://b4b3lmokdbhgg" path="res://Assets/imagens/coracao_melhor.ogv" id="10_go3jw"]
 
 [sub_resource type="Theme" id="Theme_atqwx"]
 
@@ -22,7 +23,7 @@ offset_top = 24.0
 offset_right = 1019.13
 offset_bottom = 624.0
 mouse_filter = 2
-texture = ExtResource("2_5hmyj")
+texture = ExtResource("6_02fs0")
 expand_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -106,10 +107,10 @@ texture = ExtResource("3_qqmr5")
 visible = false
 
 [node name="TextureRect2" type="TextureRect" parent="Node2D"]
-offset_left = 128.0
-offset_top = 20.0
-offset_right = 1015.9
-offset_bottom = 620.0
+offset_left = 132.0
+offset_top = 24.0
+offset_right = 1019.9
+offset_bottom = 624.0
 mouse_filter = 2
 texture = ExtResource("6_02fs0")
 expand_mode = 3
@@ -152,7 +153,7 @@ custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
-text = "Projeto do grupo de estudos em desenvolvimento de jogos    da UFSCar Sorocaba, feito com muito carinho por:"
+text = "Projeto do grupo de estudos em desenvolvimento de jogos    da UFSCar Sorocaba feito com muito carinho por:"
 autowrap_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Node2D"]
@@ -167,7 +168,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
-text = "Beatriz Tripolli Barbosa"
+text = "Beatriz Rogers Tripoli Barbosa"
 horizontal_alignment = 1
 
 [node name="Matteo" type="Label" parent="Node2D/VBoxContainer"]
@@ -177,6 +178,28 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 25
 text = "Matteo Cileneo Savan"
 horizontal_alignment = 1
+
+[node name="espada" type="VideoStreamPlayer" parent="."]
+z_index = 4096
+offset_left = 266.0
+offset_top = 405.0
+offset_right = 1346.0
+offset_bottom = 1485.0
+scale = Vector2(0.1, 0.1)
+stream = ExtResource("9_go3jw")
+autoplay = true
+loop = true
+
+[node name="coracao" type="VideoStreamPlayer" parent="."]
+z_index = 4096
+offset_left = 784.0
+offset_top = 146.0
+offset_right = 1864.0
+offset_bottom = 1226.0
+scale = Vector2(0.1, 0.1)
+stream = ExtResource("10_go3jw")
+autoplay = true
+loop = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Iniciar" to="." method="_on_iniciar_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Creditos" to="." method="_on_creditos_pressed"]
