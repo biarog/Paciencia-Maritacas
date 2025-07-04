@@ -37,11 +37,14 @@ mouse_force_pass_scroll_events = false
 script = ExtResource("1_m56lf")
 
 [node name="Fundo" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 649.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.002
+offset_bottom = -0.296082
 mouse_filter = 2
 color = Color(0.118293, 0.262249, 0.10521, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Camada Drag" type="Control" parent="."]
 anchors_preset = 0
@@ -294,6 +297,7 @@ offset_bottom = 534.0
 scale = Vector2(0.2391, 0.2391)
 
 [node name="Desfazer" type="Button" parent="GUI/HBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 theme_override_styles/focus = ExtResource("6_27pwh")
 icon = ExtResource("6_2xdgp")
@@ -301,6 +305,7 @@ flat = true
 script = ExtResource("7_snca4")
 
 [node name="Pausar" type="Button" parent="GUI/HBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 theme_override_styles/focus = ExtResource("6_27pwh")
 icon = ExtResource("7_gutj4")
