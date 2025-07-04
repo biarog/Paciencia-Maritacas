@@ -1,12 +1,88 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2qgnk8achqm0"]
+[gd_scene load_steps=19 format=3 uid="uid://d2qgnk8achqm0"]
 
 [ext_resource type="Script" uid="uid://dme8jcax44aft" path="res://scripts/menu_inicial.gd" id="1_fe3ib"]
-[ext_resource type="Texture2D" uid="uid://ouimnia6ow3u" path="res://Assets/imagens/moldura gamedevfimsvg.svg" id="2_urgwx"]
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="3_dyoa6"]
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="3_mqa1b"]
 [ext_resource type="Texture2D" uid="uid://ccwsqxpiwa7qb" path="res://Assets/imagens/haja_paciencia_titulo_fundo_branco.png" id="3_qqmr5"]
+[ext_resource type="Texture2D" uid="uid://bdr6ay564h0ap" path="res://Assets/imagens/moldura_tela_inicial_sem_simbolos.png" id="6_02fs0"]
+[ext_resource type="Script" uid="uid://dkfr3cmbxj2s5" path="res://cenas/animation_player.gd" id="6_yhi41"]
+[ext_resource type="Texture2D" uid="uid://dnik77i516txi" path="res://Assets/imagens/simbolo_gamedev2.png" id="7_23omm"]
+[ext_resource type="Texture2D" uid="uid://3ykn2ctskv7d" path="res://Assets/imagens/simbolo_gamedev2_acinzentado.png" id="8_8mewt"]
+[ext_resource type="StyleBox" uid="uid://c2aj2svr7d1w" path="res://Assets/Styles/style_box_empty.tres" id="9_8mewt"]
+[ext_resource type="Texture2D" uid="uid://dcqbtglemb7ve" path="res://Assets/imagens/github_elegante.png" id="9_56w0b"]
+[ext_resource type="VideoStream" uid="uid://i4ufurfte8jh" path="res://Assets/imagens/espada_melhor.ogv" id="9_go3jw"]
+[ext_resource type="VideoStream" uid="uid://b4b3lmokdbhgg" path="res://Assets/imagens/coracao_melhor.ogv" id="10_go3jw"]
+[ext_resource type="Texture2D" uid="uid://bpxoqmmvuomva" path="res://Assets/imagens/github_elegante_acinzentado.png" id="10_t3ad3"]
 
 [sub_resource type="Theme" id="Theme_atqwx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3ad3"]
+bg_color = Color(0.545098, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id="Animation_yhi41"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(388, 26)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MarginContainer/VBoxContainer/Iniciar:theme_override_styles/normal")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("StyleBoxFlat_t3ad3")]
+}
+
+[sub_resource type="Animation" id="Animation_t3ad3"]
+resource_name = "pulsar"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.666667, 0.9, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(388, 26), Vector2(388, 69), Vector2(388, 53), Vector2(388, 69), Vector2(388, 23), Vector2(388, 26)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../MarginContainer/VBoxContainer/Iniciar:theme_override_styles/normal")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.666667, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_mqa1b"), SubResource("StyleBoxFlat_t3ad3"), ExtResource("3_mqa1b"), SubResource("StyleBoxFlat_t3ad3"), ExtResource("3_mqa1b")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lnb41"]
+_data = {
+&"RESET": SubResource("Animation_yhi41"),
+&"pulsar": SubResource("Animation_t3ad3")
+}
 
 [node name="MenuInicial" type="Node2D"]
 script = ExtResource("1_fe3ib")
@@ -18,7 +94,7 @@ offset_top = 24.0
 offset_right = 1019.13
 offset_bottom = 624.0
 mouse_filter = 2
-texture = ExtResource("2_urgwx")
+texture = ExtResource("6_02fs0")
 expand_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -54,13 +130,13 @@ theme_override_styles/pressed = ExtResource("3_mqa1b")
 theme_override_styles/normal = ExtResource("3_mqa1b")
 text = "Iniciar"
 
-[node name="Loja" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Creditos" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 theme_override_styles/hover = ExtResource("3_dyoa6")
 theme_override_styles/pressed = ExtResource("3_mqa1b")
 theme_override_styles/normal = ExtResource("3_mqa1b")
-text = "Loja"
+text = "Créditos"
 
 [node name="Sair" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
@@ -84,18 +160,149 @@ offset_bottom = 647.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(0.117647, 0.262745, 0.105882, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 383.0
-offset_top = 12.0
-offset_right = 1327.0
-offset_bottom = 546.0
+offset_left = 388.0
+offset_top = 26.0
+offset_right = 1332.0
+offset_bottom = 560.0
 grow_horizontal = 2
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_qqmr5")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_lnb41")
+}
+speed_scale = 0.5
+script = ExtResource("6_yhi41")
+
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+
+[node name="TextureRect2" type="TextureRect" parent="Node2D"]
+offset_left = 132.0
+offset_top = 24.0
+offset_right = 1019.9
+offset_bottom = 624.0
+mouse_filter = 2
+texture = ExtResource("6_02fs0")
+expand_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Node2D"]
+z_index = 5
+offset_left = 338.0
+offset_top = 442.0
+offset_right = 741.0
+offset_bottom = 492.0
+
+[node name="Fechar" type="Button" parent="Node2D/HBoxContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme_override_styles/hover = ExtResource("3_dyoa6")
+theme_override_styles/pressed = ExtResource("3_mqa1b")
+theme_override_styles/normal = ExtResource("3_mqa1b")
+text = "Fechar"
+
+[node name="TextureButton" type="TextureButton" parent="Node2D"]
+offset_left = 773.0
+offset_top = 420.0
+offset_right = 1676.0
+offset_bottom = 1326.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("7_23omm")
+texture_pressed = ExtResource("7_23omm")
+texture_hover = ExtResource("8_8mewt")
+
+[node name="PanelContainer" type="PanelContainer" parent="Node2D"]
+custom_minimum_size = Vector2(300, 0)
+offset_left = 300.0
+offset_top = 134.0
+offset_right = 884.0
+offset_bottom = 235.0
+theme_override_styles/panel = ExtResource("9_8mewt")
+
+[node name="texto" type="Label" parent="Node2D/PanelContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Projeto do grupo de estudos em desenvolvimento de jogos    da UFSCar Sorocaba feito com muito carinho por:"
+autowrap_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Node2D"]
+z_index = 7
+offset_left = 260.0
+offset_top = 272.0
+offset_right = 898.0
+offset_bottom = 407.0
+
+[node name="Bia" type="Label" parent="Node2D/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Beatriz Rogers Tripoli Barbosa"
+horizontal_alignment = 1
+
+[node name="Matteo" type="Label" parent="Node2D/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Matteo Cileneo Savan"
+horizontal_alignment = 1
+
+[node name="botao_git_bia" type="TextureButton" parent="Node2D"]
+offset_left = 770.0
+offset_top = 270.0
+offset_right = 2793.0
+offset_bottom = 2274.0
+scale = Vector2(0.02, 0.02)
+texture_normal = ExtResource("9_56w0b")
+texture_pressed = ExtResource("9_56w0b")
+texture_hover = ExtResource("10_t3ad3")
+
+[node name="botao_git_matteo" type="TextureButton" parent="Node2D"]
+offset_left = 719.0
+offset_top = 311.0
+offset_right = 2742.0
+offset_bottom = 2315.0
+scale = Vector2(0.02, 0.02)
+texture_normal = ExtResource("9_56w0b")
+texture_pressed = ExtResource("9_56w0b")
+texture_hover = ExtResource("10_t3ad3")
+
+[node name="espada" type="VideoStreamPlayer" parent="."]
+z_index = 4096
+offset_left = 266.0
+offset_top = 405.0
+offset_right = 1346.0
+offset_bottom = 1485.0
+scale = Vector2(0.1, 0.1)
+stream = ExtResource("9_go3jw")
+autoplay = true
+loop = true
+
+[node name="coracao" type="VideoStreamPlayer" parent="."]
+z_index = 4096
+offset_left = 784.0
+offset_top = 146.0
+offset_right = 1864.0
+offset_bottom = 1226.0
+scale = Vector2(0.1, 0.1)
+stream = ExtResource("10_go3jw")
+autoplay = true
+loop = true
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Iniciar" to="." method="_on_iniciar_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Creditos" to="." method="_on_creditos_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Sair" to="." method="_on_sair_pressed"]
+[connection signal="pressed" from="Node2D/HBoxContainer/Fechar" to="." method="_on_fechar_pressed"]
+[connection signal="pressed" from="Node2D/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Node2D/botao_git_bia" to="." method="_on_botao_git_bia_pressed"]
+[connection signal="pressed" from="Node2D/botao_git_matteo" to="." method="_on_botao_git_matteo_pressed"]

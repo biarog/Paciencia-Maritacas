@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvkaoi6jdbggb"]
+[gd_scene load_steps=18 format=3 uid="uid://cvkaoi6jdbggb"]
 
 [ext_resource type="Script" uid="uid://cebd5maywlrcp" path="res://scripts/Paciencia/mesa_paciencia.gd" id="1_m56lf"]
 [ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/Paciencia/controle_paciencia.gd" id="1_xq04u"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://db24u72u6mg6c" path="res://Assets/GUI/pause_btn.png" id="7_gutj4"]
 [ext_resource type="Script" uid="uid://cpfvyrr43jw0i" path="res://scripts/button_animation.gd" id="7_snca4"]
 [ext_resource type="Script" uid="uid://dcqp7oc0r2exi" path="res://scripts/menu_pausa.gd" id="8_wu64m"]
+[ext_resource type="Script" uid="uid://dyfvlqa220tqd" path="res://cenas/timer.gd" id="15_x2ec5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
 size = Vector2(132, 444)
@@ -290,11 +291,11 @@ mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI"]
 layout_mode = 0
-offset_left = -13.0
+offset_left = 36.0
 offset_top = 14.0
-offset_right = 1031.0
+offset_right = 1080.0
 offset_bottom = 534.0
-scale = Vector2(0.2391, 0.2391)
+scale = Vector2(0.2, 0.2)
 
 [node name="Desfazer" type="Button" parent="GUI/HBoxContainer"]
 texture_filter = 2
@@ -409,9 +410,27 @@ theme_override_styles/pressed = ExtResource("6_c4sgq")
 theme_override_styles/normal = ExtResource("6_c4sgq")
 text = "Retornar ao menu inicial"
 
+[node name="Timer" type="Node2D" parent="."]
+script = ExtResource("15_x2ec5")
+
+[node name="NoTimer" type="Timer" parent="Timer"]
+
+[node name="CenterContainer" type="CenterContainer" parent="Timer"]
+offset_left = 315.0
+offset_top = 35.0
+offset_right = 474.0
+offset_bottom = 141.0
+
+[node name="Label" type="Label" parent="Timer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+
 [connection signal="gui_input" from="Controle Deck/Deck" to="Controle Deck" method="_on_deck_gui_input"]
 [connection signal="pressed" from="GUI/HBoxContainer/Desfazer" to="." method="voltar_movimento"]
 [connection signal="pressed" from="GUI/HBoxContainer/Pausar" to="." method="_on_pausar_pressed"]
 [connection signal="pressed" from="MenuPausa/Panel/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="MenuPausa/Panel/VBoxContainer/Recomecar" to="." method="_on_recomecar_pressed"]
 [connection signal="pressed" from="MenuPausa/Panel/VBoxContainer/Retornar_Menu_Inicial" to="." method="_on_retornar_menu_inicial_pressed"]
+[connection signal="timeout" from="Timer/NoTimer" to="Timer" method="_on_no_timer_timeout"]

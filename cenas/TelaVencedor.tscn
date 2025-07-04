@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bp7l6c0y86sym"]
+[gd_scene load_steps=7 format=3 uid="uid://bp7l6c0y86sym"]
 
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="1_vm3ar"]
 [ext_resource type="Script" uid="uid://f66esx8nvkh8" path="res://scripts/Paciencia/tela_vencedor.gd" id="1_w13tv"]
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="2_w13tv"]
 [ext_resource type="Texture2D" uid="uid://ck5ukdm0syrsl" path="res://Assets/imagens/trofeu.png" id="3_0vfom"]
+[ext_resource type="SpriteFrames" uid="uid://3hh5sl12s34u" path="res://Assets/imagens/firework_SpriteFrames.tres" id="5_0vfom"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sd6kp"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -19,36 +20,31 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -334.5
-offset_top = -240.0
-offset_right = 334.5
-offset_bottom = 240.0
+offset_left = -575.0
+offset_top = -321.0
+offset_right = 579.0
+offset_bottom = 321.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_sd6kp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TelaVencedor/Panel"]
+[node name="CenterContainerBotoes" type="CenterContainer" parent="TelaVencedor/Panel"]
+layout_mode = 2
+offset_top = 448.0
+offset_right = 1149.0
+offset_bottom = 647.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TelaVencedor/Panel/CenterContainerBotoes"]
 z_index = 1
 custom_minimum_size = Vector2(300, 0)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.541
-anchor_right = 0.5
-anchor_bottom = 0.541
-offset_left = -211.5
-offset_top = 94.32
-offset_right = 188.5
-offset_bottom = 307.32
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 alignment = 1
 
-[node name="Recomecar" type="Button" parent="TelaVencedor/Panel/VBoxContainer"]
+[node name="Recomecar" type="Button" parent="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 theme_override_styles/hover = ExtResource("1_vm3ar")
@@ -56,7 +52,7 @@ theme_override_styles/pressed = ExtResource("2_w13tv")
 theme_override_styles/normal = ExtResource("2_w13tv")
 text = "Recomeçar"
 
-[node name="Retornar_Menu_Inicial" type="Button" parent="TelaVencedor/Panel/VBoxContainer"]
+[node name="Retornar_Menu_Inicial" type="Button" parent="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 theme_override_styles/hover = ExtResource("1_vm3ar")
@@ -64,25 +60,106 @@ theme_override_styles/pressed = ExtResource("2_w13tv")
 theme_override_styles/normal = ExtResource("2_w13tv")
 text = "Retornar ao menu inicial"
 
-[node name="TextureRect3" type="TextureRect" parent="TelaVencedor/Panel"]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 94.0
-offset_top = -40.0
-offset_right = 2491.0
-offset_bottom = 1725.0
+[node name="CenterContainerTrofeu" type="CenterContainer" parent="TelaVencedor/Panel"]
+layout_mode = 0
+offset_right = 5735.0
+offset_bottom = 1860.0
 scale = Vector2(0.2, 0.2)
+
+[node name="ImagemTrofeu" type="TextureRect" parent="TelaVencedor/Panel/CenterContainerTrofeu"]
+layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("3_0vfom")
 
 [node name="ColorRect" type="ColorRect" parent="TelaVencedor/Panel"]
 z_index = -9
 layout_mode = 0
-offset_left = -242.5
-offset_top = -84.0
-offset_right = 907.5
-offset_bottom = 567.0
+offset_left = 3.0
+offset_top = -2.0
+offset_right = 1153.0
+offset_bottom = 649.0
 mouse_filter = 2
 
-[connection signal="pressed" from="TelaVencedor/Panel/VBoxContainer/Recomecar" to="." method="_on_recomecar_pressed"]
-[connection signal="pressed" from="TelaVencedor/Panel/VBoxContainer/Retornar_Menu_Inicial" to="." method="_on_retornar_menu_inicial_pressed"]
+[node name="AnimatedSprite2D_firework6" type="AnimatedSprite2D" parent="TelaVencedor"]
+z_index = 10
+texture_filter = 1
+position = Vector2(3.78887e+06, 866514)
+scale = Vector2(9125.16, 3930.91)
+sprite_frames = ExtResource("5_0vfom")
+animation = &"firework"
+frame_progress = 0.418783
+
+[node name="AnimatedSprite2D_firework5" type="AnimatedSprite2D" parent="TelaVencedor"]
+z_index = 10
+texture_filter = 1
+position = Vector2(1131, 617)
+scale = Vector2(9.65348, 7.33287)
+sprite_frames = ExtResource("5_0vfom")
+animation = &"firework"
+frame_progress = 0.0901549
+
+[node name="AnimatedSprite2D_firework4" type="AnimatedSprite2D" parent="TelaVencedor"]
+z_index = 10
+texture_filter = 1
+position = Vector2(1115.85, 103.212)
+scale = Vector2(7.4954, 5.55587)
+sprite_frames = ExtResource("5_0vfom")
+animation = &"firework"
+frame_progress = 0.476333
+
+[node name="AnimatedSprite2D_firework3" type="AnimatedSprite2D" parent="TelaVencedor"]
+z_index = 10
+texture_filter = 1
+position = Vector2(259, 536)
+scale = Vector2(9.77373, 7.91814)
+sprite_frames = ExtResource("5_0vfom")
+animation = &"firework"
+frame_progress = 0.688336
+
+[node name="AnimatedSprite2D_firework2" type="AnimatedSprite2D" parent="TelaVencedor"]
+z_index = 10
+texture_filter = 1
+position = Vector2(882.959, 399.955)
+scale = Vector2(3.1263, 2.81392)
+sprite_frames = ExtResource("5_0vfom")
+animation = &"firework"
+frame_progress = 0.375455
+
+[node name="AnimatedSprite2D_firework" type="AnimatedSprite2D" parent="TelaVencedor"]
+z_index = 10
+texture_filter = 1
+position = Vector2(183, 215)
+scale = Vector2(3.32031, 2.99219)
+sprite_frames = ExtResource("5_0vfom")
+animation = &"firework"
+frame_progress = 0.913116
+
+[node name="Label" type="Label" parent="TelaVencedor"]
+offset_left = 380.0
+offset_top = 428.0
+offset_right = 772.0
+offset_bottom = 493.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 38
+text = "00:15"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Parabens" type="Label" parent="TelaVencedor"]
+offset_left = 375.0
+offset_top = 352.0
+offset_right = 779.0
+offset_bottom = 429.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.873747, 0.70944, 7.70092e-07, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.611765)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 58
+text = "Vencedor!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer/Recomecar" to="." method="_on_recomecar_pressed"]
+[connection signal="pressed" from="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer/Retornar_Menu_Inicial" to="." method="_on_retornar_menu_inicial_pressed"]
