@@ -87,55 +87,61 @@ _data = {
 [node name="MenuInicial" type="Node2D"]
 script = ExtResource("1_fe3ib")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 649.0
+[node name="Background" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="Control" type="Control" parent="Background"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.002
+offset_bottom = -0.296082
+
+[node name="ColorRect" type="ColorRect" parent="Background/Control"]
 z_index = -3
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -3.29985
-anchor_top = -0.6
-anchor_right = 25.5001
-anchor_bottom = 15.6
-offset_left = -0.00610352
-offset_right = -0.0078125
-offset_bottom = -0.000976563
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.117647, 0.262745, 0.105882, 1)
-metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="MenuInicial" type="CanvasLayer" parent="."]
+
+[node name="TextureRect2" type="TextureRect" parent="MenuInicial"]
 z_index = -2
-offset_left = 132.126
-offset_top = 24.0
-offset_right = 1019.13
-offset_bottom = 624.0
-mouse_filter = 2
-texture = ExtResource("6_02fs0")
-expand_mode = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 132.0
-offset_top = 152.0
-offset_right = 1020.0
-offset_bottom = 550.0
+offset_left = -443.874
+offset_top = -300.0
+offset_right = 444.027
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_02fs0")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuInicial"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.0
+offset_top = -172.0
+offset_right = 444.0
+offset_bottom = 226.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 theme = SubResource("Theme_atqwx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuInicial/MarginContainer"]
 z_index = 1
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -143,7 +149,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Iniciar" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Iniciar" type="Button" parent="MenuInicial/MarginContainer/VBoxContainer"]
 z_index = 5
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
@@ -153,7 +159,7 @@ theme_override_styles/pressed = ExtResource("3_mqa1b")
 theme_override_styles/normal = ExtResource("3_mqa1b")
 text = "Iniciar"
 
-[node name="Creditos" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Creditos" type="Button" parent="MenuInicial/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 theme_override_styles/hover = ExtResource("3_dyoa6")
@@ -161,7 +167,7 @@ theme_override_styles/pressed = ExtResource("3_mqa1b")
 theme_override_styles/normal = ExtResource("3_mqa1b")
 text = "Créditos"
 
-[node name="Sair" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Sair" type="Button" parent="MenuInicial/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 theme_override_styles/hover = ExtResource("3_dyoa6")
@@ -169,45 +175,97 @@ theme_override_styles/pressed = ExtResource("3_mqa1b")
 theme_override_styles/normal = ExtResource("3_mqa1b")
 text = "Sair"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 388.0
-offset_top = 26.0
-offset_right = 1332.0
-offset_bottom = 560.0
+[node name="TextureRect" type="TextureRect" parent="MenuInicial"]
+anchors_preset = -1
+anchor_left = 0.501
+anchor_top = 0.5
+anchor_right = 0.501
+anchor_bottom = 0.5
+offset_left = -189.152
+offset_top = -298.0
+offset_right = 754.848
+offset_bottom = 236.0
 grow_horizontal = 2
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_qqmr5")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuInicial/TextureRect"]
 libraries = {
 &"": SubResource("AnimationLibrary_lnb41")
 }
 speed_scale = 0.5
 script = ExtResource("6_yhi41")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="espada" type="VideoStreamPlayer" parent="MenuInicial"]
+z_index = 4096
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = 81.0
+offset_right = 770.0
+offset_bottom = 1161.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+stream = ExtResource("9_go3jw")
+autoplay = true
+loop = true
+
+[node name="coracao" type="VideoStreamPlayer" parent="MenuInicial"]
+z_index = 4096
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 208.0
+offset_top = -178.0
+offset_right = 1288.0
+offset_bottom = 902.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+stream = ExtResource("10_go3jw")
+autoplay = true
+loop = true
+
+[node name="Creditos" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="TextureRect2" type="TextureRect" parent="Node2D"]
-offset_left = 132.0
-offset_top = 24.0
-offset_right = 1019.9
-offset_bottom = 624.0
+[node name="TextureRect2" type="TextureRect" parent="Creditos"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.0
+offset_top = -300.0
+offset_right = 443.9
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("6_02fs0")
 expand_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Node2D"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Creditos"]
 z_index = 5
-offset_left = 338.0
-offset_top = 442.0
-offset_right = 741.0
-offset_bottom = 492.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -238.0
+offset_top = 118.0
+offset_right = 165.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Fechar" type="Button" parent="Node2D/HBoxContainer"]
+[node name="Fechar" type="Button" parent="Creditos/HBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
 theme_override_styles/hover = ExtResource("3_dyoa6")
@@ -215,25 +273,37 @@ theme_override_styles/pressed = ExtResource("3_mqa1b")
 theme_override_styles/normal = ExtResource("3_mqa1b")
 text = "Fechar"
 
-[node name="TextureButton" type="TextureButton" parent="Node2D"]
-offset_left = 773.0
-offset_top = 420.0
-offset_right = 1676.0
-offset_bottom = 1326.0
+[node name="TextureButton" type="TextureButton" parent="Creditos"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 197.0
+offset_top = 96.0
+offset_right = 1100.0
+offset_bottom = 1002.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("7_23omm")
 texture_pressed = ExtResource("7_23omm")
 texture_hover = ExtResource("8_8mewt")
 
-[node name="PanelContainer" type="PanelContainer" parent="Node2D"]
+[node name="PanelContainer" type="PanelContainer" parent="Creditos"]
 custom_minimum_size = Vector2(300, 0)
-offset_left = 300.0
-offset_top = 134.0
-offset_right = 884.0
-offset_bottom = 235.0
+anchors_preset = -1
+anchor_left = 0.514
+anchor_top = 0.5
+anchor_right = 0.514
+anchor_bottom = 0.5
+offset_left = -292.128
+offset_top = -190.0
+offset_right = 291.872
+offset_bottom = -69.0
 theme_override_styles/panel = ExtResource("9_8mewt")
 
-[node name="texto" type="Label" parent="Node2D/PanelContainer"]
+[node name="texto" type="Label" parent="Creditos/PanelContainer"]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -241,14 +311,19 @@ theme_override_font_sizes/font_size = 20
 text = "Projeto do grupo de estudos em desenvolvimento de jogos    da UFSCar Sorocaba feito com muito carinho por:"
 autowrap_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Node2D"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Creditos"]
 z_index = 7
-offset_left = 260.0
-offset_top = 272.0
-offset_right = 898.0
-offset_bottom = 407.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.524
+anchor_right = 0.5
+anchor_bottom = 0.524
+offset_left = -316.0
+offset_top = -67.552
+offset_right = 322.0
+offset_bottom = 67.448
 
-[node name="Bia" type="Label" parent="Node2D/VBoxContainer"]
+[node name="Bia" type="Label" parent="Creditos/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -256,7 +331,7 @@ theme_override_font_sizes/font_size = 25
 text = "Beatriz Rogers Tripoli Barbosa"
 horizontal_alignment = 1
 
-[node name="Matteo" type="Label" parent="Node2D/VBoxContainer"]
+[node name="Matteo" type="Label" parent="Creditos/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -264,52 +339,42 @@ theme_override_font_sizes/font_size = 25
 text = "Matteo Cileneo Savan"
 horizontal_alignment = 1
 
-[node name="botao_git_bia" type="TextureButton" parent="Node2D"]
-offset_left = 770.0
-offset_top = 270.0
-offset_right = 2793.0
-offset_bottom = 2274.0
+[node name="botao_git_bia" type="TextureButton" parent="Creditos"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 194.0
+offset_top = -54.0
+offset_right = 2217.0
+offset_bottom = 1950.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.02, 0.02)
 texture_normal = ExtResource("9_56w0b")
 texture_pressed = ExtResource("9_56w0b")
 texture_hover = ExtResource("10_t3ad3")
 
-[node name="botao_git_matteo" type="TextureButton" parent="Node2D"]
-offset_left = 719.0
-offset_top = 311.0
-offset_right = 2742.0
-offset_bottom = 2315.0
+[node name="botao_git_matteo" type="TextureButton" parent="Creditos"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.542
+anchor_right = 0.5
+anchor_bottom = 0.542
+offset_left = 143.0
+offset_top = -40.216
+offset_right = 2166.0
+offset_bottom = 1963.78
 scale = Vector2(0.02, 0.02)
 texture_normal = ExtResource("9_56w0b")
 texture_pressed = ExtResource("9_56w0b")
 texture_hover = ExtResource("10_t3ad3")
 
-[node name="espada" type="VideoStreamPlayer" parent="."]
-z_index = 4096
-offset_left = 266.0
-offset_top = 405.0
-offset_right = 1346.0
-offset_bottom = 1485.0
-scale = Vector2(0.1, 0.1)
-stream = ExtResource("9_go3jw")
-autoplay = true
-loop = true
-
-[node name="coracao" type="VideoStreamPlayer" parent="."]
-z_index = 4096
-offset_left = 784.0
-offset_top = 146.0
-offset_right = 1864.0
-offset_bottom = 1226.0
-scale = Vector2(0.1, 0.1)
-stream = ExtResource("10_go3jw")
-autoplay = true
-loop = true
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Iniciar" to="." method="_on_iniciar_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Creditos" to="." method="_on_creditos_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Sair" to="." method="_on_sair_pressed"]
-[connection signal="pressed" from="Node2D/HBoxContainer/Fechar" to="." method="_on_fechar_pressed"]
-[connection signal="pressed" from="Node2D/TextureButton" to="." method="_on_texture_button_pressed"]
-[connection signal="pressed" from="Node2D/botao_git_bia" to="." method="_on_botao_git_bia_pressed"]
-[connection signal="pressed" from="Node2D/botao_git_matteo" to="." method="_on_botao_git_matteo_pressed"]
+[connection signal="pressed" from="MenuInicial/MarginContainer/VBoxContainer/Iniciar" to="." method="_on_iniciar_pressed"]
+[connection signal="pressed" from="MenuInicial/MarginContainer/VBoxContainer/Creditos" to="." method="_on_creditos_pressed"]
+[connection signal="pressed" from="MenuInicial/MarginContainer/VBoxContainer/Sair" to="." method="_on_sair_pressed"]
+[connection signal="pressed" from="Creditos/HBoxContainer/Fechar" to="." method="_on_fechar_pressed"]
+[connection signal="pressed" from="Creditos/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Creditos/botao_git_bia" to="." method="_on_botao_git_bia_pressed"]
+[connection signal="pressed" from="Creditos/botao_git_matteo" to="." method="_on_botao_git_matteo_pressed"]

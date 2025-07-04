@@ -146,13 +146,19 @@ func desconectar_carta(carta:Carta) -> void:
 		carta.disconnect("mouse_entered", on_carta_mouse_entered)
 	if carta.is_connected("mouse_exited", on_carta_mouse_exited):
 		carta.disconnect("mouse_exited", on_carta_mouse_exited)
-	
 
 func conectar_carta(carta:Carta) -> void:
 	if !carta.is_connected("mouse_entered", on_carta_mouse_entered):
 		carta.connect("mouse_entered", on_carta_mouse_entered)
 	if !carta.is_connected("mouse_exited", on_carta_mouse_exited):
 		carta.connect("mouse_exited", on_carta_mouse_exited)
+
+func update_conexoes() -> void:
+	for i in get_tree().get_nodes_in_group("Colunas Jogo"):
+		for j in i.get_children():
+			if j is Carta and !j.virada:
+				conectar_carta(j)
+
 
 func calcula_posicao_alvo_de_carta_coluna(coluna_alvo: Node) -> Vector2:
 	var pos_x_coluna = 76 + (150 * coluna_alvo.get_parent().get_children().find(coluna_alvo))

@@ -15,6 +15,6 @@ static func get_tempo() -> int:
 	return _tempo
 	
 static func get_tempo_string_pronta() -> String:
-	var min = int(_tempo) / 60
-	var seg = int(_tempo) % 60
-	return "%02d:%02d" % [min, seg]
+	var minu = int(_tempo/60.0)
+	var seg = int(_tempo% 60) 
+	return "%02d:%02d" % [minu, seg]
