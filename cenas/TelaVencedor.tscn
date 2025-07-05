@@ -1,13 +1,140 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp7l6c0y86sym"]
+[gd_scene load_steps=16 format=3 uid="uid://bp7l6c0y86sym"]
 
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="1_vm3ar"]
 [ext_resource type="Script" uid="uid://f66esx8nvkh8" path="res://scripts/Paciencia/tela_vencedor.gd" id="1_w13tv"]
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="2_w13tv"]
 [ext_resource type="Texture2D" uid="uid://ck5ukdm0syrsl" path="res://Assets/imagens/trofeu.png" id="3_0vfom"]
 [ext_resource type="SpriteFrames" uid="uid://3hh5sl12s34u" path="res://Assets/imagens/firework_SpriteFrames.tres" id="5_0vfom"]
+[ext_resource type="Script" uid="uid://c7vg0mp435yy4" path="res://cenas/imagem_trofeu.gd" id="5_ao8cj"]
+[ext_resource type="Script" uid="uid://cxa87uoci5bl0" path="res://cenas/parabens.gd" id="6_sd6kp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sd6kp"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Animation" id="Animation_5kxh8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.997986, 109)]
+}
+
+[sub_resource type="Animation" id="Animation_sd6kp"]
+resource_name = "sumido e surgindo"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_32qtv"]
+resource_name = "trofeu subindo"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-0.997986, 109), Vector2(-0.997986, 10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_32qtv"]
+_data = {
+&"RESET": SubResource("Animation_5kxh8"),
+&"sumido e surgindo": SubResource("Animation_sd6kp"),
+&"trofeu subindo": SubResource("Animation_32qtv")
+}
+
+[sub_resource type="Animation" id="Animation_fyqjj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.873747, 0.70944, 7.70092e-07, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ao8cj"]
+resource_name = "troca de cores"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.266667, 0.566667, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.873747, 0.70944, 7.70092e-07, 1), Color(0.943254, 0.666085, 0.265784, 1), Color(0.915844, 0.75682, 0.600711, 1), Color(0.882353, 0.705882, 0.0313726, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5kxh8"]
+_data = {
+&"RESET": SubResource("Animation_fyqjj"),
+&"troca de cores": SubResource("Animation_ao8cj")
+}
 
 [node name="TelaVencedor" type="Node2D"]
 script = ExtResource("1_w13tv")
@@ -24,6 +151,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_sd6kp")
 
 [node name="CenterContainerBotoes" type="CenterContainer" parent="TelaVencedor/Panel"]
+visible = false
 layout_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
@@ -67,15 +195,23 @@ anchor_top = 0.5
 anchor_right = 0.499
 anchor_bottom = 0.5
 offset_left = -575.846
-offset_top = -327.0
+offset_top = -215.0
 offset_right = 5182.16
-offset_bottom = 1551.47
+offset_bottom = 1663.47
 scale = Vector2(0.2, 0.2)
 
 [node name="ImagemTrofeu" type="TextureRect" parent="TelaVencedor/Panel/CenterContainerTrofeu"]
+modulate = Color(1, 1, 1, 0)
+z_index = 13
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("3_0vfom")
+script = ExtResource("5_ao8cj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TelaVencedor/Panel/CenterContainerTrofeu/ImagemTrofeu"]
+libraries = {
+&"": SubResource("AnimationLibrary_32qtv")
+}
 
 [node name="Control" type="Control" parent="TelaVencedor/Panel"]
 layout_mode = 1
@@ -87,7 +223,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="TelaVencedor/Panel/Control"]
-z_index = -9
+z_index = -10
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.000833333
@@ -103,6 +239,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Control" type="Control" parent="TelaVencedor"]
 layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -111,9 +248,12 @@ offset_left = -576.0
 offset_top = -324.0
 offset_right = -536.0
 offset_bottom = -284.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="AnimatedSprite2D_firework6" type="AnimatedSprite2D" parent="TelaVencedor/Control"]
+visible = false
 z_index = 10
 texture_filter = 1
 position = Vector2(3.78887e+06, 866514)
@@ -123,6 +263,7 @@ animation = &"firework"
 frame_progress = 0.418783
 
 [node name="AnimatedSprite2D_firework5" type="AnimatedSprite2D" parent="TelaVencedor/Control"]
+visible = false
 z_index = 10
 texture_filter = 1
 position = Vector2(1131, 617)
@@ -132,6 +273,7 @@ animation = &"firework"
 frame_progress = 0.0901549
 
 [node name="AnimatedSprite2D_firework4" type="AnimatedSprite2D" parent="TelaVencedor/Control"]
+visible = false
 z_index = 10
 texture_filter = 1
 position = Vector2(1115.85, 103.212)
@@ -141,6 +283,7 @@ animation = &"firework"
 frame_progress = 0.476333
 
 [node name="AnimatedSprite2D_firework3" type="AnimatedSprite2D" parent="TelaVencedor/Control"]
+visible = false
 z_index = 10
 texture_filter = 1
 position = Vector2(259, 536)
@@ -150,6 +293,7 @@ animation = &"firework"
 frame_progress = 0.688336
 
 [node name="AnimatedSprite2D_firework2" type="AnimatedSprite2D" parent="TelaVencedor/Control"]
+visible = false
 z_index = 10
 texture_filter = 1
 position = Vector2(882.959, 399.955)
@@ -159,6 +303,7 @@ animation = &"firework"
 frame_progress = 0.375455
 
 [node name="AnimatedSprite2D_firework" type="AnimatedSprite2D" parent="TelaVencedor/Control"]
+visible = false
 z_index = 10
 texture_filter = 1
 position = Vector2(183, 215)
@@ -168,6 +313,7 @@ animation = &"firework"
 frame_progress = 0.913116
 
 [node name="Label" type="Label" parent="TelaVencedor"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -188,6 +334,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Parabens" type="Label" parent="TelaVencedor"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.501
 anchor_top = 0.5
@@ -205,6 +352,13 @@ theme_override_font_sizes/font_size = 58
 text = "Vencedor!"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("6_sd6kp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TelaVencedor/Parabens"]
+libraries = {
+&"": SubResource("AnimationLibrary_5kxh8")
+}
+speed_scale = 0.5
 
 [connection signal="pressed" from="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer/Recomecar" to="." method="_on_recomecar_pressed"]
 [connection signal="pressed" from="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer/Retornar_Menu_Inicial" to="." method="_on_retornar_menu_inicial_pressed"]
