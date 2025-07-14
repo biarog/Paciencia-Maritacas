@@ -103,6 +103,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Control" type="Control" parent="TelaVencedor"]
 layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -111,6 +112,8 @@ offset_left = -576.0
 offset_top = -324.0
 offset_right = -536.0
 offset_bottom = -284.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="AnimatedSprite2D_firework6" type="AnimatedSprite2D" parent="TelaVencedor/Control"]
