@@ -1,11 +1,11 @@
 [gd_scene load_steps=19 format=3 uid="uid://d2qgnk8achqm0"]
 
-[ext_resource type="Script" uid="uid://dme8jcax44aft" path="res://scripts/menu_inicial.gd" id="1_fe3ib"]
+[ext_resource type="Script" uid="uid://dme8jcax44aft" path="res://scripts/GUI/menu_inicial.gd" id="1_fe3ib"]
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="3_dyoa6"]
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="3_mqa1b"]
 [ext_resource type="Texture2D" uid="uid://ccwsqxpiwa7qb" path="res://Assets/imagens/haja_paciencia_titulo_fundo_branco.png" id="3_qqmr5"]
 [ext_resource type="Texture2D" uid="uid://bdr6ay564h0ap" path="res://Assets/imagens/moldura_tela_inicial_sem_simbolos.png" id="6_02fs0"]
-[ext_resource type="Script" uid="uid://dkfr3cmbxj2s5" path="res://cenas/animation_player.gd" id="6_yhi41"]
+[ext_resource type="Script" uid="uid://dkfr3cmbxj2s5" path="res://scripts/GUI/animation_player.gd" id="6_yhi41"]
 [ext_resource type="Texture2D" uid="uid://dnik77i516txi" path="res://Assets/imagens/simbolo_gamedev2.png" id="7_23omm"]
 [ext_resource type="Texture2D" uid="uid://3ykn2ctskv7d" path="res://Assets/imagens/simbolo_gamedev2_acinzentado.png" id="8_8mewt"]
 [ext_resource type="StyleBox" uid="uid://c2aj2svr7d1w" path="res://Assets/Styles/style_box_empty.tres" id="9_8mewt"]
