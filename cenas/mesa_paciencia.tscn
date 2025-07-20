@@ -12,9 +12,9 @@
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="6_c4sgq"]
 [ext_resource type="Texture2D" uid="uid://ccwsqxpiwa7qb" path="res://Assets/imagens/haja_paciencia_titulo_fundo_branco.png" id="6_lyeby"]
 [ext_resource type="Texture2D" uid="uid://db24u72u6mg6c" path="res://Assets/GUI/pause_btn.png" id="7_gutj4"]
-[ext_resource type="Script" uid="uid://cpfvyrr43jw0i" path="res://scripts/button_animation.gd" id="7_snca4"]
-[ext_resource type="Script" uid="uid://dcqp7oc0r2exi" path="res://scripts/menu_pausa.gd" id="8_wu64m"]
-[ext_resource type="Script" uid="uid://dyfvlqa220tqd" path="res://cenas/timer.gd" id="15_x2ec5"]
+[ext_resource type="Script" uid="uid://cpfvyrr43jw0i" path="res://scripts/GUI/button_animation.gd" id="7_snca4"]
+[ext_resource type="Script" uid="uid://dcqp7oc0r2exi" path="res://scripts/GUI/menu_pausa.gd" id="8_wu64m"]
+[ext_resource type="Script" uid="uid://dyfvlqa220tqd" path="res://scripts/GUI/timer.gd" id="15_x2ec5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
 size = Vector2(132, 444)
