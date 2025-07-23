@@ -1,12 +1,12 @@
 [gd_scene load_steps=16 format=3 uid="uid://bp7l6c0y86sym"]
 
-[ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://estilos de botões/botao_cinza.tres" id="1_vm3ar"]
-[ext_resource type="Script" uid="uid://f66esx8nvkh8" path="res://scripts/Paciencia/tela_vencedor.gd" id="1_w13tv"]
-[ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://estilos de botões/botao_preto.tres" id="2_w13tv"]
-[ext_resource type="Texture2D" uid="uid://ck5ukdm0syrsl" path="res://Assets/imagens/trofeu.png" id="3_0vfom"]
-[ext_resource type="SpriteFrames" uid="uid://3hh5sl12s34u" path="res://Assets/imagens/firework_SpriteFrames.tres" id="5_0vfom"]
-[ext_resource type="Script" uid="uid://c7vg0mp435yy4" path="res://cenas/imagem_trofeu.gd" id="5_ao8cj"]
-[ext_resource type="Script" uid="uid://cxa87uoci5bl0" path="res://cenas/parabens.gd" id="6_sd6kp"]
+[ext_resource type="Script" uid="uid://f66esx8nvkh8" path="res://scripts/Paciencia/tela_vencedor.gd" id="1_b1ama"]
+[ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://Assets/Styles/estilos de botões/botao_cinza.tres" id="2_sxnme"]
+[ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://Assets/Styles/estilos de botões/botao_preto.tres" id="3_wvu7f"]
+[ext_resource type="Texture2D" uid="uid://ck5ukdm0syrsl" path="res://Assets/imagens/trofeu.png" id="4_8aggx"]
+[ext_resource type="Script" uid="uid://c7vg0mp435yy4" path="res://scripts/GUI/imagem_trofeu.gd" id="5_a23gw"]
+[ext_resource type="SpriteFrames" uid="uid://3hh5sl12s34u" path="res://Assets/imagens/firework_SpriteFrames.tres" id="6_lh84f"]
+[ext_resource type="Script" uid="uid://cxa87uoci5bl0" path="res://scripts/GUI/parabens.gd" id="7_2jbja"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sd6kp"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -137,7 +137,7 @@ _data = {
 }
 
 [node name="TelaVencedor" type="Node2D"]
-script = ExtResource("1_w13tv")
+script = ExtResource("1_b1ama")
 
 [node name="TelaVencedor" type="CanvasLayer" parent="."]
 
@@ -174,17 +174,17 @@ alignment = 1
 [node name="Recomecar" type="Button" parent="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
-theme_override_styles/hover = ExtResource("1_vm3ar")
-theme_override_styles/pressed = ExtResource("2_w13tv")
-theme_override_styles/normal = ExtResource("2_w13tv")
+theme_override_styles/hover = ExtResource("2_sxnme")
+theme_override_styles/pressed = ExtResource("3_wvu7f")
+theme_override_styles/normal = ExtResource("3_wvu7f")
 text = "Recomeçar"
 
 [node name="Retornar_Menu_Inicial" type="Button" parent="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer"]
 custom_minimum_size = Vector2(400, 50)
 layout_mode = 2
-theme_override_styles/hover = ExtResource("1_vm3ar")
-theme_override_styles/pressed = ExtResource("2_w13tv")
-theme_override_styles/normal = ExtResource("2_w13tv")
+theme_override_styles/hover = ExtResource("2_sxnme")
+theme_override_styles/pressed = ExtResource("3_wvu7f")
+theme_override_styles/normal = ExtResource("3_wvu7f")
 text = "Retornar ao menu inicial"
 
 [node name="CenterContainerTrofeu" type="CenterContainer" parent="TelaVencedor/Panel"]
@@ -205,8 +205,8 @@ modulate = Color(1, 1, 1, 0)
 z_index = 13
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("3_0vfom")
-script = ExtResource("5_ao8cj")
+texture = ExtResource("4_8aggx")
+script = ExtResource("5_a23gw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TelaVencedor/Panel/CenterContainerTrofeu/ImagemTrofeu"]
 libraries = {
@@ -258,7 +258,7 @@ z_index = 10
 texture_filter = 1
 position = Vector2(3.78887e+06, 866514)
 scale = Vector2(9125.16, 3930.91)
-sprite_frames = ExtResource("5_0vfom")
+sprite_frames = ExtResource("6_lh84f")
 animation = &"firework"
 frame_progress = 0.418783
 
@@ -268,7 +268,7 @@ z_index = 10
 texture_filter = 1
 position = Vector2(1131, 617)
 scale = Vector2(9.65348, 7.33287)
-sprite_frames = ExtResource("5_0vfom")
+sprite_frames = ExtResource("6_lh84f")
 animation = &"firework"
 frame_progress = 0.0901549
 
@@ -278,7 +278,7 @@ z_index = 10
 texture_filter = 1
 position = Vector2(1115.85, 103.212)
 scale = Vector2(7.4954, 5.55587)
-sprite_frames = ExtResource("5_0vfom")
+sprite_frames = ExtResource("6_lh84f")
 animation = &"firework"
 frame_progress = 0.476333
 
@@ -288,7 +288,7 @@ z_index = 10
 texture_filter = 1
 position = Vector2(259, 536)
 scale = Vector2(9.77373, 7.91814)
-sprite_frames = ExtResource("5_0vfom")
+sprite_frames = ExtResource("6_lh84f")
 animation = &"firework"
 frame_progress = 0.688336
 
@@ -298,7 +298,7 @@ z_index = 10
 texture_filter = 1
 position = Vector2(882.959, 399.955)
 scale = Vector2(3.1263, 2.81392)
-sprite_frames = ExtResource("5_0vfom")
+sprite_frames = ExtResource("6_lh84f")
 animation = &"firework"
 frame_progress = 0.375455
 
@@ -308,7 +308,7 @@ z_index = 10
 texture_filter = 1
 position = Vector2(183, 215)
 scale = Vector2(3.32031, 2.99219)
-sprite_frames = ExtResource("5_0vfom")
+sprite_frames = ExtResource("6_lh84f")
 animation = &"firework"
 frame_progress = 0.913116
 
@@ -352,7 +352,7 @@ theme_override_font_sizes/font_size = 58
 text = "Vencedor!"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("6_sd6kp")
+script = ExtResource("7_2jbja")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="TelaVencedor/Parabens"]
 libraries = {
