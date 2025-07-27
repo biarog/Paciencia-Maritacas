@@ -13,7 +13,7 @@ config_version=5
 config/name="Paciencia"
 run/main_scene="res://cenas/menu_inicial.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://bimhr0j7rdbj2"
 
 [display]
 
