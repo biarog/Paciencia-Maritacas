@@ -5,6 +5,7 @@ var movimento : Movimento_Jogo
 @onready var deck := $Deck
 @onready var cartas_viradas := $"Cartas Viradas"
 @onready var controle_jogo := $"../Controle Jogo"
+@onready var camada_drag := $"../Camada Drag"
 
 var cartas_guardadas : Array[Carta]
 
@@ -26,26 +27,28 @@ func virar_carta_do_deck() -> void:
 	if ncartas_deck > 0:
 		var cartas_deck:Array[Node] = deck.get_children()
 		var carta:Carta = cartas_deck[ncartas_deck-1]
-		adicionar_carta_virada(carta, false)
+		await adicionar_carta_virada(carta, false)
 		virouCartaDeck.emit(carta, $Deck, $"Cartas Viradas", false)
 	else: 
-		remover_cartas_viradas()
+		await remover_cartas_viradas()
 		var ncartas_guardadas:int = cartas_guardadas.size()
 		for i in range(ncartas_guardadas):
 			deck.add_child(cartas_guardadas.back())
 			cartas_guardadas.pop_back()
 
 func adicionar_carta_virada(carta:Carta, desfazer:bool) -> void:
-	var ncartas:int = cartas_viradas.get_child_count()
-	
+	deck.remove_child(carta)
+	camada_drag.add_child(carta)
+	carta.position = deck.global_position
 	carta.z_index =+ 30
 	
-	if ncartas >= 3:
+	while cartas_viradas.get_child_count() >= 3:
 		var primeira_carta:Carta= cartas_viradas.get_child(0)
 		if !primeira_carta.virada:
 			primeira_carta.virar_carta()
 		cartas_guardadas.append(primeira_carta)
 		cartas_viradas.remove_child(primeira_carta)
+	
 	if !desfazer:
 		var tween = carta.create_tween()
 		tween.tween_property(carta, "global_position", calcula_pos_deck_viradas(), 0.2)
@@ -66,6 +69,8 @@ func adicionar_carta_virada(carta:Carta, desfazer:bool) -> void:
 			carta.virar_carta()
 		atualizar_conexoes(carta)
 		_normalizar_zindex()
+	
+	
 
 func remover_cartas_viradas() -> void:
 	for carta in cartas_viradas.get_children():

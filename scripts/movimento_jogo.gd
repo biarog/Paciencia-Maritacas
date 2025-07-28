@@ -158,7 +158,7 @@ func soltando_cartas(container_alvo:Control, container_og:Control, pos_final_car
 		tween.finished.connect(func():
 			if carta.get_parent() == camada_drag:
 				camada_drag.remove_child(carta)
-			container_alvo.add_child(carta)
+			if carta.get_parent()!= container_alvo: container_alvo.add_child(carta)
 			carta.position = Vector2.ZERO # Resetta a pos das cartas pro container alterar
 			emitir_sinais_soltou_carta(container_alvo)
 		)
