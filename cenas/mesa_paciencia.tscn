@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cvkaoi6jdbggb"]
+[gd_scene load_steps=20 format=3 uid="uid://cvkaoi6jdbggb"]
 
 [ext_resource type="Script" uid="uid://cebd5maywlrcp" path="res://scripts/Paciencia/mesa_paciencia.gd" id="1_m56lf"]
 [ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/Paciencia/controle_paciencia.gd" id="1_xq04u"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://db24u72u6mg6c" path="res://Assets/GUI/pause_btn.png" id="7_gutj4"]
 [ext_resource type="Script" uid="uid://cpfvyrr43jw0i" path="res://scripts/GUI/button_animation.gd" id="7_snca4"]
 [ext_resource type="Script" uid="uid://dcqp7oc0r2exi" path="res://scripts/GUI/menu_pausa.gd" id="8_wu64m"]
+[ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://sons/som_click_botao.wav" id="15_gx71f"]
 [ext_resource type="Script" uid="uid://dyfvlqa220tqd" path="res://scripts/GUI/timer.gd" id="15_x2ec5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
@@ -21,6 +22,19 @@ size = Vector2(132, 444)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ioiy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="GDScript" id="GDScript_duxk7"]
+script/source = "extends AudioStreamPlayer
+
+var flag : bool = true
+	
+func set_flag(habilitacao : bool):
+	flag = habilitacao;
+
+func play_som():
+	if (flag):
+		$\".\".play()
+"
 
 [node name="Mesa Paciencia" type="Control"]
 layout_direction = 2
@@ -409,6 +423,11 @@ theme_override_styles/hover = ExtResource("5_u67q2")
 theme_override_styles/pressed = ExtResource("6_c4sgq")
 theme_override_styles/normal = ExtResource("6_c4sgq")
 text = "Retornar ao menu inicial"
+
+[node name="som_botao" type="AudioStreamPlayer" parent="MenuPausa"]
+stream = ExtResource("15_gx71f")
+volume_db = 0.155
+script = SubResource("GDScript_duxk7")
 
 [node name="Timer" type="Node2D" parent="."]
 script = ExtResource("15_x2ec5")

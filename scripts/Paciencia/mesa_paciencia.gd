@@ -4,6 +4,7 @@ var movimento : Movimento_Jogo
 @onready var controle_deck := $"Controle Deck"
 @onready var controle_casas := $"Controle Casas"
 @onready var controle_jogo := $"Controle Jogo"
+var save = load("res://scripts/save.gd") #para poder carregar a clase "abstrata"
 
 var pilha_movimentos : Pilha
 
@@ -50,16 +51,29 @@ func _unpause_game():
 
 func _on_continue_pressed() -> void:
 	_unpause_game()
-
+	if(!save.get_mudo()):
+		$MenuPausa/som_botao.play()
+		
 func _on_retornar_menu_inicial_pressed() -> void:
 	_unpause_game()
+	if(!save.get_mudo()):
+		$MenuPausa/som_botao.play()
+	await get_tree().create_timer(0.01).timeout
 	get_tree().change_scene_to_file("res://cenas/menu_inicial.tscn")
+	
 
 func _on_recomecar_pressed() -> void:
+	if(!save.get_mudo()):
+		$MenuPausa/som_botao.play()
+	await get_tree().create_timer(0.01).timeout
+
 	_unpause_game()
 	get_tree().change_scene_to_file("res://cenas/mesa_paciencia.tscn")
+	
 
 func _on_pausar_pressed() -> void:
+	if(!save.get_mudo()):
+		$MenuPausa/som_botao.play()
 	_pause_game()
 
 # Funções relacionadas a pilha de movimentos

@@ -2,13 +2,17 @@ extends Node2D
 
 var save = load("res://scripts/save.gd") #para poder carregar a clase "abstrata"
 
+func _ready():
+	if(save.get_mudo()):
+		$MenuInicial/mudo.show()
+	else:
+		$MenuInicial/com_som.show()
 
 func _on_sair_pressed() -> void:
 	if(!save.get_mudo()):
 		$MenuInicial/MarginContainer/VBoxContainer/som_botao.play()
 	get_tree().quit()
 	
-
 
 func _on_iniciar_pressed() -> void:
 	if(!save.get_mudo()):
