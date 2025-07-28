@@ -2,6 +2,7 @@ class_name Movimento_Jogo
 extends Control
 
 const MOVIMENTO_SCENE : PackedScene = preload("res://cenas/movimento_jogo.tscn")
+var save = load("res://scripts/save.gd") #para poder carregar a clase "abstrata"
 
 const soma_zindex : int = 90
 var camada_drag : Control
@@ -114,6 +115,7 @@ func get_primeira_carta(card_list):
 # Funções para carregar/soltar cartas ao clicar/soltar o botão esq do mouse
 
 func carregando_cartas(carta_carregada:Carta):
+
 	pos_alvo_cartas_carregadas.append(Vector2(carta_carregada.global_position.x + 12.5, carta_carregada.global_position.y + 18.75))
 	cartas_carregadas.append(carta_carregada)
 	coluna_og = carta_carregada.get_parent()
@@ -137,6 +139,8 @@ func carregando_cartas(carta_carregada:Carta):
 
 func soltando_cartas(container_alvo:Control, container_og:Control, pos_final_carta:Vector2, movida:bool, desfez:bool):
 	var posicao_modificada:String = "position"
+	if(!save.get_mudo()):
+		$"../som_carta".play()
 	if movida:
 		posicao_modificada = "global_position"
 		pos_alvo_cartas_carregadas[0] = pos_final_carta

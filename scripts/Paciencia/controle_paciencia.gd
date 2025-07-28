@@ -4,6 +4,9 @@ var movimento : Movimento_Jogo
 var em_coluna:bool
 var coluna_nova:Control
 
+var save = load("res://scripts/save.gd") #para poder carregar a clase "abstrata"
+
+
 signal moveuCartaColuna(carta_movida:Carta, coluna_og:Control, container_novo:Control, desvirou_carta:bool)
 
 func inicia_jogo():
@@ -21,6 +24,8 @@ func inicia_jogo():
 	for coluna in get_tree().get_nodes_in_group("Areas Colunas Jogo"):
 		coluna.mouse_entered.connect(Callable(self, "_on_area_container_mouse_entered").bind(coluna))
 		coluna.mouse_exited.connect(_on_area_container_mouse_exited)
+		if(!save.get_mudo()):
+			$"../som_carta".play()
 	
 	for casa in get_tree().get_nodes_in_group("Casas Jogo"):
 		casa.mouse_entered.connect(Callable(self, "_on_area_container_mouse_entered").bind(casa))

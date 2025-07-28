@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d2qgnk8achqm0"]
+[gd_scene load_steps=25 format=3 uid="uid://d2qgnk8achqm0"]
 
 [ext_resource type="Script" uid="uid://dme8jcax44aft" path="res://scripts/GUI/menu_inicial.gd" id="1_fe3ib"]
 [ext_resource type="Texture2D" uid="uid://bo5mahaiuebs" path="res://Assets/imagens/mudo.png" id="2_3muv4"]
@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://bpxoqmmvuomva" path="res://Assets/imagens/github_elegante_acinzentado.png" id="10_t3ad3"]
 [ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://sons/som_click_botao.wav" id="14_lnb41"]
 [ext_resource type="Texture2D" uid="uid://ne2k133e5qca" path="res://Assets/imagens/com_som (1).png" id="15_gjun6"]
-[ext_resource type="AudioStream" uid="uid://cwr1b2a5tc6mu" path="res://sons/som_carta4.wav" id="19_cr666"]
 
 [sub_resource type="Theme" id="Theme_atqwx"]
 
@@ -433,11 +432,6 @@ scale = Vector2(0.02, 0.02)
 texture_normal = ExtResource("9_56w0b")
 texture_pressed = ExtResource("9_56w0b")
 texture_hover = ExtResource("10_t3ad3")
-
-[node name="som_carta" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("19_cr666")
-volume_db = 0.155
-script = SubResource("GDScript_lnb41")
 
 [connection signal="pressed" from="MenuInicial/mudo" to="." method="_on_mudo_pressed"]
 [connection signal="pressed" from="MenuInicial/com_som" to="." method="_on_com_som_pressed"]

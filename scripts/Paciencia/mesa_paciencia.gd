@@ -85,6 +85,10 @@ func salvar_movimento(carta_movida:Carta, container_og:Control, container_alvo:C
 func voltar_movimento() -> void:
 	if pilha_movimentos.is_empty():
 		return
+		
+	if(!save.get_mudo()):
+		$som_carta.play()
+		
 	
 	var movimento_feito:No_Pilha = pilha_movimentos.pop()
 	var carta_m = movimento_feito.get_carta()

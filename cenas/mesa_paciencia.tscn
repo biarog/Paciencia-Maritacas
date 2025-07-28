@@ -16,25 +16,13 @@
 [ext_resource type="Script" uid="uid://dcqp7oc0r2exi" path="res://scripts/GUI/menu_pausa.gd" id="8_wu64m"]
 [ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://sons/som_click_botao.wav" id="15_gx71f"]
 [ext_resource type="Script" uid="uid://dyfvlqa220tqd" path="res://scripts/GUI/timer.gd" id="15_x2ec5"]
+[ext_resource type="AudioStream" uid="uid://cwr1b2a5tc6mu" path="res://sons/som_carta4.wav" id="17_duxk7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
 size = Vector2(132, 444)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ioiy"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="GDScript" id="GDScript_duxk7"]
-script/source = "extends AudioStreamPlayer
-
-var flag : bool = true
-	
-func set_flag(habilitacao : bool):
-	flag = habilitacao;
-
-func play_som():
-	if (flag):
-		$\".\".play()
-"
 
 [node name="Mesa Paciencia" type="Control"]
 layout_direction = 2
@@ -427,7 +415,6 @@ text = "Retornar ao menu inicial"
 [node name="som_botao" type="AudioStreamPlayer" parent="MenuPausa"]
 stream = ExtResource("15_gx71f")
 volume_db = 0.155
-script = SubResource("GDScript_duxk7")
 
 [node name="Timer" type="Node2D" parent="."]
 script = ExtResource("15_x2ec5")
@@ -445,6 +432,10 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 26
+
+[node name="som_carta" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_duxk7")
+volume_db = 0.155
 
 [connection signal="gui_input" from="Controle Deck/Deck" to="Controle Deck" method="_on_deck_gui_input"]
 [connection signal="pressed" from="GUI/HBoxContainer/Desfazer" to="." method="voltar_movimento"]
