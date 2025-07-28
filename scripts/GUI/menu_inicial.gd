@@ -1,5 +1,7 @@
 extends Node2D
 
+var save = load("res://scripts/save.gd") #para poder carregar a clase "abstrata"
+
 
 func _on_sair_pressed() -> void:
 	$MenuInicial/MarginContainer/VBoxContainer/som_botao.play()
@@ -40,3 +42,14 @@ func _on_botao_git_matteo_pressed() -> void:
 	OS.shell_open("https://github.com/matteosavan")
 	$MenuInicial/MarginContainer/VBoxContainer/som_botao.play()
 	
+
+
+func _on_com_som_pressed() -> void:
+	save.set_mudo(false)
+	$MenuInicial/com_som.hide()
+	$MenuInicial/mudo.show()
+
+func _on_mudo_pressed() -> void:
+	save.set_mudo(true)
+	$MenuInicial/mudo.hide()
+	$MenuInicial/com_som.show()

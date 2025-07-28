@@ -1,10 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://d2qgnk8achqm0"]
+[gd_scene load_steps=25 format=3 uid="uid://d2qgnk8achqm0"]
 
 [ext_resource type="Script" uid="uid://dme8jcax44aft" path="res://scripts/GUI/menu_inicial.gd" id="1_fe3ib"]
+[ext_resource type="Texture2D" uid="uid://bo5mahaiuebs" path="res://Assets/imagens/mudo.png" id="2_3muv4"]
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://Assets/Styles/estilos de botões/botao_cinza.tres" id="3_dyoa6"]
 [ext_resource type="StyleBox" uid="uid://dhyfgqmmu8wvq" path="res://Assets/Styles/estilos de botões/botao_preto.tres" id="3_mqa1b"]
 [ext_resource type="Texture2D" uid="uid://ccwsqxpiwa7qb" path="res://Assets/imagens/haja_paciencia_titulo_fundo_branco.png" id="3_qqmr5"]
+[ext_resource type="Texture2D" uid="uid://cqlljbey24vtc" path="res://Assets/imagens/mudo_cinza.png" id="4_7l87f"]
 [ext_resource type="Texture2D" uid="uid://bdr6ay564h0ap" path="res://Assets/imagens/moldura_tela_inicial_sem_simbolos.png" id="6_02fs0"]
+[ext_resource type="Texture2D" uid="uid://u1qao33cct14" path="res://Assets/imagens/com_som_cinza.png" id="6_cr666"]
 [ext_resource type="Script" uid="uid://dkfr3cmbxj2s5" path="res://scripts/GUI/animation_player.gd" id="6_yhi41"]
 [ext_resource type="Texture2D" uid="uid://dnik77i516txi" path="res://Assets/imagens/simbolo_gamedev2.png" id="7_23omm"]
 [ext_resource type="Texture2D" uid="uid://3ykn2ctskv7d" path="res://Assets/imagens/simbolo_gamedev2_acinzentado.png" id="8_8mewt"]
@@ -14,6 +17,7 @@
 [ext_resource type="VideoStream" uid="uid://b4b3lmokdbhgg" path="res://Assets/imagens/coracao_melhor.ogv" id="10_go3jw"]
 [ext_resource type="Texture2D" uid="uid://bpxoqmmvuomva" path="res://Assets/imagens/github_elegante_acinzentado.png" id="10_t3ad3"]
 [ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://sons/som_click_botao.wav" id="14_lnb41"]
+[ext_resource type="Texture2D" uid="uid://ne2k133e5qca" path="res://Assets/imagens/com_som (1).png" id="15_gjun6"]
 
 [sub_resource type="Theme" id="Theme_atqwx"]
 
@@ -124,6 +128,7 @@ color = Color(0.117647, 0.262745, 0.105882, 1)
 [node name="MenuInicial" type="CanvasLayer" parent="."]
 
 [node name="TextureRect2" type="TextureRect" parent="MenuInicial"]
+visible = false
 z_index = -2
 anchors_preset = 8
 anchor_left = 0.5
@@ -139,6 +144,31 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("6_02fs0")
 expand_mode = 3
+
+[node name="mudo" type="TextureButton" parent="MenuInicial"]
+visible = false
+z_index = 100
+offset_left = 802.0
+offset_top = 439.0
+offset_right = 5475.0
+offset_bottom = 4950.0
+scale = Vector2(0.02, 0.02)
+mouse_filter = 1
+texture_normal = ExtResource("2_3muv4")
+texture_pressed = ExtResource("2_3muv4")
+texture_hover = ExtResource("4_7l87f")
+
+[node name="com_som" type="TextureButton" parent="MenuInicial"]
+z_index = 100
+offset_left = 802.0
+offset_top = 439.0
+offset_right = 4675.0
+offset_bottom = 4312.0
+scale = Vector2(0.02, 0.02)
+mouse_filter = 1
+texture_normal = ExtResource("15_gjun6")
+texture_pressed = ExtResource("15_gjun6")
+texture_hover = ExtResource("6_cr666")
 
 [node name="MarginContainer" type="MarginContainer" parent="MenuInicial"]
 anchors_preset = 8
@@ -390,6 +420,8 @@ texture_normal = ExtResource("9_56w0b")
 texture_pressed = ExtResource("9_56w0b")
 texture_hover = ExtResource("10_t3ad3")
 
+[connection signal="pressed" from="MenuInicial/mudo" to="." method="_on_mudo_pressed"]
+[connection signal="pressed" from="MenuInicial/com_som" to="." method="_on_com_som_pressed"]
 [connection signal="pressed" from="MenuInicial/MarginContainer/VBoxContainer/Iniciar" to="." method="_on_iniciar_pressed"]
 [connection signal="pressed" from="MenuInicial/MarginContainer/VBoxContainer/Creditos" to="." method="_on_creditos_pressed"]
 [connection signal="pressed" from="MenuInicial/MarginContainer/VBoxContainer/Sair" to="." method="_on_sair_pressed"]
