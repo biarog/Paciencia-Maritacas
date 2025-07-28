@@ -6,9 +6,6 @@ var movimento : Movimento_Jogo
 @onready var cartas_viradas := $"Cartas Viradas"
 @onready var controle_jogo := $"../Controle Jogo"
 
-var save = load("res://scripts/save.gd") #para poder carregar a clase "abstrata"
-
-
 var cartas_guardadas : Array[Carta]
 
 signal virouCartaDeck(carta_movida:Carta, container_og:Control, container_novo:Control, desvirou:bool)
@@ -21,8 +18,6 @@ func inicia_deck() -> void:
 func _on_deck_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
-			if(!save.get_mudo()):
-				$"../som_carta".play()
 			await virar_carta_do_deck()
 
 func virar_carta_do_deck() -> void:

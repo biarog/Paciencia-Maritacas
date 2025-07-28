@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cpqmmn4os6rjd"
-path="res://.godot/imported/som_carta.wav-e9ad3a875a5ade099905555e440d62f9.sample"
+uid="uid://1l8ixieadr7p"
+path="res://.godot/imported/som_carta3.wav-fd4bd17556ba08c195a6a7f70e77523a.sample"
 
 [deps]
 
-source_file="res://sons/som_carta.wav"
-dest_files=["res://.godot/imported/som_carta.wav-e9ad3a875a5ade099905555e440d62f9.sample"]
+source_file="res://Assets/sons/som_carta3.wav"
+dest_files=["res://.godot/imported/som_carta3.wav-fd4bd17556ba08c195a6a7f70e77523a.sample"]
 
 [params]
 

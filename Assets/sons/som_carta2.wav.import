@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://b15ay3xqwmfp0"
-path="res://.godot/imported/som_palmas(1).wav-966dbc7daf9056595be5f7afc84a35d7.sample"
+uid="uid://bjlh45mb2p5ae"
+path="res://.godot/imported/som_carta2.wav-cacffbb03b1a9e74ed9e7f4cef8a4165.sample"
 
 [deps]
 
-source_file="res://sons/som_palmas(1).wav"
-dest_files=["res://.godot/imported/som_palmas(1).wav-966dbc7daf9056595be5f7afc84a35d7.sample"]
+source_file="res://Assets/sons/som_carta2.wav"
+dest_files=["res://.godot/imported/som_carta2.wav-cacffbb03b1a9e74ed9e7f4cef8a4165.sample"]
 
 [params]
 

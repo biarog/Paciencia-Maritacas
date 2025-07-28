@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cwr1b2a5tc6mu"
-path="res://.godot/imported/som_carta4.wav-71044795d746091de69167baa1a975c8.sample"
+path="res://.godot/imported/som_carta4.wav-357b8a13a7e9b83871a89b3e266d7a09.sample"
 
 [deps]
 
-source_file="res://sons/som_carta4.wav"
-dest_files=["res://.godot/imported/som_carta4.wav-71044795d746091de69167baa1a975c8.sample"]
+source_file="res://Assets/sons/som_carta4.wav"
+dest_files=["res://.godot/imported/som_carta4.wav-357b8a13a7e9b83871a89b3e266d7a09.sample"]
 
 [params]
 

@@ -4,7 +4,6 @@ var movimento : Movimento_Jogo
 @onready var controle_deck := $"Controle Deck"
 @onready var controle_casas := $"Controle Casas"
 @onready var controle_jogo := $"Controle Jogo"
-var save = load("res://scripts/save.gd") #para poder carregar a clase "abstrata"
 
 var pilha_movimentos : Pilha
 
@@ -51,20 +50,17 @@ func _unpause_game():
 
 func _on_continue_pressed() -> void:
 	_unpause_game()
-	if(!save.get_mudo()):
-		$MenuPausa/som_botao.play()
+	$MenuPausa/som_botao.play_override()
 		
 func _on_retornar_menu_inicial_pressed() -> void:
 	_unpause_game()
-	if(!save.get_mudo()):
-		$MenuPausa/som_botao.play()
+	$MenuPausa/som_botao.play_override()
 	await get_tree().create_timer(0.01).timeout
 	get_tree().change_scene_to_file("res://cenas/menu_inicial.tscn")
 	
 
 func _on_recomecar_pressed() -> void:
-	if(!save.get_mudo()):
-		$MenuPausa/som_botao.play()
+	$MenuPausa/som_botao.play_override()
 	await get_tree().create_timer(0.01).timeout
 
 	_unpause_game()
@@ -72,8 +68,7 @@ func _on_recomecar_pressed() -> void:
 	
 
 func _on_pausar_pressed() -> void:
-	if(!save.get_mudo()):
-		$MenuPausa/som_botao.play()
+	$MenuPausa/som_botao.play_override()
 	_pause_game()
 
 # Funções relacionadas a pilha de movimentos
@@ -85,10 +80,6 @@ func salvar_movimento(carta_movida:Carta, container_og:Control, container_alvo:C
 func voltar_movimento() -> void:
 	if pilha_movimentos.is_empty():
 		return
-		
-	if(!save.get_mudo()):
-		$som_carta.play()
-		
 	
 	var movimento_feito:No_Pilha = pilha_movimentos.pop()
 	var carta_m = movimento_feito.get_carta()

@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://2la507ht2ax8"]
+[gd_scene load_steps=10 format=3 uid="uid://2la507ht2ax8"]
 
 [ext_resource type="Script" uid="uid://bn5026ducjhnf" path="res://scripts/carta.gd" id="1_nqtiw"]
 [ext_resource type="Texture2D" uid="uid://dhrrqi8nytgvq" path="res://Assets/Cartas/Cartas_Base.png" id="2_7n1sw"]
 [ext_resource type="Texture2D" uid="uid://c3yignhsebkkk" path="res://Assets/Cartas/CartaVirada.png" id="3_kpb2g"]
+[ext_resource type="AudioStream" uid="uid://cwr1b2a5tc6mu" path="res://Assets/sons/som_carta4.wav" id="4_wbn8l"]
+[ext_resource type="Script" uid="uid://cyaecorfd285y" path="res://scripts/sons.gd" id="5_bwo45"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b5ehv"]
 size = Vector2(100, 150)
@@ -157,6 +159,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_bwo45")
 }
 speed_scale = 1.7
+
+[node name="som_carta" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wbn8l")
+volume_db = 0.155
+script = ExtResource("5_bwo45")
 
 [connection signal="mouse_entered" from="Area Carta" to="." method="_on_area_carta_mouse_entered"]
 [connection signal="mouse_exited" from="Area Carta" to="." method="_on_area_carta_mouse_exited"]

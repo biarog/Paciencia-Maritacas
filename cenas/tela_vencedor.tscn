@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://c7vg0mp435yy4" path="res://scripts/GUI/imagem_trofeu.gd" id="5_a23gw"]
 [ext_resource type="SpriteFrames" uid="uid://3hh5sl12s34u" path="res://Assets/imagens/firework_SpriteFrames.tres" id="6_lh84f"]
 [ext_resource type="Script" uid="uid://cxa87uoci5bl0" path="res://scripts/GUI/parabens.gd" id="7_2jbja"]
-[ext_resource type="AudioStream" uid="uid://b15ay3xqwmfp0" path="res://sons/som_palmas(1).wav" id="8_sxnme"]
-[ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://sons/som_click_botao.wav" id="9_wvu7f"]
+[ext_resource type="AudioStream" uid="uid://b15ay3xqwmfp0" path="res://Assets/sons/som_palmas(1).wav" id="8_sxnme"]
+[ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://Assets/sons/som_click_botao.wav" id="9_wvu7f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sd6kp"]
 bg_color = Color(0.6, 0.6, 0.6, 0)

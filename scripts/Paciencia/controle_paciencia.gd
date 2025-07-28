@@ -24,8 +24,6 @@ func inicia_jogo():
 	for coluna in get_tree().get_nodes_in_group("Areas Colunas Jogo"):
 		coluna.mouse_entered.connect(Callable(self, "_on_area_container_mouse_entered").bind(coluna))
 		coluna.mouse_exited.connect(_on_area_container_mouse_exited)
-		if(!save.get_mudo()):
-			$"../som_carta".play()
 	
 	for casa in get_tree().get_nodes_in_group("Casas Jogo"):
 		casa.mouse_entered.connect(Callable(self, "_on_area_container_mouse_entered").bind(casa))

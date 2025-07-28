@@ -27,6 +27,8 @@ func virar_carta():
 		animacao.play_backwards("virar_carta")
 	else:
 		animacao.play("virar_carta")
+	$som_carta.play_override()
+	
 	virada = !virada
 
 func _set_cor():

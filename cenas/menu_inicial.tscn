@@ -16,24 +16,12 @@
 [ext_resource type="VideoStream" uid="uid://i4ufurfte8jh" path="res://Assets/imagens/espada_melhor.ogv" id="9_go3jw"]
 [ext_resource type="VideoStream" uid="uid://b4b3lmokdbhgg" path="res://Assets/imagens/coracao_melhor.ogv" id="10_go3jw"]
 [ext_resource type="Texture2D" uid="uid://bpxoqmmvuomva" path="res://Assets/imagens/github_elegante_acinzentado.png" id="10_t3ad3"]
-[ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://sons/som_click_botao.wav" id="14_lnb41"]
+[ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://Assets/sons/som_click_botao.wav" id="14_lnb41"]
 [ext_resource type="Texture2D" uid="uid://ne2k133e5qca" path="res://Assets/imagens/com_som (1).png" id="15_gjun6"]
-[ext_resource type="AudioStream" uid="uid://cdx3pfanx0u5h" path="res://sons/musica_animada.wav" id="19_cr666"]
+[ext_resource type="AudioStream" uid="uid://cdx3pfanx0u5h" path="res://Assets/sons/musica_animada.wav" id="19_cr666"]
+[ext_resource type="Script" uid="uid://cyaecorfd285y" path="res://scripts/sons.gd" id="20_xwxvt"]
 
 [sub_resource type="Theme" id="Theme_atqwx"]
-
-[sub_resource type="GDScript" id="GDScript_lnb41"]
-script/source = "extends AudioStreamPlayer
-
-var flag : bool = true
-	
-func set_flag(habilitacao : bool):
-	flag = habilitacao;
-
-func play_som():
-	if (flag):
-		$\".\".play()
-"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3ad3"]
 bg_color = Color(0.545098, 0, 0, 1)
@@ -235,7 +223,7 @@ text = "Sair"
 [node name="som_botao" type="AudioStreamPlayer" parent="MenuInicial/MarginContainer/VBoxContainer"]
 stream = ExtResource("14_lnb41")
 volume_db = 0.155
-script = SubResource("GDScript_lnb41")
+script = ExtResource("20_xwxvt")
 
 [node name="TextureRect" type="TextureRect" parent="MenuInicial"]
 anchors_preset = -1
@@ -437,6 +425,7 @@ texture_hover = ExtResource("10_t3ad3")
 [node name="som_musica_animada" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_cr666")
 volume_db = 2.0
+script = ExtResource("20_xwxvt")
 
 [connection signal="pressed" from="MenuInicial/mudo" to="." method="_on_mudo_pressed"]
 [connection signal="pressed" from="MenuInicial/com_som" to="." method="_on_com_som_pressed"]

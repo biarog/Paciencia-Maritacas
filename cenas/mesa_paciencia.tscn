@@ -14,11 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://db24u72u6mg6c" path="res://Assets/GUI/pause_btn.png" id="7_gutj4"]
 [ext_resource type="Script" uid="uid://cpfvyrr43jw0i" path="res://scripts/GUI/button_animation.gd" id="7_snca4"]
 [ext_resource type="Script" uid="uid://dcqp7oc0r2exi" path="res://scripts/GUI/menu_pausa.gd" id="8_wu64m"]
-[ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://sons/som_click_botao.wav" id="15_gx71f"]
+[ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://Assets/sons/som_click_botao.wav" id="15_gx71f"]
 [ext_resource type="Script" uid="uid://dyfvlqa220tqd" path="res://scripts/GUI/timer.gd" id="15_x2ec5"]
-[ext_resource type="AudioStream" uid="uid://cwr1b2a5tc6mu" path="res://sons/som_carta4.wav" id="17_duxk7"]
-[ext_resource type="AudioStream" uid="uid://ds5wuvbtxgisd" path="res://sons/musica_suave.wav" id="18_m7vpc"]
-[ext_resource type="AudioStream" uid="uid://cdx3pfanx0u5h" path="res://sons/musica_animada.wav" id="19_8bwtr"]
+[ext_resource type="Script" uid="uid://cyaecorfd285y" path="res://scripts/sons.gd" id="16_8bwtr"]
+[ext_resource type="AudioStream" uid="uid://ds5wuvbtxgisd" path="res://Assets/sons/musica_suave.wav" id="18_m7vpc"]
+[ext_resource type="AudioStream" uid="uid://cdx3pfanx0u5h" path="res://Assets/sons/musica_animada.wav" id="19_8bwtr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
 size = Vector2(132, 444)
@@ -417,6 +417,7 @@ text = "Retornar ao menu inicial"
 [node name="som_botao" type="AudioStreamPlayer" parent="MenuPausa"]
 stream = ExtResource("15_gx71f")
 volume_db = 0.155
+script = ExtResource("16_8bwtr")
 
 [node name="Timer" type="Node2D" parent="."]
 script = ExtResource("15_x2ec5")
@@ -434,10 +435,6 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 26
-
-[node name="som_carta" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_duxk7")
-volume_db = 0.155
 
 [node name="musica_suave" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_m7vpc")

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://fvw0e3aatopx"
-path="res://.godot/imported/som_click_botao.wav-953700d4aaaad2dce8d8d15d64077535.sample"
+path="res://.godot/imported/som_click_botao.wav-900eed71e3f8036bc44ba87ff1b8a4fe.sample"
 
 [deps]
 
-source_file="res://sons/som_click_botao.wav"
-dest_files=["res://.godot/imported/som_click_botao.wav-953700d4aaaad2dce8d8d15d64077535.sample"]
+source_file="res://Assets/sons/som_click_botao.wav"
+dest_files=["res://.godot/imported/som_click_botao.wav-900eed71e3f8036bc44ba87ff1b8a4fe.sample"]
 
 [params]
 

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ds5wuvbtxgisd"
-path="res://.godot/imported/musica_suave.wav-92a5e9399a4d25783482745ef588980b.sample"
+path="res://.godot/imported/musica_suave.wav-fd69b6c8cefe4ab7945726ac5f3562e9.sample"
 
 [deps]
 
-source_file="res://sons/musica_suave.wav"
-dest_files=["res://.godot/imported/musica_suave.wav-92a5e9399a4d25783482745ef588980b.sample"]
+source_file="res://Assets/sons/musica_suave.wav"
+dest_files=["res://.godot/imported/musica_suave.wav-fd69b6c8cefe4ab7945726ac5f3562e9.sample"]
 
 [params]
 
