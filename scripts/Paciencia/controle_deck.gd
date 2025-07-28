@@ -18,7 +18,7 @@ func inicia_deck() -> void:
 func _on_deck_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
-			virar_carta_do_deck()
+			await virar_carta_do_deck()
 
 func virar_carta_do_deck() -> void:
 	var ncartas_deck:int = deck.get_child_count()

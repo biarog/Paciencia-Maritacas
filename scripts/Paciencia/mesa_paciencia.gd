@@ -80,25 +80,40 @@ func voltar_movimento() -> void:
 	
 	if container_og.is_in_group("Colunas Jogo"): # Carta estava nas colunas do jogo
 		# Quando voltar um movimento de coluna jogo, precisa garantir que a carta anterior seja virada novamente
-		if desvirou_carta:
-			container_og.get_child(container_og.get_child_count() - 1).virar_carta()
-		movimento.carregando_cartas(carta_m)
-		movimento.soltando_cartas(container_og, container_alvo, controle_jogo.calcula_pos_carta(container_og), true, true)
-		
+		await voltar_colunas(carta_m, container_og, container_alvo, desvirou_carta)
+	
 	elif container_og.is_in_group("Casas Jogo"): # Carta estava nas casas do jogo 
 		# So movimentoar a carta de volta e reconectá-la
-		controle_jogo.conectar_carta(carta_m)
-		movimento.carregando_cartas(carta_m)
-		movimento.soltando_cartas(container_og, container_alvo, controle_jogo.calcula_pos_carta(container_og), true, true)
-		
+		await voltar_casas(carta_m, container_og, container_alvo)
+	
 	elif container_og == $"Controle Deck/Cartas Viradas": # Carta estava nas cartas viradas do deck
 		# Quando voltar, vai ter q chamar adicionar_carta_virada
-		movimento.carregando_cartas(carta_m)
-		movimento.soltando_cartas(container_og, container_alvo, controle_deck.calcula_pos_deck_viradas(), true, true)
-		controle_deck.adicionar_carta_virada(carta_m, true)
+		await voltar_deck_desvirada(carta_m, container_og, container_alvo)
 	
 	else: # Carta estava no deck e foi virada para cartas viradas:
-		if !carta_m.virada: carta_m.virar_carta()
-		movimento.carregando_cartas(carta_m)
-		movimento.soltando_cartas(container_og, container_alvo, controle_deck.deck.global_position, true, true)
-		controle_deck.carta_removida_deck()
+		await voltar_deck_virada(carta_m, container_og, container_alvo)
+	
+	if container_alvo.is_in_group("Casas Jogo"): controle_casas.atualizar_conexoes()
+
+func voltar_colunas(carta_m:Carta, container_og:Control, container_alvo:Control, desvirou_carta:bool):
+	if desvirou_carta:
+		container_og.get_child(container_og.get_child_count() - 1).virar_carta()
+	movimento.carregando_cartas(carta_m)
+	movimento.soltando_cartas(container_og, container_alvo, controle_jogo.calcula_pos_carta(container_og), true, true)
+
+func voltar_casas(carta_m:Carta, container_og:Control, container_alvo:Control):
+	controle_jogo.conectar_carta(carta_m)
+	movimento.carregando_cartas(carta_m)
+	movimento.soltando_cartas(container_og, container_alvo, controle_jogo.calcula_pos_carta(container_og), true, true)
+	controle_casas.atualizar_conexoes()
+
+func voltar_deck_desvirada(carta_m:Carta, container_og:Control, container_alvo:Control):
+	movimento.carregando_cartas(carta_m)
+	movimento.soltando_cartas(container_og, container_alvo, controle_deck.calcula_pos_deck_viradas(), true, true)
+	controle_deck.adicionar_carta_virada(carta_m, true)
+
+func voltar_deck_virada(carta_m:Carta, container_og:Control, container_alvo:Control):
+	if !carta_m.virada: carta_m.virar_carta()
+	movimento.carregando_cartas(carta_m)
+	movimento.soltando_cartas(container_og, container_alvo, controle_deck.deck.global_position, true, true)
+	controle_deck.carta_removida_deck()

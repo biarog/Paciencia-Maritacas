@@ -7,8 +7,8 @@ var movimento : Movimento_Jogo
 func inicia_casas() -> void:
 	casas = get_tree().get_nodes_in_group("Casas Jogo")
 	movimento.soltouCartaCasa.connect(_normalizar_zindex)
-	movimento.soltouCartaCasa.connect(_atualizar_conexoes)
-	movimento.moveuCartaCasa1.connect(_atualizar_conexoes)
+	movimento.soltouCartaCasa.connect(atualizar_conexoes)
+	movimento.moveuCartaCasa1.connect(atualizar_conexoes)
 	
 
 func _normalizar_zindex() -> void:
@@ -17,7 +17,7 @@ func _normalizar_zindex() -> void:
 			var child = casa.get_child(i)
 			child.z_index = i
 
-func _atualizar_conexoes() -> void:
+func atualizar_conexoes() -> void:
 	for casa in casas:
 		if casa.get_child_count() > 1:
 			for i in range(1, casa.get_child_count()):
