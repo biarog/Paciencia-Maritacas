@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d2qgnk8achqm0"]
+[gd_scene load_steps=21 format=3 uid="uid://d2qgnk8achqm0"]
 
 [ext_resource type="Script" uid="uid://dme8jcax44aft" path="res://scripts/GUI/menu_inicial.gd" id="1_fe3ib"]
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://Assets/Styles/estilos de botões/botao_cinza.tres" id="3_dyoa6"]
@@ -13,8 +13,22 @@
 [ext_resource type="VideoStream" uid="uid://i4ufurfte8jh" path="res://Assets/imagens/espada_melhor.ogv" id="9_go3jw"]
 [ext_resource type="VideoStream" uid="uid://b4b3lmokdbhgg" path="res://Assets/imagens/coracao_melhor.ogv" id="10_go3jw"]
 [ext_resource type="Texture2D" uid="uid://bpxoqmmvuomva" path="res://Assets/imagens/github_elegante_acinzentado.png" id="10_t3ad3"]
+[ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://sons/som_click_botao.wav" id="14_lnb41"]
 
 [sub_resource type="Theme" id="Theme_atqwx"]
+
+[sub_resource type="GDScript" id="GDScript_lnb41"]
+script/source = "extends AudioStreamPlayer
+
+var flag : bool = true
+	
+func set_flag(habilitacao : bool):
+	flag = habilitacao;
+
+func play_som():
+	if (flag):
+		$\".\".play()
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3ad3"]
 bg_color = Color(0.545098, 0, 0, 1)
@@ -174,6 +188,11 @@ theme_override_styles/hover = ExtResource("3_dyoa6")
 theme_override_styles/pressed = ExtResource("3_mqa1b")
 theme_override_styles/normal = ExtResource("3_mqa1b")
 text = "Sair"
+
+[node name="som_botao" type="AudioStreamPlayer" parent="MenuInicial/MarginContainer/VBoxContainer"]
+stream = ExtResource("14_lnb41")
+volume_db = 0.155
+script = SubResource("GDScript_lnb41")
 
 [node name="TextureRect" type="TextureRect" parent="MenuInicial"]
 anchors_preset = -1
