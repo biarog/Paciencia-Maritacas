@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bp7l6c0y86sym"]
+[gd_scene load_steps=18 format=3 uid="uid://bp7l6c0y86sym"]
 
 [ext_resource type="Script" uid="uid://f66esx8nvkh8" path="res://scripts/Paciencia/tela_vencedor.gd" id="1_b1ama"]
 [ext_resource type="StyleBox" uid="uid://copamx0wdawpr" path="res://Assets/Styles/estilos de botões/botao_cinza.tres" id="2_sxnme"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://c7vg0mp435yy4" path="res://scripts/GUI/imagem_trofeu.gd" id="5_a23gw"]
 [ext_resource type="SpriteFrames" uid="uid://3hh5sl12s34u" path="res://Assets/imagens/firework_SpriteFrames.tres" id="6_lh84f"]
 [ext_resource type="Script" uid="uid://cxa87uoci5bl0" path="res://scripts/GUI/parabens.gd" id="7_2jbja"]
+[ext_resource type="AudioStream" uid="uid://b15ay3xqwmfp0" path="res://sons/som_palmas(1).wav" id="8_sxnme"]
+[ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://sons/som_click_botao.wav" id="9_wvu7f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sd6kp"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -359,6 +361,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_5kxh8")
 }
 speed_scale = 0.5
+
+[node name="som_palmas" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_sxnme")
+
+[node name="som_botao" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_wvu7f")
+volume_db = 0.155
 
 [connection signal="pressed" from="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer/Recomecar" to="." method="_on_recomecar_pressed"]
 [connection signal="pressed" from="TelaVencedor/Panel/CenterContainerBotoes/VBoxContainer/Retornar_Menu_Inicial" to="." method="_on_retornar_menu_inicial_pressed"]

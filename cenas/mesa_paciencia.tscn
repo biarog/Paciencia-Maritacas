@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cvkaoi6jdbggb"]
+[gd_scene load_steps=22 format=3 uid="uid://cvkaoi6jdbggb"]
 
 [ext_resource type="Script" uid="uid://cebd5maywlrcp" path="res://scripts/Paciencia/mesa_paciencia.gd" id="1_m56lf"]
 [ext_resource type="Script" uid="uid://c7ogblp7anxe0" path="res://scripts/Paciencia/controle_paciencia.gd" id="1_xq04u"]
@@ -17,6 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://fvw0e3aatopx" path="res://sons/som_click_botao.wav" id="15_gx71f"]
 [ext_resource type="Script" uid="uid://dyfvlqa220tqd" path="res://scripts/GUI/timer.gd" id="15_x2ec5"]
 [ext_resource type="AudioStream" uid="uid://cwr1b2a5tc6mu" path="res://sons/som_carta4.wav" id="17_duxk7"]
+[ext_resource type="AudioStream" uid="uid://ds5wuvbtxgisd" path="res://sons/musica_suave.wav" id="18_m7vpc"]
+[ext_resource type="AudioStream" uid="uid://cdx3pfanx0u5h" path="res://sons/musica_animada.wav" id="19_8bwtr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udm32"]
 size = Vector2(132, 444)
@@ -436,6 +438,13 @@ theme_override_font_sizes/font_size = 26
 [node name="som_carta" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_duxk7")
 volume_db = 0.155
+
+[node name="musica_suave" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_m7vpc")
+
+[node name="som_musica_animada" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_8bwtr")
+volume_db = 2.0
 
 [connection signal="gui_input" from="Controle Deck/Deck" to="Controle Deck" method="_on_deck_gui_input"]
 [connection signal="pressed" from="GUI/HBoxContainer/Desfazer" to="." method="voltar_movimento"]

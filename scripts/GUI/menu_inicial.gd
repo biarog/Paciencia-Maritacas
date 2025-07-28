@@ -2,7 +2,9 @@ extends Node2D
 
 var save = load("res://scripts/save.gd") #para poder carregar a clase "abstrata"
 
+
 func _ready():		
+	$som_musica_animada.volume_db = -15;
 	if(save.get_mudo()):
 		$MenuInicial/mudo.show()
 	else:
